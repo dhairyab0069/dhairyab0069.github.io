@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dhairya Bhatia — Genesis Cube Workstation</title>
+  <title>Dhairya Bhatia</title>
   <meta name="description" content="A Genesis x NeXT-inspired personal workstation site for Dhairya Bhatia." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dhairyab0069.github.io/" />
-  <meta property="og:title" content="Dhairya Bhatia — Genesis Cube Workstation" />
+  <meta property="og:title" content="Dhairya Bhatia" />
   <meta property="og:description" content="MS CS at Northeastern. Building at the intersection of LLM tooling, embedded Rust, and developer infrastructure. CACTILab · Project Escalion · GSG Senator." />
   <meta property="og:image" content="https://dhairyab0069.github.io/photo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Dhairya Bhatia — Genesis Cube Workstation" />
+  <meta name="twitter:title" content="Dhairya Bhatia" />
   <meta name="twitter:description" content="MS CS at Northeastern. LLM tooling · Embedded Rust · Developer infrastructure." />
   <meta name="twitter:image" content="https://dhairyab0069.github.io/photo.jpg" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&f[]=cabinet-grotesk@500,700,800&display=swap" rel="stylesheet">
@@ -33,11 +33,11 @@
     :focus-visible{outline:2px solid var(--color-primary);outline-offset:3px;border-radius:var(--radius-sm)}
     .skip-link{position:absolute;left:1rem;top:-3rem;background:var(--color-primary);color:#07101a;padding:.5rem 1rem;border-radius:.5rem;z-index:100}.skip-link:focus{top:1rem}
     .shell{width:min(100%,1400px);margin:0 auto;padding:1rem}
-    .masthead{position:sticky;top:1rem;z-index:40;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:center;padding:.9rem 1rem;background:rgba(8,11,18,.82);border:1px solid var(--color-border);border-radius:1.4rem;box-shadow:var(--shadow-md);backdrop-filter:blur(18px);margin-bottom:1.25rem}
+    .masthead{position:sticky;top:.75rem;z-index:40;display:flex;justify-content:flex-end;padding:.5rem .75rem;background:rgba(8,11,18,.72);border:1px solid var(--color-border);border-radius:999px;box-shadow:var(--shadow-md);backdrop-filter:blur(18px);margin-bottom:1.25rem;width:fit-content;margin-left:auto}
     .brand{display:flex;align-items:center;gap:.9rem}.cube{width:3rem;height:3rem;border-radius:.8rem;background:linear-gradient(135deg,rgba(85,193,255,.26),rgba(255,86,215,.12));border:1px solid rgba(255,255,255,.18);display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.16)}
     .cube svg{width:1.9rem;height:1.9rem}.brand-copy strong{display:block;font-family:var(--font-display);letter-spacing:.16em;text-transform:uppercase;font-size:var(--text-sm)}.brand-copy span{display:block;color:var(--color-text-muted);font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase}
     .tagline{justify-self:center;color:var(--color-text-muted);font-size:var(--text-xs);letter-spacing:.16em;text-transform:uppercase;text-align:center}
-    .toolbar{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:flex-end}.toolbar button{min-height:44px;padding:0 1rem;border-radius:999px;border:1px solid var(--color-border);background:rgba(255,255,255,.03);color:var(--color-text-muted);transition:all var(--transition)}.toolbar button:hover{transform:translateY(-1px);background:rgba(85,193,255,.12);color:var(--color-text);border-color:rgba(85,193,255,.3)}
+    .toolbar{display:flex;gap:.45rem;align-items:center}.toolbar button{min-height:30px;padding:0 .75rem;border-radius:999px;border:1px solid var(--color-border);background:rgba(255,255,255,.03);color:var(--color-text-muted);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;transition:all var(--transition);cursor:pointer}.toolbar button:hover{background:rgba(85,193,255,.1);color:var(--color-text);border-color:rgba(85,193,255,.28)}
 
     .hero-rack{display:grid;grid-template-columns:1.15fr .85fr;gap:1.25rem;margin-bottom:1.25rem}
     .next-cube,.info-tower,.bay,.deck,.dock{border:1px solid var(--color-border);background:linear-gradient(180deg,rgba(255,255,255,.04),rgba(255,255,255,.015));box-shadow:var(--shadow-lg)}
@@ -77,37 +77,78 @@
     [data-theme="light"] .run-btn:hover{background:rgba(0,105,168,.15)}
     .palette-flip{--color-primary:#ff61df;--color-primary-2:#cb3aad;--color-magenta:#61d7ff}
     @keyframes pulse{0%,100%{transform:scaleX(.92);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}}
-    @media (max-width:1080px){.hero-rack,.bay-main,.deck-grid{grid-template-columns:1fr}.project-rack,.philosophy{grid-template-columns:1fr}.masthead{grid-template-columns:1fr;justify-items:start}.tagline{justify-self:start;text-align:left}}
+    @media (max-width:1080px){.hero-rack,.bay-main,.deck-grid{grid-template-columns:1fr}.project-rack,.philosophy{grid-template-columns:1fr}.masthead{width:fit-content}}
     @media (max-width:680px){.shell{padding:.75rem}.masthead{position:static;border-radius:1.2rem}.cube-main{grid-template-columns:1fr}.dock{width:100%;justify-content:space-between}.dock a{flex:1 1 28%;min-width:60px;min-height:60px}.status-strip{flex-direction:column}}
     @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
 
     .avatar-module{padding:0;overflow:hidden;border-radius:1rem;border:1px solid var(--color-border);background:linear-gradient(180deg,#161d2d,#0d121b)}
     .avatar-img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;display:block;filter:contrast(1.03) saturate(0.96)}
     .avatar-caption{padding:.65rem 1rem;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);border-top:1px solid var(--color-divider)}
+
+    .ctf-panel{border-radius:1.6rem;overflow:hidden;margin-bottom:1.25rem}
+    .ctf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;padding:1.25rem}
+    @media(max-width:780px){.ctf-grid{grid-template-columns:1fr}}
+    .ctf-progress{padding:1rem;border-radius:1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.03)}
+    .ctf-flags{display:grid;gap:.55rem;margin-top:.85rem}
+    .ctf-flag-row{display:flex;align-items:center;gap:.75rem;padding:.6rem .85rem;border-radius:.75rem;border:1px solid var(--color-border);background:rgba(255,255,255,.02);transition:all var(--transition)}
+    .ctf-flag-row.found{border-color:rgba(52,211,153,.35);background:rgba(52,211,153,.06)}
+    .ctf-flag-row .flag-icon{width:1.4rem;height:1.4rem;border-radius:50%;border:1.5px solid var(--color-border);background:rgba(255,255,255,.04);display:grid;place-items:center;flex-shrink:0;font-size:.8rem;transition:all var(--transition)}
+    .ctf-flag-row.found .flag-icon{border-color:rgba(52,211,153,.6);background:rgba(52,211,153,.15);color:#34d399}
+    .ctf-flag-row .flag-name{font-size:var(--text-sm);color:var(--color-text-muted)}
+    .ctf-flag-row.found .flag-name{color:var(--color-text)}
+    .ctf-flag-row .flag-cmd{font-family:ui-monospace,monospace;font-size:.75rem;color:var(--color-text-faint);margin-left:auto}
+    .ctf-score-bar{height:.55rem;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;margin:.85rem 0 .5rem}
+    .ctf-score-fill{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,var(--color-primary),var(--color-green));transition:width .6s ease}
+    .ctf-score-label{font-size:var(--text-xs);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted)}
+    .ctf-submit-area{padding:1rem;border-radius:1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.03)}
+    .ctf-submit-area h3{font-size:var(--text-lg);margin-bottom:.35rem}
+    .ctf-locked{opacity:.5;pointer-events:none}
+    .ctf-input-row{display:flex;gap:.6rem;margin-top:.85rem}
+    .ctf-input{flex:1;min-height:40px;border-radius:.7rem;border:1px solid var(--color-border);background:rgba(255,255,255,.04);color:var(--color-text);padding:0 .85rem;font:inherit;outline:none;transition:border-color var(--transition)}
+    .ctf-input:focus{border-color:rgba(85,193,255,.4)}
+    .ctf-btn{min-height:40px;padding:0 1.1rem;border-radius:.7rem;border:1px solid rgba(85,193,255,.35);background:rgba(85,193,255,.08);color:var(--color-primary);font:inherit;font-size:var(--text-sm);letter-spacing:.06em;cursor:pointer;transition:all var(--transition);white-space:nowrap}
+    .ctf-btn:hover:not(:disabled){background:rgba(85,193,255,.18);border-color:rgba(85,193,255,.6)}
+    .ctf-btn:disabled{opacity:.4;cursor:default}
+    .ctf-leaderboard{margin-top:1rem;display:grid;gap:.45rem}
+    .ctf-lb-row{display:flex;align-items:center;gap:.75rem;padding:.55rem .85rem;border-radius:.7rem;border:1px solid var(--color-border);background:rgba(255,255,255,.02);font-size:var(--text-sm)}
+    .ctf-lb-rank{color:var(--color-gold);font-weight:700;min-width:1.4rem}
+    .ctf-lb-handle{flex:1;color:var(--color-text)}
+    .ctf-lb-score{color:var(--color-primary)}
+    .ctf-lb-time{color:var(--color-text-faint);font-size:.75rem;margin-left:auto}
+    .ctf-status{margin-top:.7rem;font-size:var(--text-sm);color:var(--color-text-faint);min-height:1.2rem}
+    [data-theme="light"] .ctf-input{background:rgba(0,0,0,.04);color:var(--color-text)}
+
+    .about-extra{border-radius:1.6rem;overflow:hidden;margin-bottom:1.25rem}
+    .about-extra-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.25rem;padding:1.25rem}
+    @media(max-width:900px){.about-extra-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:580px){.about-extra-grid{grid-template-columns:1fr}}
+    .about-card{padding:1rem;border-radius:1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.03)}
+    .about-card h3{font-family:var(--font-display);font-size:var(--text-base);letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.75rem}
+    .about-tags{display:flex;flex-wrap:wrap;gap:.45rem}
+    .about-tag{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .75rem;border-radius:999px;border:1px solid var(--color-border);background:rgba(255,255,255,.04);font-size:var(--text-xs);letter-spacing:.08em;color:var(--color-text-muted)}
+    .about-tag.accent{border-color:rgba(85,193,255,.3);background:rgba(85,193,255,.07);color:var(--color-primary)}
+    .about-tag.gold{border-color:rgba(255,193,7,.3);background:rgba(255,193,7,.06);color:var(--color-gold)}
+    .about-tag.magenta{border-color:rgba(210,56,176,.3);background:rgba(210,56,176,.06);color:var(--color-magenta)}
+    .resume-card{padding:1rem;border-radius:1rem;border:1px solid rgba(255,193,7,.25);background:rgba(255,193,7,.04);display:flex;flex-direction:column;gap:.65rem}
+    .resume-card h3{font-family:var(--font-display);font-size:var(--text-base);letter-spacing:.08em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0}
+    .resume-dl{display:flex;align-items:center;gap:.65rem;padding:.65rem .85rem;border-radius:.75rem;border:1px solid rgba(255,193,7,.25);background:rgba(255,193,7,.06);color:var(--color-gold);font-size:var(--text-sm);text-decoration:none;transition:all var(--transition)}
+    .resume-dl:hover{background:rgba(255,193,7,.14);border-color:rgba(255,193,7,.5);transform:translateY(-1px)}
+    .resume-dl svg{flex-shrink:0}
   </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <div class="shell">
     <header class="masthead" aria-label="Workstation header">
-      <div class="brand">
-        <div class="cube" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 18.5 31.8 8 52 18.6v26.6L32 56 12 45.2V18.5Z" stroke="currentColor" stroke-width="3.5"/><path d="M31.8 8v24.1L12 18.5" stroke="currentColor" stroke-width="3.5"/><path d="M31.8 32.1 52 18.6" stroke="currentColor" stroke-width="3.5"/><path d="M31.8 32.1V56" stroke="currentColor" stroke-width="3.5"/></svg>
-        </div>
-        <div class="brand-copy">
-          <strong>Genesis Cube Workstation</strong>
-          <span>Dhairya Bhatia // MS CS, Northeastern</span>
-        </div>
-      </div>
-      <div class="tagline">bhatiadhairya19@gmail.com</div>
-      <div class="toolbar">
+      <div class="toolbar" style="margin-left:auto">
         <button type="button" data-theme-toggle aria-label="Switch color theme">Light mode</button>
         <button type="button" data-secret-toggle aria-label="Toggle neon palette">Cheat code</button>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero-rack">
+      <div id="panel-about" class="panel">
+<section class="hero-rack">
         <article class="next-cube" aria-labelledby="hero-title">
           <div class="cube-face cube-top" aria-hidden="true"></div>
           <div class="cube-face cube-side" aria-hidden="true"></div>
@@ -120,23 +161,23 @@
               <div class="display">
                 <p class="eyebrow">MS Computer Science // Northeastern University</p>
                 <h1 id="hero-title">Dhairya <span class="accent">Bhatia</span></h1>
-                <p class="lede">Second-year MS CS at Northeastern (Khoury). I'm currently working on LLM-assisted embedded firmware generation at CACTILab, building a Rust game engine at NU Launch Labs, and serving as a GSG Senator. Before this: BSc CS at UBC, internships at Oriv and Intella Payments.</p>
+                <p class="lede">Second-year MS CS at Northeastern (Khoury). Currently building a Rust game engine at NU Launch Labs, serving as a GSG Senator for Student Affairs, and TAing CS3100. Before this: BSc CS at UBC, internships at Oriv and Intella Payments.</p>
                 <div class="philosophy" aria-label="Design pillars">
-                  <div class="philo-card"><strong>Systems</strong><span>Rust, embedded Rust, HAL generation, low-level systems design.</span></div>
+                  <div class="philo-card"><strong>Systems</strong><span>Rust, embedded systems, low-level design, systems programming.</span></div>
                   <div class="philo-card"><strong>Research</strong><span>LLM pipelines for code gen, agentic testing, AI in CS education.</span></div>
                   <div class="philo-card"><strong>Leadership</strong><span>GSG Senator for Student Affairs, TA at Khoury, GLI award recipient.</span></div>
                 </div>
               </div>
               <aside class="cartridge-bay" aria-label="Quick modules">
-                <div class="slot"><small>Slot A</small><strong>CACTILab</strong><span>LLM-assisted Rust HAL generation for embedded MCUs.</span></div>
-                <div class="slot"><small>Slot B</small><strong>Escalion</strong><span>Rust game engine from scratch — NU Launch Labs.</span></div>
+                <div class="slot"><small>Slot A</small><strong>Escalion</strong><span>Rust game engine from scratch — NU Launch Labs.</span></div>
+                <div class="slot"><small>Slot B</small><strong>TA // CS3100</strong><span>AI-assisted programming, curriculum design, Khoury College.</span></div>
                 <div class="slot"><small>Slot C</small><strong>GSG Senate</strong><span>Senator of the Month · GLI Emerging Graduate Leader.</span></div>
                 <div class="slot"><small>Slot D</small><strong>TA // CS3100</strong><span>AI-assisted programming, curriculum design, office hours.</span></div>
               </aside>
             </div>
             <div class="status-strip">
               <span>Mode // builder-researcher</span>
-              <span>Stack // Rust · Python · Claude · OpenHands</span>
+              <span>Stack // Rust · Python · Linux · Git</span>
               <span>Location // Boston, MA</span>
             </div>
           </div>
@@ -160,7 +201,6 @@
             <section class="module">
               <h2 class="section-title">Active processes</h2>
               <div class="module-grid">
-                <div class="row"><div><strong>CACTILab daemon</strong><span>4-stage agentic HAL pipeline · 128 tests · MSPM0L2228</span></div></div>
                 <div class="row"><div><strong>Escalion engine</strong><span>Rust game engine · NU Launch Labs · systems architecture</span></div></div>
                 <div class="row"><div><strong>MITRE eCTF 2026</strong><span>Embedded security CTF · firmware contribution · competition</span></div></div>
                 <div class="row"><div><strong>Senate signal</strong><span>GSG Senator · GLI Emerging Graduate Leader · Impact Symposium</span></div></div>
@@ -170,7 +210,91 @@
         </aside>
       </section>
 
-      <section class="bay" aria-labelledby="bay-title">
+      <section class="deck" aria-labelledby="deck-title">
+        <div class="chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="titlebar" id="deck-title">/about/summary</div>
+        </div>
+        <div class="deck-grid">
+          <article class="deck-card">
+            <h3>Embedded systems</h3>
+            <p>Working on embedded Rust projects including MITRE eCTF 2026 — firmware contribution and code review in a security-critical hardware-constrained competition environment.</p>
+          </article>
+          <article class="deck-card">
+            <h3>Rust systems</h3>
+            <p>Project Escalion: building a custom game engine in Rust from the ground up at NU Launch Labs. Focus on memory architecture, performance-critical subsystems, and zero-cost abstractions. Also: MITRE eCTF 2026 participant — embedded security firmware in a competition context.</p>
+          </article>
+          <article class="deck-card">
+            <h3>Teaching + leadership</h3>
+            <p>TA for CS3100 at Khoury — analyzing student AI usage patterns and designing curriculum around it. GSG Senator for Student Affairs: Senator of the Month (Feb 2026) and GLI Emerging Graduate Leader. MS CS at Northeastern, previously BSc CS at UBC.</p>
+          </article>
+        </div>
+      </section>
+
+            </div>
+
+
+      <section class="about-extra" aria-label="Explore" style="margin-bottom:1.25rem">
+        <div class="chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="titlebar">/about/explore</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;padding:1.25rem">
+          <button type="button" data-panel="workbench" class="ctf-btn" style="padding:1.1rem 1.25rem;border-radius:1rem;font-size:var(--text-base);display:flex;align-items:center;gap:.85rem;text-align:left;height:auto;line-height:1.4">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex-shrink:0"><path d="M4 5h16v14H4z"/><path d="m8 10 2 2-2 2"/><path d="M12.5 16H16"/></svg>
+            <span><strong style="display:block">Workbench →</strong><span style="font-size:var(--text-sm);opacity:.7">Live terminal, projects &amp; a 5-flag CTF hidden in the filesystem.</span></span>
+          </button>
+          <button type="button" data-panel="mail" class="ctf-btn" style="padding:1.1rem 1.25rem;border-radius:1rem;font-size:var(--text-base);display:flex;align-items:center;gap:.85rem;text-align:left;height:auto;line-height:1.4;border-color:rgba(255,193,7,.35);background:rgba(255,193,7,.06);color:var(--color-gold)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="flex-shrink:0"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span><strong style="display:block">Mail →</strong><span style="font-size:var(--text-sm);opacity:.7">Get in touch, or grab a copy of my resume.</span></span>
+          </button>
+        </div>
+      </section>
+
+      <section class="about-extra" aria-label="Interests, hobbies and resume">
+        <div class="chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="titlebar">/about/interests-hobbies-resume</div>
+        </div>
+        <div class="about-extra-grid">
+
+          <div class="about-card">
+            <h3>Interests</h3>
+            <div class="about-tags">
+              <span class="about-tag accent">Game Development</span>
+              <span class="about-tag accent">Systems Design</span>
+              <span class="about-tag accent">Computer Architecture</span>
+              <span class="about-tag accent">Low-level Programming</span>
+              <span class="about-tag magenta">Computer Vision</span>
+              <span class="about-tag magenta">Machine Learning</span>
+              <span class="about-tag magenta">NLP</span>
+            </div>
+          </div>
+
+          <div class="about-card">
+            <h3>Hobbies</h3>
+            <div class="about-tags">
+              <span class="about-tag gold">🎌 Anime</span>
+              <span class="about-tag gold">🎮 Gaming</span>
+              <span class="about-tag gold">🍳 Cooking</span>
+              <span class="about-tag gold">🤼 Wrestling</span>
+            </div>
+          </div>
+
+          <div class="resume-card">
+            <h3>Resume</h3>
+            
+            <a href="https://drive.google.com/file/d/1HLc4u9NgO_n4kmFPCKYFJQZMsC6Ssd_a/view?usp=sharing" target="_blank" rel="noopener" class="resume-dl">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="11" x2="12" y2="17"/><polyline points="9 14 12 17 15 14"/></svg>
+              Download Resume
+            </a>
+
+          </div>
+
+        </div>
+      </section>
+      <div id="panel-workbench" class="panel" style="display:none">
+<section class="bay" aria-labelledby="bay-title">
         <div class="chrome">
           <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
           <div class="titlebar" id="bay-title">/developer/workbench</div>
@@ -207,33 +331,83 @@
         </div>
       </section>
 
-      <section class="deck" aria-labelledby="deck-title">
+      <section class="ctf-panel" aria-labelledby="ctf-title">
         <div class="chrome">
           <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="titlebar" id="deck-title">/about/summary</div>
+          <div class="titlebar" id="ctf-title">/ctf/leaderboard — find 5 flags in the terminal</div>
         </div>
-        <div class="deck-grid">
-          <article class="deck-card">
-            <h3>Embedded + LLM</h3>
-            <p>CACTILab: a 4-stage pipeline (Claude + OpenHands SDK) that parses MCU datasheets, runs TDD red-phase verification, generates no_std Rust HAL crates, and self-validates via compiler-in-the-loop feedback. First milestone: 128 passing cargo tests, 73 GPIO pins, MSPM0L2228.</p>
-          </article>
-          <article class="deck-card">
-            <h3>Rust systems</h3>
-            <p>Project Escalion: building a custom game engine in Rust from the ground up at NU Launch Labs. Focus on memory architecture, performance-critical subsystems, and zero-cost abstractions. Also: MITRE eCTF 2026 participant — embedded security firmware in a competition context.</p>
-          </article>
-          <article class="deck-card">
-            <h3>Teaching + leadership</h3>
-            <p>TA for CS3100 at Khoury — analyzing student AI usage patterns and designing curriculum around it. GSG Senator for Student Affairs: Senator of the Month (Feb 2026) and GLI Emerging Graduate Leader. MS CS at Northeastern, previously BSc CS at UBC.</p>
-          </article>
+        <div class="ctf-grid">
+
+          <div class="ctf-progress">
+            <p class="eyebrow">Your progress</p>
+            <h3 class="section-title" id="ctf-score-label">0 / 5 flags found</h3>
+            <div class="ctf-score-bar"><div class="ctf-score-fill" id="ctf-score-fill"></div></div>
+            <p class="ctf-score-label">Type <code style="font-family:monospace;color:var(--color-green)">ctf</code> in the terminal above to start</p>
+            <div class="ctf-flags" id="ctf-flag-list">
+              <div class="ctf-flag-row" data-flag="1"><span class="flag-icon">○</span><span class="flag-name">Binary Strings</span><span class="flag-cmd">strings</span></div>
+              <div class="ctf-flag-row" data-flag="2"><span class="flag-icon">○</span><span class="flag-name">Hidden Files</span><span class="flag-cmd">ls -la</span></div>
+              <div class="ctf-flag-row" data-flag="3"><span class="flag-icon">○</span><span class="flag-name">Binary Protections</span><span class="flag-cmd">checksec</span></div>
+              <div class="ctf-flag-row" data-flag="4"><span class="flag-icon">○</span><span class="flag-name">Section Headers</span><span class="flag-cmd">readelf</span></div>
+              <div class="ctf-flag-row" data-flag="5"><span class="flag-icon">○</span><span class="flag-name">Classified Directory</span><span class="flag-cmd">find / ls -la</span></div>
+            </div>
+          </div>
+
+          <div class="ctf-submit-area">
+            <p class="eyebrow">Claim your score</p>
+            <h3 class="section-title">Found all 5 flags?</h3>
+            <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:.35rem">Submit flags in the terminal above using <code style="font-family:monospace;color:var(--color-green)">submit FLAG{...}</code>, then drop your handle here.</p>
+            <div class="ctf-input-row ctf-locked" id="ctf-submit-row">
+              <input class="ctf-input" id="ctf-handle" placeholder="your handle / name" maxlength="32" />
+              <button class="ctf-btn" id="ctf-submit-btn" type="button">Claim</button>
+            </div>
+            <p class="ctf-status" id="ctf-status"></p>
+          </div>
+
+        </div>
+      </section>
+      </div>
+
+      <section id="panel-mail" class="panel" style="display:none" aria-label="Mail">
+        <div class="next-cube" style="max-width:600px;margin:0 auto">
+          <div class="cube-face cube-top" aria-hidden="true"></div>
+          <div class="cube-face cube-side" aria-hidden="true"></div>
+          <div class="cube-front">
+            <div class="chrome">
+              <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="titlebar">/mail/compose</div>
+            </div>
+            <div style="padding:1.5rem 1.75rem 1.75rem">
+              <p class="eyebrow">Get in touch</p>
+              <h2 style="font-family:var(--font-display);font-size:var(--text-2xl);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:1rem">Say hello.</h2>
+              <p class="lede" style="margin-bottom:1.5rem">MS CS at Northeastern, building at the intersection of LLM tooling and embedded systems. Open to research collaborations, internships, and interesting problems.</p>
+              <div style="display:grid;gap:.75rem">
+                <a href="mailto:bhatiadhairya19@gmail.com" class="ctf-btn" style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;border-radius:1rem;text-decoration:none;font-size:var(--text-base)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  bhatiadhairya19@gmail.com
+                </a>
+                <a href="https://linkedin.com/in/dhairyanbhatia" target="_blank" rel="noopener" class="ctf-btn" style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;border-radius:1rem;text-decoration:none;font-size:var(--text-base)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                  linkedin.com/in/dhairyanbhatia
+                </a>
+                <a href="https://github.com/dhairyab0069" target="_blank" rel="noopener" class="ctf-btn" style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;border-radius:1rem;text-decoration:none;font-size:var(--text-base)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  github.com/dhairyab0069
+                </a>
+                <a href="https://drive.google.com/file/d/1HLc4u9NgO_n4kmFPCKYFJQZMsC6Ssd_a/view?usp=sharing" target="_blank" rel="noopener" class="ctf-btn" style="display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;border-radius:1rem;text-decoration:none;font-size:var(--text-base);border-color:rgba(255,193,7,.35);background:rgba(255,193,7,.06);color:var(--color-gold)">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="11" x2="12" y2="17"/><polyline points="9 14 12 17 15 14"/></svg>
+                  Download Resume (PDF)
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
     <nav class="dock" aria-label="Workstation dock">
-      <a class="active" href="#main"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-8.5Z"/></svg><span>Home</span></a>
-      <a href="#terminal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4z"/><path d="m8 10 2 2-2 2"/><path d="M12.5 16H16"/></svg><span>Shell</span></a>
-      <a href="#projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 5h12l2 4v10H4V9l2-4Z"/><path d="M9 9h6"/></svg><span>Carts</span></a>
-      <a href="mailto:bhatiadhairya19@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16v12H4z"/><path d="m4 8 8 6 8-6"/></svg><span>Mail</span></a>
+      <a class="active" href="#" data-panel="about"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>About</span></a>
+      <a href="#" data-panel="workbench"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4z"/><path d="m8 10 2 2-2 2"/><path d="M12.5 16H16"/></svg><span>Workbench</span></a>
+      <a href="#" data-panel="mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Mail</span></a>
     </nav>
   </div>
 
@@ -259,7 +433,7 @@
 
       const bootLines = [
         'INIT :: rust toolchain ......... READY',
-        'MOUNT :: cactilab pipeline ..... READY',
+        'MOUNT :: escalion engine ........ READY',
         'LOAD :: escalion engine ........ READY',
         'SPAWN :: gsg senate ............ READY',
         'SYNC :: cs3100 ta service ...... READY'
@@ -597,7 +771,104 @@ GLI Emerging Graduate Leader Award
             if (node.type !== 'dir') { wErr(`cd: ${target}: Not a directory`); return; }
           }
           cwdArr = newPath;
-          updatePromptLabel();
+    
+
+      // ── PANEL SWITCHING ────────────────────────────────────────────
+      const panels = { about: 'panel-about', workbench: 'panel-workbench', mail: 'panel-mail' };
+      function showPanel(name) {
+        Object.entries(panels).forEach(([k, id]) => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = k === name ? '' : 'none';
+        });
+        document.querySelectorAll('.dock a').forEach(a => {
+          a.classList.toggle('active', a.dataset.panel === name);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Trigger boot sequence if switching to about
+        if (name === 'about' && typeof tickBoot === 'function') tickBoot();
+      }
+      document.querySelectorAll('[data-panel]').forEach(a => {
+        a.addEventListener('click', e => { e.preventDefault(); showPanel(a.dataset.panel); });
+      });
+      // ── CTF PANEL ──────────────────────────────────────────────────
+      // No shared leaderboard — local score only
+
+      const FLAG_MAP = {
+        'FLAG{str1ngs_4r3_y0ur_fr13nd}': 1,
+        'FLAG{d0tf1l3s_n3v3r_l13}':      2,
+        'FLAG{ch3cks3c_pr0t3ct10ns}':    3,
+        'FLAG{3lf_s3ct10n_hunt3r}':      4,
+        'FLAG{gh0st_1n_th3_h4l}':        5,
+      };
+
+      // Load persisted state
+      let ctfState = (() => {
+        try { return JSON.parse(localStorage.getItem('ctf_state') || '{}'); } catch { return {}; }
+      })();
+      if (!ctfState.found) ctfState.found = [];
+
+      function saveCTFState() {
+        try { localStorage.setItem('ctf_state', JSON.stringify(ctfState)); } catch {}
+      }
+
+      function updateCTFPanel() {
+        const n = ctfState.found.length;
+        document.getElementById('ctf-score-label').textContent = `${n} / 5 flags found`;
+        document.getElementById('ctf-score-fill').style.width = `${(n/5)*100}%`;
+        ctfState.found.forEach(num => {
+          const row = document.querySelector(`.ctf-flag-row[data-flag="${num}"]`);
+          if (row) {
+            row.classList.add('found');
+            row.querySelector('.flag-icon').textContent = '✓';
+          }
+        });
+        if (n >= 5) {
+          document.getElementById('ctf-submit-row').classList.remove('ctf-locked');
+        }
+      }
+
+      // Hook into window._ctfFound to sync with terminal submit
+      const _origSubmit = window._ctfFound;
+      function syncFromTerminal(flag) {
+        const num = FLAG_MAP[flag];
+        if (num && !ctfState.found.includes(num)) {
+          ctfState.found.push(num);
+          saveCTFState();
+          updateCTFPanel();
+        }
+      }
+
+      // Patch the terminal's submit command to also update panel
+      const _origExec = execCmd;
+      // We intercept via MutationObserver on terminal output — simpler
+      const ctfObserver = new MutationObserver(() => {
+        const found = window._ctfFound;
+        if (found) {
+          found.forEach(f => syncFromTerminal(f));
+        }
+      });
+      ctfObserver.observe(output, { childList: true });
+
+      // Submit handler — local only
+      document.getElementById('ctf-submit-btn').addEventListener('click', () => {
+        const handle = document.getElementById('ctf-handle').value.trim();
+        const status = document.getElementById('ctf-status');
+        if (!handle) { status.textContent = 'Enter a handle first.'; return; }
+        if (ctfState.found.length < 1) { status.textContent = 'Find at least one flag first.'; return; }
+        const btn = document.getElementById('ctf-submit-btn');
+        const score = ctfState.found.length;
+        btn.disabled = true;
+        btn.textContent = score === 5 ? '🎉 All flags!' : `${score}/5 claimed`;
+        status.textContent = score === 5
+          ? `Nice work, ${handle}. All 5 flags captured.`
+          : `${handle} — ${score}/5 flags. Keep going.`;
+        ctfState.handle = handle;
+        saveCTFState();
+      });
+
+      updateCTFPanel();
+
+      updatePromptLabel();
         },
 
         cat(args) {
@@ -1062,6 +1333,103 @@ GLI Emerging Graduate Leader Award
       });
 
       // Boot message
+
+
+      // ── PANEL SWITCHING ────────────────────────────────────────────
+      const panels = { about: 'panel-about', workbench: 'panel-workbench', mail: 'panel-mail' };
+      function showPanel(name) {
+        Object.entries(panels).forEach(([k, id]) => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = k === name ? '' : 'none';
+        });
+        document.querySelectorAll('.dock a').forEach(a => {
+          a.classList.toggle('active', a.dataset.panel === name);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Trigger boot sequence if switching to about
+        if (name === 'about' && typeof tickBoot === 'function') tickBoot();
+      }
+      document.querySelectorAll('[data-panel]').forEach(a => {
+        a.addEventListener('click', e => { e.preventDefault(); showPanel(a.dataset.panel); });
+      });
+      // ── CTF PANEL ──────────────────────────────────────────────────
+      // No shared leaderboard — local score only
+
+      const FLAG_MAP = {
+        'FLAG{str1ngs_4r3_y0ur_fr13nd}': 1,
+        'FLAG{d0tf1l3s_n3v3r_l13}':      2,
+        'FLAG{ch3cks3c_pr0t3ct10ns}':    3,
+        'FLAG{3lf_s3ct10n_hunt3r}':      4,
+        'FLAG{gh0st_1n_th3_h4l}':        5,
+      };
+
+      // Load persisted state
+      let ctfState = (() => {
+        try { return JSON.parse(localStorage.getItem('ctf_state') || '{}'); } catch { return {}; }
+      })();
+      if (!ctfState.found) ctfState.found = [];
+
+      function saveCTFState() {
+        try { localStorage.setItem('ctf_state', JSON.stringify(ctfState)); } catch {}
+      }
+
+      function updateCTFPanel() {
+        const n = ctfState.found.length;
+        document.getElementById('ctf-score-label').textContent = `${n} / 5 flags found`;
+        document.getElementById('ctf-score-fill').style.width = `${(n/5)*100}%`;
+        ctfState.found.forEach(num => {
+          const row = document.querySelector(`.ctf-flag-row[data-flag="${num}"]`);
+          if (row) {
+            row.classList.add('found');
+            row.querySelector('.flag-icon').textContent = '✓';
+          }
+        });
+        if (n >= 5) {
+          document.getElementById('ctf-submit-row').classList.remove('ctf-locked');
+        }
+      }
+
+      // Hook into window._ctfFound to sync with terminal submit
+      const _origSubmit = window._ctfFound;
+      function syncFromTerminal(flag) {
+        const num = FLAG_MAP[flag];
+        if (num && !ctfState.found.includes(num)) {
+          ctfState.found.push(num);
+          saveCTFState();
+          updateCTFPanel();
+        }
+      }
+
+      // Patch the terminal's submit command to also update panel
+      const _origExec = execCmd;
+      // We intercept via MutationObserver on terminal output — simpler
+      const ctfObserver = new MutationObserver(() => {
+        const found = window._ctfFound;
+        if (found) {
+          found.forEach(f => syncFromTerminal(f));
+        }
+      });
+      ctfObserver.observe(output, { childList: true });
+
+      // Submit handler — local only
+      document.getElementById('ctf-submit-btn').addEventListener('click', () => {
+        const handle = document.getElementById('ctf-handle').value.trim();
+        const status = document.getElementById('ctf-status');
+        if (!handle) { status.textContent = 'Enter a handle first.'; return; }
+        if (ctfState.found.length < 1) { status.textContent = 'Find at least one flag first.'; return; }
+        const btn = document.getElementById('ctf-submit-btn');
+        const score = ctfState.found.length;
+        btn.disabled = true;
+        btn.textContent = score === 5 ? '🎉 All flags!' : `${score}/5 claimed`;
+        status.textContent = score === 5
+          ? `Nice work, ${handle}. All 5 flags captured.`
+          : `${handle} — ${score}/5 flags. Keep going.`;
+        ctfState.handle = handle;
+        saveCTFState();
+      });
+
+      updateCTFPanel();
+
       updatePromptLabel();
       w(`<span style="color:var(--color-green)">NeXTSTEP 4.2 — nextcube (68040)</span>`);
       w(`<span style="color:var(--color-text-faint)">Last login: ${new Date().toDateString()} on ttys001</span>`);
