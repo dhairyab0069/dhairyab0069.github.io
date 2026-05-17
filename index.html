@@ -32,7 +32,12 @@
     [data-theme="light"] .module{background:rgba(255,255,255,.35)}
     [data-theme="light"] .row{background:rgba(255,255,255,.3)}
     [data-theme="light"] .about-card{background:rgba(255,255,255,.35)}
-    [data-theme="light"] .resume-card{background:rgba(255,200,80,.08)}
+    [data-theme="light"] .resume-card{background:rgba(200,140,0,.1);border-color:rgba(180,120,0,.35)}
+    [data-theme="light"] .resume-dl{background:rgba(180,120,0,.12);border-color:rgba(180,120,0,.4);color:#7a4d00}
+    [data-theme="light"] .resume-dl:hover{background:rgba(180,120,0,.22)}
+    [data-theme="light"] .resume-card h3{color:#7a4d00}
+    [data-theme="light"] .about-tag.gold{border-color:rgba(160,100,0,.4);background:rgba(160,100,0,.12);color:#6b3f00}
+    [data-theme="light"] #panel-mail .ctf-btn[style*="gold"]{border-color:rgba(160,100,0,.4);background:rgba(160,100,0,.1);color:#6b3f00}
     [data-theme="light"] .ctf-progress,.ctf-submit-area{background:rgba(255,255,255,.35)}
     [data-theme="light"] .ctf-flag-row{background:rgba(255,255,255,.25)}
     [data-theme="light"] .ctf-flag-row.found{background:rgba(14,79,46,.08)}
@@ -102,16 +107,32 @@
     .palette-flip{--color-primary:#ff61df;--color-primary-2:#cb3aad;--color-magenta:#61d7ff}
     @keyframes pulse{0%,100%{transform:scaleX(.92);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}}
     @media (max-width:1080px){.hero-rack,.bay-main,.deck-grid{grid-template-columns:1fr}.project-rack,.philosophy{grid-template-columns:1fr}.masthead{width:fit-content}}
-    @media (max-width:680px){.shell{padding:.75rem}.masthead{position:static;border-radius:1.2rem}.cube-main{grid-template-columns:1fr}.dock{width:100%;justify-content:space-between}.dock a{flex:1 1 28%;min-width:60px;min-height:60px}.status-strip{flex-direction:column}}
+    @media (max-width:680px){
+      .shell{padding:.75rem}
+      .masthead{position:static;border-radius:1.2rem;margin-left:0;width:auto}
+      .cube-main{grid-template-columns:1fr}
+      .dock{width:100%;justify-content:space-evenly;border-radius:1rem;padding:.5rem}
+      .dock a{flex:0 0 auto;min-width:70px;min-height:56px;padding:.5rem .25rem}
+      .dock a span{font-size:.65rem}
+      .status-strip{flex-direction:column}
+      #panel-mail .next-cube{max-width:100%;margin:0}
+      #panel-mail .cube-front>div[style]{padding:1rem}
+      .ctf-grid{grid-template-columns:1fr}
+      .hero-rack{grid-template-columns:1fr}
+      .about-extra-grid{grid-template-columns:1fr}
+    }
     @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
 
     .avatar-module{padding:0;overflow:hidden;border-radius:1rem;border:1px solid var(--color-border);background:linear-gradient(180deg,#161d2d,#0d121b)}
-    .avatar-img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;display:block;filter:contrast(1.03) saturate(0.96)}
+    .avatar-img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 15%;display:block;filter:contrast(1.03) saturate(0.96)}
     .avatar-caption{padding:.65rem 1rem;font-size:var(--text-xs);letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);border-top:1px solid var(--color-divider)}
 
     .ctf-panel{border-radius:1.6rem;overflow:hidden;margin-bottom:1.25rem}
     .ctf-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;padding:1.25rem}
-    @media(max-width:780px){.ctf-grid{grid-template-columns:1fr}}
+    @media(max-width:780px){
+      .ctf-grid{grid-template-columns:1fr}
+      .bay-main{grid-template-columns:1fr}
+    }
     .ctf-progress{padding:1rem;border-radius:1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.03)}
     .ctf-flags{display:grid;gap:.55rem;margin-top:.85rem}
     .ctf-flag-row{display:flex;align-items:center;gap:.75rem;padding:.6rem .85rem;border-radius:.75rem;border:1px solid var(--color-border);background:rgba(255,255,255,.02);transition:all var(--transition)}
@@ -805,8 +826,8 @@ GLI Emerging Graduate Leader Award
     
 
       // ── PANEL SWITCHING ────────────────────────────────────────────
-      const panels = { about: 'panel-about', workbench: 'panel-workbench', mail: 'panel-mail' };
       function showPanel(name) {
+        const panels = { about: 'panel-about', workbench: 'panel-workbench', mail: 'panel-mail' };
         Object.entries(panels).forEach(([k, id]) => {
           const el = document.getElementById(id);
           if (el) el.style.display = k === name ? '' : 'none';
@@ -815,7 +836,6 @@ GLI Emerging Graduate Leader Award
           a.classList.toggle('active', a.dataset.panel === name);
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        // Trigger boot sequence if switching to about
         if (name === 'about' && typeof tickBoot === 'function') tickBoot();
       }
       document.querySelectorAll('[data-panel]').forEach(a => {
@@ -1367,8 +1387,8 @@ GLI Emerging Graduate Leader Award
 
 
       // ── PANEL SWITCHING ────────────────────────────────────────────
-      const panels = { about: 'panel-about', workbench: 'panel-workbench', mail: 'panel-mail' };
       function showPanel(name) {
+        const panels = { about: 'panel-about', workbench: 'panel-workbench', mail: 'panel-mail' };
         Object.entries(panels).forEach(([k, id]) => {
           const el = document.getElementById(id);
           if (el) el.style.display = k === name ? '' : 'none';
@@ -1377,7 +1397,6 @@ GLI Emerging Graduate Leader Award
           a.classList.toggle('active', a.dataset.panel === name);
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        // Trigger boot sequence if switching to about
         if (name === 'about' && typeof tickBoot === 'function') tickBoot();
       }
       document.querySelectorAll('[data-panel]').forEach(a => {
