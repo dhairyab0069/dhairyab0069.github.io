@@ -23,7 +23,31 @@
       --font-body:'Satoshi','Inter',sans-serif;--font-display:'Cabinet Grotesk','Arial Black',sans-serif;
       --color-bg:#05070b;--color-surface:#0d1119;--color-surface-2:#121826;--color-surface-3:#1a2233;--color-panel:#090c12;--color-border:rgba(220,232,255,.14);--color-divider:rgba(220,232,255,.08);--color-text:#edf3ff;--color-text-muted:#9eaac7;--color-text-faint:#657290;--color-primary:#55c1ff;--color-primary-2:#1b8bd2;--color-magenta:#ff56d7;--color-gold:#ffd166;--color-green:#93f0bb;--shadow-sm:0 2px 4px rgba(0,0,0,.25);--shadow-md:0 12px 30px rgba(0,0,0,.45);--shadow-lg:0 28px 80px rgba(0,0,0,.62);--transition:180ms cubic-bezier(.16,1,.3,1);
     }
-    [data-theme="light"]{--color-bg:#edf1f8;--color-surface:#f7f9fd;--color-surface-2:#ffffff;--color-surface-3:#e5ebf7;--color-panel:#f4f7fc;--color-border:rgba(18,31,58,.14);--color-divider:rgba(18,31,58,.1);--color-text:#0a1020;--color-text-muted:#3a4a62;--color-text-faint:#5a6a82;--color-primary:#0069a8;--color-primary-2:#004f80;--color-magenta:#a0186e;--color-gold:#8a5c00;--color-green:#155c38;--shadow-sm:0 1px 2px rgba(14,24,43,.06);--shadow-md:0 12px 30px rgba(14,24,43,.12);--shadow-lg:0 24px 60px rgba(14,24,43,.15)}
+    [data-theme="light"]{--color-bg:#dde8f5;--color-surface:#e8f0fa;--color-surface-2:#f2f7ff;--color-surface-3:#cfdaee;--color-panel:#e2ecf8;--color-border:rgba(10,28,72,.16);--color-divider:rgba(10,28,72,.1);--color-text:#06111f;--color-text-muted:#1e3252;--color-text-faint:#3a5278;--color-primary:#0058a0;--color-primary-2:#003f7a;--color-magenta:#8c0f6a;--color-gold:#7a4d00;--color-green:#0e4f2e;--shadow-sm:0 1px 3px rgba(6,18,45,.1);--shadow-md:0 12px 30px rgba(6,18,45,.18);--shadow-lg:0 24px 60px rgba(6,18,45,.22)}
+    [data-theme="light"] .next-cube{background:linear-gradient(165deg,rgba(255,255,255,.7),rgba(210,228,255,.4) 38%),linear-gradient(180deg,#dce8f7,#cad9ef)}
+    [data-theme="light"] .display{background:radial-gradient(circle at 50% 15%,rgba(0,88,160,.18),transparent 30%),linear-gradient(180deg,#c8daee,#b8cde4);border-color:rgba(0,88,160,.2)}
+    [data-theme="light"] .slot{background:linear-gradient(180deg,#cfdaee,#c0d0e6)}
+    [data-theme="light"] .chrome{background:linear-gradient(180deg,rgba(255,255,255,.55),rgba(255,255,255,.25))}
+    [data-theme="light"] .next-cube,.info-tower,.bay,.deck,.dock{background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.15))}
+    [data-theme="light"] .module{background:rgba(255,255,255,.35)}
+    [data-theme="light"] .row{background:rgba(255,255,255,.3)}
+    [data-theme="light"] .about-card{background:rgba(255,255,255,.35)}
+    [data-theme="light"] .resume-card{background:rgba(255,200,80,.08)}
+    [data-theme="light"] .ctf-progress,.ctf-submit-area{background:rgba(255,255,255,.35)}
+    [data-theme="light"] .ctf-flag-row{background:rgba(255,255,255,.25)}
+    [data-theme="light"] .ctf-flag-row.found{background:rgba(14,79,46,.08)}
+    [data-theme="light"] .masthead{background:rgba(186,210,240,.82)}
+    [data-theme="light"] .deck{background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.2))}
+    [data-theme="light"] .bootlog{color:#0058a0}
+    [data-theme="light"] .terminal-bar{background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,.2))}
+    [data-theme="light"] .screen{background:#c4d8ee;color:#06111f}
+    [data-theme="light"] .input-row{background:rgba(255,255,255,.4);border-top-color:rgba(10,28,72,.12)}
+    [data-theme="light"] .input-row label{color:#0058a0}
+    [data-theme="light"] #terminal-input{color:#06111f}
+    [data-theme="light"] .dock{background:rgba(186,210,240,.9)}
+    [data-theme="light"] .dock a{color:var(--color-text-muted)}
+    [data-theme="light"] .dock a.active{background:rgba(0,88,160,.15);color:var(--color-primary)}
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     html{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;scroll-behavior:smooth}
     body{font-family:var(--font-body);font-size:var(--text-base);line-height:1.6;color:var(--color-text);background:radial-gradient(circle at 15% 18%,rgba(85,193,255,.09),transparent 20%),radial-gradient(circle at 82% 10%,rgba(255,86,215,.08),transparent 18%),linear-gradient(180deg,rgba(255,255,255,.02),transparent),var(--color-bg);min-height:100dvh;overflow-x:hidden}
@@ -134,6 +158,13 @@
     .resume-dl{display:flex;align-items:center;gap:.65rem;padding:.65rem .85rem;border-radius:.75rem;border:1px solid rgba(255,193,7,.25);background:rgba(255,193,7,.06);color:var(--color-gold);font-size:var(--text-sm);text-decoration:none;transition:all var(--transition)}
     .resume-dl:hover{background:rgba(255,193,7,.14);border-color:rgba(255,193,7,.5);transform:translateY(-1px)}
     .resume-dl svg{flex-shrink:0}
+
+    .site-footer{padding:1.25rem 0 .5rem;text-align:center}
+    .btn-strip{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.4rem;margin-bottom:.75rem}
+    .btn-strip a{display:inline-block;line-height:0;border-radius:2px;overflow:hidden;transition:transform .15s,box-shadow .15s;image-rendering:pixelated}
+    .btn-strip a:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(85,193,255,.35)}
+    .btn-strip img{display:block;width:88px;height:31px;image-rendering:pixelated}
+    .footer-copy{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-faint)}
   </style>
 </head>
 <body>
@@ -1464,5 +1495,18 @@ GLI Emerging Graduate Leader Award
       });
     })();
   </script>
+
+      <footer class="site-footer">
+        <div class="btn-strip">
+          <a href="https://dhairyab0069.github.io" title="Dhairya Bhatia"><img src="data:image/gif;base64,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" alt="Dhairya" /></a>
+          <a href="https://www.rust-lang.org" target="_blank" rel="noopener" title="Powered by Rust"><img src="https://raw.githubusercontent.com/ktwrd/88x31/main/img/rust.gif" alt="Powered by Rust" loading="lazy" onerror="this.parentElement.style.display='none'" /></a>
+          <a href="https://github.com/dhairyab0069" target="_blank" rel="noopener" title="GitHub"><img src="https://raw.githubusercontent.com/ktwrd/88x31/main/img/github.gif" alt="GitHub" loading="lazy" onerror="this.parentElement.style.display='none'" /></a>
+          <a href="https://cloudflare.com" target="_blank" rel="noopener" title="Cloudflare"><img src="https://raw.githubusercontent.com/ktwrd/88x31/main/img/cloudflare.gif" alt="Cloudflare" loading="lazy" onerror="this.parentElement.style.display='none'" /></a>
+          <a href="https://discord.com" target="_blank" rel="noopener" title="Discord"><img src="https://raw.githubusercontent.com/ktwrd/88x31/main/img/discord.gif" alt="Discord" loading="lazy" onerror="this.parentElement.style.display='none'" /></a>
+          <a href="https://kernel.org" target="_blank" rel="noopener" title="Linux"><img src="https://raw.githubusercontent.com/ktwrd/88x31/main/img/linux.gif" alt="Linux" loading="lazy" onerror="this.parentElement.style.display='none'" /></a>
+          <a href="https://neovim.io" target="_blank" rel="noopener" title="Neovim"><img src="https://raw.githubusercontent.com/ktwrd/88x31/main/img/neovim.gif" alt="Neovim" loading="lazy" onerror="this.parentElement.style.display='none'" /></a>
+        </div>
+        <p class="footer-copy">© 2026 Dhairya Bhatia · Boston, MA</p>
+      </footer>
 </body>
 </html>
