@@ -97,7 +97,7 @@
 
     .bay{border-radius:1.6rem;overflow:hidden;margin-bottom:1.25rem}.bay-main{display:grid;grid-template-columns:1.1fr .9fr;gap:1.25rem;padding:1.25rem}.section-copy{padding:1rem;border-radius:1.1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.02)}.section-copy h2{font-family:var(--font-display);font-size:var(--text-xl);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:.7rem}
     .terminal{background:#04070d;border:1px solid rgba(147,240,187,.14);border-radius:1rem;display:grid;grid-template-rows:auto 1fr auto;min-height:23rem}.terminal-bar{padding:.85rem 1rem;border-bottom:1px solid rgba(147,240,187,.12);font-size:var(--text-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--color-green)}.screen{padding:1rem;display:grid;gap:.7rem;align-content:start;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#e2fff0;font-size:.95rem}.screen .prompt{color:var(--color-primary)}.screen .dir{color:var(--color-gold)}.input-row{display:flex;align-items:center;gap:.6rem;padding:.85rem 1rem 1rem;border-top:1px solid rgba(147,240,187,.12)}.input-row label{color:var(--color-primary);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.input-row input{flex:1;min-height:44px;border-radius:.7rem;border:1px solid rgba(147,240,187,.16);background:rgba(255,255,255,.02);color:#e2fff0;padding:0 .85rem;font:inherit;outline:none}
-    .project-rack{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.9rem}.project-card{position:relative;text-align:left;padding:1rem;min-height:12.5rem;border-radius:1rem;border:1px solid var(--color-border);background:linear-gradient(180deg,#171f31,#0c1018);display:grid;align-content:start;gap:.65rem;transition:all var(--transition)}.project-card::before{content:"";position:absolute;left:50%;top:.7rem;transform:translateX(-50%);width:42%;height:.38rem;border-radius:999px;background:rgba(255,255,255,.08)}.project-card:hover,.project-card.active{transform:translateY(-3px);border-color:rgba(85,193,255,.32);box-shadow:0 18px 36px rgba(0,0,0,.34)}.project-card small{color:var(--color-magenta);font-size:var(--text-xs);letter-spacing:.15em;text-transform:uppercase;margin-top:.75rem}.project-card h3{font-size:var(--text-lg);line-height:1.05}.project-card p{color:var(--color-text-muted);font-size:var(--text-sm)}.chips{display:flex;flex-wrap:wrap;gap:.45rem}.chip{display:inline-flex;padding:.28rem .6rem;border-radius:999px;border:1px solid var(--color-border);background:rgba(255,255,255,.05);font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted)}.project-detail{padding:1rem;border-radius:1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.03);min-height:13rem}
+    .project-rack{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem}.project-card{position:relative;text-align:left;padding:1rem;min-height:12.5rem;border-radius:1rem;border:1px solid var(--color-border);background:linear-gradient(180deg,#171f31,#0c1018);display:grid;align-content:start;gap:.65rem;transition:all var(--transition)}.project-card::before{content:"";position:absolute;left:50%;top:.7rem;transform:translateX(-50%);width:42%;height:.38rem;border-radius:999px;background:rgba(255,255,255,.08)}.project-card:hover,.project-card.active{transform:translateY(-3px);border-color:rgba(85,193,255,.32);box-shadow:0 18px 36px rgba(0,0,0,.34)}.project-card small{color:var(--color-magenta);font-size:var(--text-xs);letter-spacing:.15em;text-transform:uppercase;margin-top:.75rem}.project-card h3{font-size:var(--text-lg);line-height:1.05}.project-card p{color:var(--color-text-muted);font-size:var(--text-sm)}.chips{display:flex;flex-wrap:wrap;gap:.45rem}.chip{display:inline-flex;padding:.28rem .6rem;border-radius:999px;border:1px solid var(--color-border);background:rgba(255,255,255,.05);font-size:var(--text-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted)}.project-detail{padding:1rem;border-radius:1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.03);min-height:13rem}
 
     .deck{border-radius:1.6rem;overflow:hidden;margin-bottom:1.25rem}.deck-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;padding:1.25rem}.deck-card{padding:1rem;border-radius:1rem;background:rgba(255,255,255,.03);border:1px solid var(--color-border)}.deck-card h3{font-family:var(--font-display);font-size:var(--text-lg);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin-bottom:.55rem}.deck-card p{color:var(--color-text-muted)}
 
@@ -227,6 +227,7 @@
                 <div class="slot"><small>Slot B</small><strong>TA // CS3100</strong><span>AI-assisted programming, curriculum design, Khoury College.</span></div>
                 <div class="slot"><small>Slot C</small><strong>GSG Senate</strong><span>Senator of the Month · GLI Emerging Graduate Leader.</span></div>
                 <div class="slot"><small>Slot D</small><strong>eCTF 2026</strong><span>Embedded security CTF — firmware, code review, MITRE.</span></div>
+                <div class="slot"><small>Slot E</small><strong>ACLab</strong><span>TimeBlind dataset · CV4Smalls · CVPR 2026 · Dr. Ostadabbas.</span></div>
               </aside>
             </div>
             <div class="status-strip">
@@ -374,10 +375,11 @@
             <p class="lede">Click a card to see more detail. CACTILab and Escalion are active — the others are recent completed work.</p>
             <div style="height:1rem"></div>
             <div class="project-rack" role="list">
-              <button class="project-card active" type="button" data-project="cactilab" role="listitem"><small>Cartridge 01</small><h3>HAL Pipeline</h3><p>4-stage agentic pipeline generating Rust HAL crates from MCU datasheets. 128 tests, 73 pins.</p><div class="chips"><span class="chip">Rust</span><span class="chip">LLM</span><span class="chip">Embedded</span></div></button>
+              <button class="project-card active" type="button" data-project="cactilab" role="listitem"><small>Cartridge 01</small><h3>Rust HAL Generation</h3><p>LLM-assisted Hardware Abstraction Layer generation for embedded MCUs. 128 tests, 73 pins.</p><div class="chips"><span class="chip">Rust</span><span class="chip">LLM</span><span class="chip">Embedded</span></div></button>
               <button class="project-card" type="button" data-project="escalion" role="listitem"><small>Cartridge 02</small><h3>Escalion</h3><p>Custom Rust game engine built from scratch at NU Launch Labs. Performance-critical systems design.</p><div class="chips"><span class="chip">Rust</span><span class="chip">Engine</span><span class="chip">Systems</span></div></button>
               <button class="project-card" type="button" data-project="teaching" role="listitem"><small>Cartridge 03</small><h3>TA // CS3100</h3><p>Teaching Assistant at Khoury. AI-assisted programming curriculum, student feedback research.</p><div class="chips"><span class="chip">CS3100</span><span class="chip">AI</span><span class="chip">Education</span></div></button>
-              <button class="project-card" type="button" data-project="senate" role="listitem"><small>Cartridge 04</small><h3>Senate Signal</h3><p>GSG Senator for Student Affairs. Senator of the Month · GLI Emerging Graduate Leader.</p><div class="chips"><span class="chip">GSG</span><span class="chip">GLI</span><span class="chip">Leadership</span></div></button>
+              <button class="project-card" type="button" data-project="aclab" role="listitem"><small>Cartridge 04</small><h3>ACLab</h3><p>TimeBlind benchmark dataset collection. CV4Smalls Workshop, CVPR 2026. PI: Dr. Sarah Ostadabbas.</p><div class="chips"><span class="chip">CV</span><span class="chip">CVPR</span><span class="chip">Dataset</span></div></button>
+              <button class="project-card" type="button" data-project="senate" role="listitem"><small>Cartridge 05</small><h3>Senate Signal</h3><p>GSG Senator for Student Affairs. Senator of the Month · GLI Emerging Graduate Leader.</p><div class="chips"><span class="chip">GSG</span><span class="chip">GLI</span><span class="chip">Leadership</span></div></button>
             </div>
             <div style="height:1rem"></div>
             <div class="project-detail" id="project-detail" tabindex="0"></div>
@@ -530,7 +532,7 @@ web       dhairyab0069.github.io` },
           'research': { type: 'dir', modified: 'May 10 14:33', entries: {
             'cactilab': { type: 'dir', modified: 'May 10 14:33', entries: {
               'README.md': { type: 'file', size: 512, modified: 'May 10 14:33',
-                content: `# LLM-Assisted HAL Generation — CACTILab, Northeastern
+                content: `# LLM-Assisted Hardware Abstraction Layer Generation — CACTILab, Northeastern
 
 Built an agentic pipeline that reads a microcontroller datasheet
 and writes a working, tested Rust hardware abstraction library.
@@ -586,6 +588,10 @@ FLAG{gh0st_1n_th3_h4l}` }
             }}}
           },
           'projects': { type: 'dir', modified: 'Jan 15 2026', entries: {
+            'aclab': { type: 'dir', modified: 'May 20 2026', entries: {
+              'README.md': { type: 'file', size: 412, modified: 'May 20 2026',
+                content: `# ACLab — Augmented Cognition Lab\nPI: Dr. Sarah Ostadabbas, ECE, College of Engineering, Northeastern University\n\nRole: Research Lab Member (May 2026 – Present)\n\nContributions:\n  63 video pairs contributed to TimeBlind benchmark\n  TimeBlind: spatio-temporal compositionality for video-language models\n  CV4Smalls Workshop, CVPR 2026\n  Paper reviewer for CV4Smalls Workshop\n\nThesis project starting Fall 2026.` }
+            }},
             'escalion': { type: 'dir', modified: 'May 16 11:20', entries: {
               'escalion.elf': { type: 'file', size: 18432, modified: 'May 16 11:20',
                 content: '[ELF binary — use checksec or strings to inspect]' },
@@ -619,7 +625,7 @@ Status:   Completed April 2024` }
             'cs3100': { type: 'dir', modified: 'May 16 08:30', entries: {
               'README.md': { type: 'file', size: 334, modified: 'May 16 08:30',
                 content: `# Teaching Assistant — CS3100
-# Organization of Programming Languages
+# Programming and Design Paradigms II
 # Khoury College of Computer Science, Northeastern University
 
 Jan 2026 – Present
@@ -956,7 +962,7 @@ GLI Emerging Graduate Leader Award
             ['    1', 'S', 'Sep  1 2025  ', 'init — nextcube workstation'],
             ['  124', 'R', 'Jan 10 2026  ', 'ta-service — cs3100 khoury college'],
             ['  201', 'R', 'Jan 15 2026  ', 'escalion — rust game engine (nu launch labs)'],
-            ['  314', 'R', 'May  2 2026  ', 'cactilab-pipeline — llm hal generation'],
+            ['  314', 'R', 'May  2 2026  ', 'cactilab-pipeline — llm hardware abstraction layer generation'],
             ['  315', 'S', 'May  2 2026  ', '  └─ claude-sonnet — stage 2 codegen (40 turns)'],
             ['  316', 'S', 'May  2 2026  ', '  └─ claude-haiku  — stages 1+3 (fast)'],
             ['  317', 'S', 'May  2 2026  ', '  └─ openhands     — tdd red-phase verifier'],
@@ -997,7 +1003,7 @@ GLI Emerging Graduate Leader Award
             w(`       <span ${f}>Launch Labs. GSG Senator for Student Affairs.</span>`);
             w(``); w(`<span ${p}>OPTIONS</span>`);
             w(`       <span ${f}>--research    LLM tooling, embedded Rust, agentic pipelines</span>`);
-            w(`       <span ${f}>--build       Escalion engine, CACTILab HAL pipeline</span>`);
+            w(`       <span ${f}>--build       Escalion engine, CACTILab Hardware Abstraction Layer pipeline</span>`);
             w(`       <span ${f}>--teach       TA for CS3100, Khoury College</span>`);
             w(`       <span ${f}>--lead        GSG Senator, GLI Emerging Graduate Leader</span>`);
             w(``); w(`<span ${p}>FILES</span>`);
@@ -1052,7 +1058,7 @@ GLI Emerging Graduate Leader Award
               'MSPM0L2228','CACTILab','OpenHands SDK',
               '__libc_start_main','_IO_puts','malloc','free',
               '.text','.rodata','.data','.bss',
-              'LLM-Assisted HAL Generation',
+              'LLM-Assisted Hardware Abstraction Layer (HAL) Generation',
               'cargo test -- --nocapture',
               '128 passing tests',
               '/home/dhairya/research/cactilab',
@@ -1490,9 +1496,10 @@ GLI Emerging Graduate Leader Award
 
       const projectDetail = document.getElementById('project-detail');
       const projectData = {
-        cactilab: { title: 'HAL Pipeline // CACTILab', url: 'https://github.com/dhairyab0069', body: 'A 4-stage agentic pipeline built at CACTILab, Northeastern. Takes an MCU datasheet PDF + spec file, runs TDD red-phase verification via OpenHands, generates a no_std idiomatic Rust HAL crate with compiler-in-the-loop feedback, then validates via cargo test. First milestone: 128 passing tests across 73 GPIO pins on the MSPM0L2228 (ARM Cortex-M0+). Also ships: two-agent Writer/Reviewer TDD loop, FFI Rust↔C verification, Langfuse per-turn cost tracing, 40–60% cost reduction via model tiering.', chips: ['Rust', 'Claude', 'OpenHands SDK', 'Embedded-HAL', 'Typestate', 'CI Loop'] },
+        cactilab: { title: 'LLM-Assisted Hardware Abstraction Layer Generation // CACTILab', url: 'https://github.com/dhairyab0069', body: 'A 4-stage agentic pipeline built at CACTILab, Northeastern. Takes an MCU datasheet PDF + spec file, runs TDD red-phase verification via OpenHands, generates a no_std idiomatic Rust HAL crate with compiler-in-the-loop feedback, then validates via cargo test. First milestone: 128 passing tests across 73 GPIO pins on the MSPM0L2228 (ARM Cortex-M0+). Also ships: two-agent Writer/Reviewer TDD loop, FFI Rust↔C verification, Langfuse per-turn cost tracing, 40–60% cost reduction via model tiering.', chips: ['Rust', 'Claude', 'OpenHands SDK', 'Embedded-HAL', 'Typestate', 'CI Loop'] },
+        aclab: { title: 'ACLab — Augmented Cognition Lab // Northeastern University', url: null, body: 'Research lab member under Dr. Sarah Ostadabbas (ECE, COE). Contributed 63 video pairs to the TimeBlind spatio-temporal compositionality benchmark for video-language model evaluation. Served as paper reviewer for CV4Smalls Workshop at CVPR 2026. Onboarding — thesis project starting Fall 2026.', chips: ['Computer Vision', 'Video-Language Models', 'CVPR 2026', 'Dr. Ostadabbas'] },
         escalion: { title: 'Project Escalion // NU Launch Labs', url: 'https://github.com/dhairyab0069', body: 'Co-founded a Rust-based game development studio through NU Launch Labs. Building a custom game engine from scratch — focus on memory layout, performance-critical subsystems, and zero-cost abstractions. Early stage, high ambition. Also competed in MITRE eCTF 2026, contributing to embedded security firmware in a hardware-constrained competition environment.', chips: ['Rust', 'Game Engine', 'Systems', 'eCTF 2026'] },
-        teaching: { title: 'TA Console // CS3100', url: null, body: 'Teaching Assistant for CS3100 (Organization of Programming Languages) at Khoury College of Computer Science. Work includes designing and testing labs and assignments pre-release, analyzing student feedback on AI-assisted programming workflows, and exploring a human subjects study on AI usage patterns in CS education. Office hours and lab support.', chips: ['CS3100', 'Curriculum', 'AI Research', 'Student Support'] },
+        teaching: { title: 'TA Console // CS3100', url: null, body: 'Teaching Assistant for CS3100 (Programming and Design Paradigms II) at Khoury College of Computer Science. Work includes designing and testing labs and assignments pre-release, analyzing student feedback on AI-assisted programming workflows, and exploring a human subjects study on AI usage patterns in CS education. Office hours and lab support.', chips: ['CS3100', 'Curriculum', 'AI Research', 'Student Support'] },
         senate: { title: 'Senate Signal // GSG', url: null, body: 'Senator for Student Affairs at the Northeastern Graduate Student Government. Awarded Senator of the Month for February 2026. Recipient of the Emerging Graduate Leader Award through the Graduate Leadership Institute (co-sponsored by GSG). Active on initiatives including club auditing, Impact Symposium volunteering, and broader student advocacy work.', chips: ['GSG', 'GLI Award', 'Senator of the Month', 'Student Affairs'] }
       };
       const renderProject = (key) => {
