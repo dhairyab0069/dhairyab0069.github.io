@@ -426,6 +426,7 @@
               <div class="ctf-flag-row" data-flag="3"><span class="flag-icon">○</span><span class="flag-name">Binary Protections</span><span class="flag-cmd">checksec</span></div>
               <div class="ctf-flag-row" data-flag="4"><span class="flag-icon">○</span><span class="flag-name">Section Headers</span><span class="flag-cmd">readelf</span></div>
               <div class="ctf-flag-row" data-flag="5"><span class="flag-icon">○</span><span class="flag-name">Classified Directory</span><span class="flag-cmd">find / ls -la</span></div>
+              <div class="ctf-flag-row" data-flag="6"><span class="flag-icon">○</span><span class="flag-name">Kernel Dungeon ⚔️ <em style="font-size:.7rem;opacity:.6">bonus</em></span><span class="flag-cmd">dungeon</span></div>
             </div>
           </div>
 
@@ -506,7 +507,11 @@
         theme = theme === 'dark' ? 'light' : 'dark';
         syncTheme();
       });
-      cheatBtn.addEventListener('click', () => body.classList.toggle('palette-flip'));
+      cheatBtn.addEventListener('click', () => {
+        body.classList.toggle('palette-flip');
+        window._cheatMode = body.classList.contains('palette-flip');
+        cheatBtn.textContent = window._cheatMode ? 'Cheat ON 🔓' : 'Cheat code';
+      });
 
       const bootLines = [
         'INIT :: rust toolchain ......... READY',
@@ -801,6 +806,8 @@ GLI Emerging Graduate Leader Award
             ['hint [1-5]',     'get a hint for a flag'],
             ['submit FLAG{..}','submit a flag'],
             ['scoreboard',     'see your progress'],
+            ['flip',           '🙃 cheat: flip the page'],
+            ['dungeon',        '⚔️  cheat: enter the kernel dungeon'],
           ];
           for (const [cmd, desc] of cmds) {
             w(`  <span style="color:var(--color-green)">${esc(cmd.padEnd(14))}</span><span style="color:var(--color-text-muted)">${esc(desc)}</span>`);
@@ -879,6 +886,7 @@ GLI Emerging Graduate Leader Award
         'FLAG{ch3cks3c_pr0t3ct10ns}':    3,
         'FLAG{3lf_s3ct10n_hunt3r}':      4,
         'FLAG{gh0st_1n_th3_h4l}':        5,
+        'FLAG{k3rn3l_dungeon_master}':   6,
       };
 
       // Load persisted state
@@ -893,8 +901,8 @@ GLI Emerging Graduate Leader Award
 
       function updateCTFPanel() {
         const n = ctfState.found.length;
-        document.getElementById('ctf-score-label').textContent = `${n} / 5 flags found`;
-        document.getElementById('ctf-score-fill').style.width = `${(n/5)*100}%`;
+        document.getElementById('ctf-score-label').textContent = n >= 6 ? `5 / 5 flags + bonus ⚔️` : `${Math.min(n,5)} / 5 flags found`;
+        document.getElementById('ctf-score-fill').style.width = `${(Math.min(n,5)/5)*100}%`;
         ctfState.found.forEach(num => {
           const row = document.querySelector(`.ctf-flag-row[data-flag="${num}"]`);
           if (row) {
@@ -938,10 +946,13 @@ GLI Emerging Graduate Leader Award
         const btn = document.getElementById('ctf-submit-btn');
         const score = ctfState.found.length;
         btn.disabled = true;
-        btn.textContent = score === 5 ? '🎉 All flags!' : `${score}/5 claimed`;
-        status.textContent = score === 5
-          ? `Nice work, ${handle}. All 5 flags captured.`
-          : `${handle} — ${score}/5 flags. Keep going.`;
+        const base = Math.min(score, 5);
+        btn.textContent = score >= 6 ? '🎉 5/5 + bonus!' : score === 5 ? '🎉 All 5 flags!' : `${base}/5 claimed`;
+        status.textContent = score >= 6
+          ? `${handle} — 5/5 flags + bonus dungeon flag. Impressive.`
+          : score === 5
+            ? `Nice work, ${handle}. All 5 flags captured.`
+            : `${handle} — ${score}/5 flags. Keep going.`;
         ctfState.handle = handle;
         saveCTFState();
       });
@@ -1311,6 +1322,7 @@ GLI Emerging Graduate Leader Award
             'FLAG{ch3cks3c_pr0t3ct10ns}':    { n:3, name:'Binary Protections' },
             'FLAG{3lf_s3ct10n_hunt3r}':      { n:4, name:'Section Headers' },
             'FLAG{gh0st_1n_th3_h4l}':        { n:5, name:'Classified Directory' },
+            'FLAG{k3rn3l_dungeon_master}':   { n:6, name:'Kernel Dungeon' },
           };
           const g = `style="color:var(--color-gold)"`;
           const r = `style="color:var(--color-magenta)"`;
@@ -1337,11 +1349,12 @@ GLI Emerging Graduate Leader Award
             { n:3, name:'Binary Protections',   flag:'FLAG{ch3cks3c_pr0t3ct10ns}' },
             { n:4, name:'Section Headers',      flag:'FLAG{3lf_s3ct10n_hunt3r}' },
             { n:5, name:'Classified Directory', flag:'FLAG{gh0st_1n_th3_h4l}' },
+          { n:6, name:'Kernel Dungeon (bonus ⚔️)', flag:'FLAG{k3rn3l_dungeon_master}' },
           ];
           const g = `style="color:var(--color-gold)"`;
           const f2 = `style="color:var(--color-text-faint)"`;
           const p = `style="color:var(--color-primary)"`;
-          w(`<span ${g}>Scoreboard — ${found.size}/5 flags</span>`);
+          w(`<span ${g}>Scoreboard — ${Math.min(found.size,5)}/5 flags${found.size>=6?' + bonus ⚔️':''}</span>`);
           for (const entry of all) {
             const done = found.has(entry.flag);
             w(`  ${done ? '<span style="color:var(--color-green)">✓' : '<span style="color:var(--color-magenta)">○'} Flag ${entry.n}: ${entry.name}</span>`);
@@ -1350,6 +1363,63 @@ GLI Emerging Graduate Leader Award
             w(``);
             w(`<span ${g}>All flags captured. You'd fit in at CACTILab.</span>`);
           }
+        },
+
+        // ── FLIP COMMAND ─────────────────────────────────────────────
+        flip() {
+          if (!window._cheatMode) { wErr('flip: permission denied. activate cheat code first.'); return; }
+          const body = document.body;
+          const flipped = body.style.transform === 'rotate(180deg)';
+          body.style.transform = flipped ? '' : 'rotate(180deg)';
+          body.style.transition = 'transform .6s ease';
+          w(flipped
+            ? `<span style="color:var(--color-green)">right-side up. welcome back.</span>`
+            : `<span style="color:var(--color-magenta)">flipped. type <span style="color:var(--color-green)">flip</span> again to undo.</span>`
+          );
+        },
+
+        // ── DUNGEON CRAWLER ──────────────────────────────────────────
+        dungeon(args) {
+          if (!window._cheatMode) { wErr('dungeon: permission denied. activate cheat code first.'); return; }
+          if (window._dg && window._dg.active) {
+            w(`<span style="color:var(--color-text-faint)">Already in dungeon. Type <span style="color:var(--color-green)">quit</span> to exit.</span>`);
+            return;
+          }
+          window._dg = {
+            active: true, room: 'boot', hp: 10, maxHp: 10,
+            inventory: [], defeated: new Set(), won: false,
+            rooms: {
+              boot:   { name:'Boot Sector',       exits:{east:'heap',south:'stack'},  items:['rusty_pointer'], enemy:null },
+              heap:   { name:'Heap Corridor',      exits:{west:'boot',south:'kernel'}, items:[],               enemy:'memory_leak' },
+              stack:  { name:'Stack Chamber',      exits:{north:'boot',east:'kernel'}, items:['health_potion'], enemy:'segfault' },
+              kernel: { name:'Kernel Panic Room',  exits:{north:'heap',west:'stack',south:'void'}, items:['sudo_token'], enemy:null },
+              void:   { name:'The Void',           exits:{north:'kernel'},             items:[],               enemy:'race_condition' },
+            },
+            items: {
+              rusty_pointer:  { name:'Rusty Pointer',  desc:'A dangerously unreliable weapon.',  damage:3 },
+              health_potion:  { name:'Health Potion',  desc:'Restores 5 HP.' },
+              sudo_token:     { name:'Sudo Token',     desc:'Grants elevated privileges. Something fears this.' },
+            },
+            enemies: {
+              memory_leak:    { name:'Memory Leak',        hp:6,  maxHp:6,  dmg:2, sudo:false },
+              segfault:       { name:'Segfault Daemon',    hp:8,  maxHp:8,  dmg:3, sudo:false },
+              race_condition: { name:'Race Condition',     hp:15, maxHp:15, dmg:5, sudo:true  },
+            },
+            eHp: {},
+          };
+          const dg = window._dg;
+          for (const [k,v] of Object.entries(dg.enemies)) dg.eHp[k] = v.hp;
+          const g = `style="color:var(--color-gold)"`;
+          const gr = `style="color:var(--color-green)"`;
+          const f = `style="color:var(--color-text-faint)"`;
+          w(`<span ${g}>╔══════════════════════════════════════╗</span>`);
+          w(`<span ${g}>║        THE KERNEL DUNGEON  v0.1      ║</span>`);
+          w(`<span ${g}>╚══════════════════════════════════════╝</span>`);
+          w(`<span ${f}>Commands: <span ${gr}>look  go [dir]  take [item]  use [item]  attack  inventory  status  quit</span></span>`);
+          w(``);
+          dgLook();
+          // Override execCmd to intercept dungeon commands
+          window._dgMode = true;
         },
         clear() { output.innerHTML = ''; }
       };
@@ -1394,7 +1464,8 @@ GLI Emerging Graduate Leader Award
         if (!line) return;
         shellHistory.unshift(line);
         histIdx = -1;
-        execCmd(line);
+        if (window._dgMode) { dgCmd(line); }
+        else { execCmd(line); }
         shellInput.value = '';
         output.scrollTop = output.scrollHeight;
       });
@@ -1440,6 +1511,7 @@ GLI Emerging Graduate Leader Award
         'FLAG{ch3cks3c_pr0t3ct10ns}':    3,
         'FLAG{3lf_s3ct10n_hunt3r}':      4,
         'FLAG{gh0st_1n_th3_h4l}':        5,
+        'FLAG{k3rn3l_dungeon_master}':   6,
       };
 
       // Load persisted state
@@ -1454,8 +1526,8 @@ GLI Emerging Graduate Leader Award
 
       function updateCTFPanel() {
         const n = ctfState.found.length;
-        document.getElementById('ctf-score-label').textContent = `${n} / 5 flags found`;
-        document.getElementById('ctf-score-fill').style.width = `${(n/5)*100}%`;
+        document.getElementById('ctf-score-label').textContent = n >= 6 ? `5 / 5 flags + bonus ⚔️` : `${Math.min(n,5)} / 5 flags found`;
+        document.getElementById('ctf-score-fill').style.width = `${(Math.min(n,5)/5)*100}%`;
         ctfState.found.forEach(num => {
           const row = document.querySelector(`.ctf-flag-row[data-flag="${num}"]`);
           if (row) {
@@ -1499,10 +1571,13 @@ GLI Emerging Graduate Leader Award
         const btn = document.getElementById('ctf-submit-btn');
         const score = ctfState.found.length;
         btn.disabled = true;
-        btn.textContent = score === 5 ? '🎉 All flags!' : `${score}/5 claimed`;
-        status.textContent = score === 5
-          ? `Nice work, ${handle}. All 5 flags captured.`
-          : `${handle} — ${score}/5 flags. Keep going.`;
+        const base = Math.min(score, 5);
+        btn.textContent = score >= 6 ? '🎉 5/5 + bonus!' : score === 5 ? '🎉 All 5 flags!' : `${base}/5 claimed`;
+        status.textContent = score >= 6
+          ? `${handle} — 5/5 flags + bonus dungeon flag. Impressive.`
+          : score === 5
+            ? `Nice work, ${handle}. All 5 flags captured.`
+            : `${handle} — ${score}/5 flags. Keep going.`;
         ctfState.handle = handle;
         saveCTFState();
       });
@@ -1540,7 +1615,11 @@ GLI Emerging Graduate Leader Award
       window.addEventListener('keydown', (event) => {
         buffer.push(event.key);
         if (buffer.length > sequence.length) buffer.shift();
-        if (sequence.every((k, i) => buffer[i] === k)) body.classList.toggle('palette-flip');
+        if (sequence.every((k, i) => buffer[i] === k)) {
+          body.classList.toggle('palette-flip');
+          window._cheatMode = body.classList.contains('palette-flip');
+          cheatBtn.textContent = window._cheatMode ? 'Cheat ON 🔓' : 'Cheat code';
+        }
       });
     })();
   </script>
