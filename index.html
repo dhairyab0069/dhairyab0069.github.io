@@ -1470,6 +1470,118 @@ GLI Emerging Graduate Leader Award
         return val;
       }
 
+
+      // ── DUNGEON HELPERS ─────────────────────────────────────────────
+      function dgRoom()  { return window._dg.rooms[window._dg.room]; }
+      function dgEnemy() {
+        const r = dgRoom();
+        if (!r.enemy || window._dg.defeated.has(r.enemy)) return null;
+        return { key: r.enemy, ...window._dg.enemies[r.enemy] };
+      }
+      function dgHpBar(cur, max) {
+        const filled = Math.round((cur/max)*10);
+        return '█'.repeat(filled) + '░'.repeat(10-filled) + ` ${cur}/${max}`;
+      }
+      function dgLook() {
+        const dg = window._dg;
+        const r = dgRoom();
+        const en = dgEnemy();
+        const g = `style="color:var(--color-gold)"`;
+        const p = `style="color:var(--color-primary)"`;
+        const m = `style="color:var(--color-magenta)"`;
+        const f = `style="color:var(--color-text-faint)"`;
+        w(`<span ${g}>${esc(r.name)}</span>`);
+        w(`<span ${f}>${esc(r.desc||'')}</span>`);
+        const liveItems = (r.items||[]).filter(i => !dg.inventory.includes(i));
+        if (liveItems.length) w(`<span ${f}>Items here: <span ${p}>${liveItems.map(i=>dg.items[i].name).join(', ')}</span></span>`);
+        const exits = Object.keys(r.exits||{});
+        w(`<span ${f}>Exits: <span style="color:var(--color-green)">${exits.join(', ')}</span></span>`);
+        if (en) w(`<span ${m}>⚠ ${esc(en.name)} is here! [HP: ${dgHpBar(dg.eHp[en.key], en.maxHp)}]</span>`);
+      }
+      function dgCmd(line) {
+        const dg = window._dg;
+        const [cmd, ...rest] = line.trim().toLowerCase().split(/\s+/);
+        const arg = rest.join(' ');
+        const g  = `style="color:var(--color-gold)"`;
+        const gr = `style="color:var(--color-green)"`;
+        const m  = `style="color:var(--color-magenta)"`;
+        const f  = `style="color:var(--color-text-faint)"`;
+        const p  = `style="color:var(--color-primary)"`;
+        w(`<span style="color:var(--color-green)">dungeon</span><span style="color:var(--color-text-faint)">></span> <span style="color:var(--color-text)">${esc(line)}</span>`);
+        if (cmd==='quit'||cmd==='exit') {
+          dg.active=false; window._dgMode=false;
+          w(`<span ${f}>Exiting dungeon.</span>`); return;
+        }
+        if (cmd==='look') { dgLook(); return; }
+        if (cmd==='inventory'||cmd==='inv') {
+          if (!dg.inventory.length) { w(`<span ${f}>Inventory empty.</span>`); return; }
+          dg.inventory.forEach(i => w(`<span ${p}>${esc(dg.items[i].name)}</span> <span ${f}>— ${esc(dg.items[i].desc)}</span>`));
+          return;
+        }
+        if (cmd==='status') {
+          w(`<span ${gr}>HP: ${dgHpBar(dg.hp, dg.maxHp)}</span>`);
+          w(`<span ${f}>Room: ${esc(dgRoom().name)}</span>`); return;
+        }
+        if (cmd==='go') {
+          const r=dgRoom(); const en=dgEnemy();
+          if (en) { w(`<span ${m}>${esc(en.name)} blocks your path. Defeat it first.</span>`); return; }
+          if (!r.exits||!r.exits[arg]) { w(`<span ${m}>Can't go ${esc(arg||'?')} from here.</span>`); return; }
+          dg.room=r.exits[arg]; dgLook(); return;
+        }
+        if (cmd==='take') {
+          const r=dgRoom();
+          const key=Object.keys(dg.items).find(k=>dg.items[k].name.toLowerCase().includes(arg)&&(r.items||[]).includes(k)&&!dg.inventory.includes(k));
+          if (!key) { w(`<span ${m}>No such item here.</span>`); return; }
+          dg.inventory.push(key);
+          w(`<span ${gr}>Took ${esc(dg.items[key].name)}.</span>`); return;
+        }
+        if (cmd==='use') {
+          const key=dg.inventory.find(k=>dg.items[k].name.toLowerCase().includes(arg));
+          if (!key) { w(`<span ${m}>You don't have that.</span>`); return; }
+          if (key==='health_potion') {
+            const gained=Math.min(5,dg.maxHp-dg.hp); dg.hp=Math.min(dg.maxHp,dg.hp+5);
+            dg.inventory=dg.inventory.filter(i=>i!=='health_potion');
+            w(`<span ${gr}>Drank the potion. +${gained} HP. [${dgHpBar(dg.hp,dg.maxHp)}]</span>`);
+          } else { w(`<span ${f}>Can't use that here.</span>`); }
+          return;
+        }
+        if (cmd==='attack') {
+          const en=dgEnemy();
+          if (!en) { w(`<span ${f}>Nothing to attack.</span>`); return; }
+          const hasSword=dg.inventory.includes('rusty_pointer');
+          const hasSudo=dg.inventory.includes('sudo_token');
+          let pdmg=hasSword?3:1;
+          if (en.sudo&&hasSudo) { pdmg+=8; w(`<span ${gr}>SUDO OVERRIDE — critical hit!</span>`); }
+          pdmg+=Math.floor(Math.random()*2);
+          dg.eHp[en.key]=Math.max(0,dg.eHp[en.key]-pdmg);
+          w(`<span ${gr}>You hit ${esc(en.name)} for ${pdmg}. [Enemy HP: ${dgHpBar(dg.eHp[en.key],en.maxHp)}]</span>`);
+          if (dg.eHp[en.key]<=0) {
+            dg.defeated.add(en.key);
+            w(`<span ${g}>✓ ${esc(en.name)} defeated!</span>`);
+            if (en.key==='race_condition') {
+              dg.won=true; window._dgMode=false; dg.active=false;
+              w(``); w(`<span ${g}>╔═════════════════════════════════════╗</span>`);
+              w(`<span ${g}>║      YOU WIN. KERNEL CLEARED.       ║</span>`);
+              w(`<span ${g}>╚═════════════════════════════════════╝</span>`);
+              w(`<span ${f}>The daemon dissolves and drops something...</span>`); w(``);
+              w(`<span style="color:var(--color-gold);font-weight:600">FLAG{k3rn3l_dungeon_master}</span>`); w(``);
+              w(`<span ${f}>Type <span style="color:var(--color-green)">submit FLAG{k3rn3l_dungeon_master}</span> to claim the bonus flag.</span>`);
+            }
+            return;
+          }
+          const edmg=Math.max(1,en.dmg+Math.floor(Math.random()*2)-1);
+          dg.hp-=edmg;
+          w(`<span ${m}>${esc(en.name)} hits you for ${edmg}. [Your HP: ${dgHpBar(dg.hp,dg.maxHp)}]</span>`);
+          if (dg.hp<=0) {
+            dg.active=false; window._dgMode=false;
+            w(``); w(`<span ${m}>You died. Kernel panic.</span>`);
+            w(`<span ${f}>Type <span style="color:var(--color-green)">dungeon</span> to try again.</span>`);
+          }
+          return;
+        }
+        w(`<span ${f}>Unknown command. Try: look  go [dir]  take [item]  use [item]  attack  inventory  status  quit</span>`);
+      }
+
       // Execute a command line
       function execCmd(line) {
         const parts = line.trim().split(/\s+/);
