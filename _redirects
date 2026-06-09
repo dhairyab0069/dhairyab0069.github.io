@@ -1,3 +1,1 @@
-# Redirect bare domain to index (Cloudflare handles this automatically,
-# but this makes it explicit and handles any edge cases)
 / /index.html 200
