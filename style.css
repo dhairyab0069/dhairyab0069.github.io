@@ -86,7 +86,7 @@
     .screen{display:contents}
     .screen .prompt{color:var(--color-primary)}
     .screen .dir{color:var(--color-gold)}
-    .input-row{display:flex;align-items:center;gap:0;margin-top:.1rem;flex-shrink:0;padding:0 1rem .75rem}
+    .input-row{display:flex;align-items:center;gap:0;margin-top:.1rem;flex-shrink:0;padding:0 0 .5rem 0}
     .input-row label{color:var(--color-green);white-space:nowrap;flex-shrink:0}
     .input-row input{flex:1;border:none;background:transparent;color:#e2fff0;padding:0;font:inherit;outline:none;caret-color:var(--color-green)}
     .input-row input::placeholder{color:transparent}

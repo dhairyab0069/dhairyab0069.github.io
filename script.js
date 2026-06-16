@@ -875,38 +875,42 @@ GLI Emerging Graduate Leader Award
 
         // ── FLIP COMMAND ─────────────────────────────────────────────
         fastfetch() {
-          const g = `style="color:var(--color-green)"`;
-          const p = `style="color:var(--color-primary)"`;
-          const f = `style="color:var(--color-text-faint)"`;
+          const g  = `style="color:var(--color-green)"`;
+          const p  = `style="color:var(--color-primary)"`;
+          const f  = `style="color:var(--color-text-faint)"`;
           const gd = `style="color:var(--color-gold)"`;
-          const m = `style="color:var(--color-magenta)"`;
+          const m  = `style="color:var(--color-magenta)"`;
+          const pre = `style="white-space:pre;font-family:ui-monospace,SFMono-Regular,Menlo,monospace"`;
+          // art lines — fixed 12 chars wide
+          const art = [
+            '  .------. ',
+            ' /  ____  \\',
+            '|  /    \\ |',
+            '|  \\____/ |',
+            ' \\________/',
+            '   NEXCUBE  ',
+          ];
           const rows = [
             ['OS',       'NeXTSTEP 4.2 (nextcube 68040)'],
             ['Host',     'Dhairya Bhatia'],
-            ['Role',     'MS CS · Khoury College · Northeastern University'],
-            ['Research', 'ACLab · Video Understanding · CVPR 2026'],
-            ['Shell',    'bash 5.2 · nextcube-term'],
-            ['Stack',    'Python · PyTorch · Rust · Git · Docker'],
+            ['Role',     'MS CS \u00b7 Khoury \u00b7 Northeastern'],
+            ['Research', 'ACLab \u00b7 TimeBlind \u00b7 CVPR 2026'],
+            ['Shell',    'nextcube-term'],
+            ['Stack',    'Python \u00b7 PyTorch \u00b7 Rust \u00b7 Git'],
             ['Site',     'dhairyab0069.github.io'],
             ['GitHub',   'github.com/dhairyab0069'],
             ['Uptime',   'June 2026'],
             ['Memory',   'caffeine / infinite'],
           ];
-          const art = [
-            `<span ${g}>  .------.</span>`,
-            `<span ${g}> /  ____ \\</span>`,
-            `<span ${g}>|  /    \\|</span>`,
-            `<span ${g}>|  \\____/|</span>`,
-            `<span ${g}> \\______/</span>`,
-            `<span ${g}>  NEXCUBE</span>`,
-          ];
-          const lines = rows.map(([k,v],i)=>`${art[i]||'          '} <span ${p}>${k.padEnd(10)}</span><span ${f}>${v}</span>`);
-          if(art.length > rows.length) {
-            for(let i=rows.length;i<art.length;i++) lines.push(art[i]);
-          }
+          const PAD = '             '; // 13 spaces to match art width
           w(`<span ${m}>dhairya</span><span ${f}>@</span><span ${g}>nextcube</span>`);
-          w(`<span ${f}>${'─'.repeat(32)}</span>`);
-          lines.forEach(l=>w(l));
+          w(`<span ${f}>\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span>`);
+          rows.forEach(([k,v], i) => {
+            const artCol = i < art.length
+              ? `<span ${g}>${art[i]}</span>`
+              : `<span>${PAD}</span>`;
+            w(`<span ${pre}>${artCol}  <span ${p}>${k.padEnd(9)}</span><span ${f}>${v}</span></span>`);
+          });
           w('');
         },
         flip() {
