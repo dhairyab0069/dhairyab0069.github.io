@@ -875,6 +875,7 @@ GLI Emerging Graduate Leader Award
 
         // ── FLIP COMMAND ─────────────────────────────────────────────
         fastfetch() {
+          output.innerHTML = '';
           const g  = `style="color:var(--color-green)"`;
           const p  = `style="color:var(--color-primary)"`;
           const f  = `style="color:var(--color-text-faint)"`;
@@ -912,6 +913,8 @@ GLI Emerging Graduate Leader Award
             w(`<span ${pre}>${artCol}  <span ${p}>${k.padEnd(9)}</span><span ${f}>${v}</span></span>`);
           });
           w('');
+          const sw=document.getElementById('screen-wrap');
+          if(sw) sw.scrollTop=0;
         },
         flip() {
           if (!window._cheatMode) { wErr('flip: permission denied. activate cheat code first.'); return; }
@@ -1315,7 +1318,7 @@ GLI Emerging Graduate Leader Award
 
       const projectDetail = document.getElementById('project-detail');
       const projectData = {
-        cactilab: { title: 'LLM-Assisted Hardware Abstraction Layer Generation // CACTILab', url: 'https://github.com/dhairyab0069', body: 'A 4-stage agentic pipeline built at CACTILab, Northeastern. Takes an MCU datasheet PDF + spec file, runs TDD red-phase verification via OpenHands, generates a no_std idiomatic Rust HAL crate with compiler-in-the-loop feedback, then validates via cargo test. First milestone: 128 passing tests across 73 GPIO pins on the MSPM0L2228 (ARM Cortex-M0+). Also ships: two-agent Writer/Reviewer TDD loop, FFI Rust↔C verification, Langfuse per-turn cost tracing, 40–60% cost reduction via model tiering.', chips: ['Rust', 'Claude', 'OpenHands SDK', 'Embedded-HAL', 'Typestate', 'CI Loop'] },
+        cactilab: { title: 'Research Volunteer // Northeastern University', url: 'https://github.com/dhairyab0069', body: 'A 4-stage agentic pipeline built at CACTILab, Northeastern. Takes an MCU datasheet PDF + spec file, runs TDD red-phase verification via OpenHands, generates a no_std idiomatic Rust HAL crate with compiler-in-the-loop feedback, then validates via cargo test. First milestone: 128 passing tests across 73 GPIO pins on the MSPM0L2228 (ARM Cortex-M0+). Also ships: two-agent Writer/Reviewer TDD loop, FFI Rust↔C verification, Langfuse per-turn cost tracing, 40–60% cost reduction via model tiering.', chips: ['Rust', 'Claude', 'OpenHands SDK', 'Embedded-HAL', 'Typestate', 'CI Loop'] },
         aclab: { title: 'ACLab — Augmented Cognition Lab // Northeastern University', url: null, body: 'Research lab member at Northeastern University. Served as paper reviewer for CV4Smalls Workshop at CVPR 2026. Collected 50+ video pairs contributing to the TimeBlind spatio-temporal compositionality benchmark for video-language model evaluation. Thesis project starting Fall 2026.', chips: ['Computer Vision', 'Video-Language Models', 'CVPR 2026', 'ACLab'] },
         escalion: { title: 'Project Escalion // NU Launch Labs', url: 'https://github.com/dhairyab0069', body: 'Co-founded a Rust-based game development studio through NU Launch Labs. Building a custom game engine from scratch — focus on memory layout, performance-critical subsystems, and zero-cost abstractions. Early stage, high ambition. Also competed in MITRE eCTF 2026, contributing to embedded security firmware in a hardware-constrained competition environment.', chips: ['Rust', 'Game Engine', 'Systems', 'eCTF 2026'] },
         teaching: { title: 'TA Console // CS3100', url: null, body: 'Teaching Assistant for CS3100 (Programming and Design Paradigms II) at Khoury College of Computer Science. Work includes designing and testing labs and assignments pre-release, analyzing student feedback on AI-assisted programming workflows, and exploring a human subjects study on AI usage patterns in CS education. Office hours and lab support.', chips: ['CS3100', 'Curriculum', 'AI Research', 'Student Support'] },
