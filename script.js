@@ -22,11 +22,11 @@
       });
 
       const bootLines = [
-        'INIT :: rust toolchain ......... READY',
-        'MOUNT :: escalion engine ........ READY',
-        'LOAD :: escalion engine ........ READY',
-        'SPAWN :: gsg senate ............ READY',
-        'SYNC :: cs3100 ta service ...... READY'
+        'INIT :: aclab research .......... READY',
+        'MOUNT :: timeblind dataset ...... READY',
+        'LOAD :: escalion engine ......... READY',
+        'SPAWN :: gsg senate ............. READY',
+        'SYNC :: rust toolchain .......... READY'
       ];
       const boot = document.getElementById('boot-lines');
       let bootIndex = 0;
@@ -249,7 +249,7 @@ GLI Emerging Graduate Leader Award
         const d = document.createElement('div');
         d.innerHTML = html;
         output.appendChild(d);
-        output.scrollTop = output.scrollHeight;
+      
       }
       function wPre(text) {
         const d = document.createElement('div');
@@ -257,7 +257,6 @@ GLI Emerging Graduate Leader Award
         d.style.fontFamily = 'inherit';
         d.textContent = text;
         output.appendChild(d);
-        output.scrollTop = output.scrollHeight;
       }
       function wErr(msg) {
         w(`<span style="color:var(--color-magenta)">${esc(msg)}</span>`);
@@ -314,6 +313,7 @@ GLI Emerging Graduate Leader Award
             ['hint [1-5]',     'get a hint for a flag'],
             ['submit FLAG{..}','submit a flag'],
             ['scoreboard',     'see your progress'],
+            ['fastfetch',      'system information'],
             ['flip',           '🙃 cheat: flip the page'],
             ['dungeon',        '⚔️  cheat: enter the kernel dungeon'],
           ];
@@ -874,6 +874,41 @@ GLI Emerging Graduate Leader Award
         },
 
         // ── FLIP COMMAND ─────────────────────────────────────────────
+        fastfetch() {
+          const g = `style="color:var(--color-green)"`;
+          const p = `style="color:var(--color-primary)"`;
+          const f = `style="color:var(--color-text-faint)"`;
+          const gd = `style="color:var(--color-gold)"`;
+          const m = `style="color:var(--color-magenta)"`;
+          const rows = [
+            ['OS',       'NeXTSTEP 4.2 (nextcube 68040)'],
+            ['Host',     'Dhairya Bhatia'],
+            ['Role',     'MS CS · Khoury College · Northeastern University'],
+            ['Research', 'ACLab · Video Understanding · CVPR 2026'],
+            ['Shell',    'bash 5.2 · nextcube-term'],
+            ['Stack',    'Python · PyTorch · Rust · Git · Docker'],
+            ['Site',     'dhairyab0069.github.io'],
+            ['GitHub',   'github.com/dhairyab0069'],
+            ['Uptime',   'June 2026'],
+            ['Memory',   'caffeine / infinite'],
+          ];
+          const art = [
+            `<span ${g}>  .------.</span>`,
+            `<span ${g}> /  ____ \\</span>`,
+            `<span ${g}>|  /    \\|</span>`,
+            `<span ${g}>|  \\____/|</span>`,
+            `<span ${g}> \\______/</span>`,
+            `<span ${g}>  NEXCUBE</span>`,
+          ];
+          const lines = rows.map(([k,v],i)=>`${art[i]||'          '} <span ${p}>${k.padEnd(10)}</span><span ${f}>${v}</span>`);
+          if(art.length > rows.length) {
+            for(let i=rows.length;i<art.length;i++) lines.push(art[i]);
+          }
+          w(`<span ${m}>dhairya</span><span ${f}>@</span><span ${g}>nextcube</span>`);
+          w(`<span ${f}>${'─'.repeat(32)}</span>`);
+          lines.forEach(l=>w(l));
+          w('');
+        },
         flip() {
           if (!window._cheatMode) { wErr('flip: permission denied. activate cheat code first.'); return; }
           const body = document.body;
@@ -1152,7 +1187,6 @@ GLI Emerging Graduate Leader Award
         if (window._dgMode) { try { dgCmd(line); } catch(e) { w(`<span style="color:var(--color-magenta)">dungeon error: ${esc(String(e.message))}. type quit to exit.</span>`); } }
         else { execCmd(line); }
         shellInput.value = '';
-        output.scrollTop = output.scrollHeight;
       });
 
       shellInput.addEventListener('keydown', (e) => {
