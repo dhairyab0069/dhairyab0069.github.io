@@ -66,30 +66,12 @@ web       dhairyab0069.github.io` },
           'research': { type: 'dir', modified: 'May 10 14:33', entries: {
             'cactilab': { type: 'dir', modified: 'May 10 14:33', entries: {
               'README.md': { type: 'file', size: 512, modified: 'May 10 14:33',
-                content: `# LLM-Assisted Hardware Abstraction Layer Generation — CACTILab, Northeastern
+                content: `# Research Project — CACTILab, Northeastern University
 
-Built an agentic pipeline that reads a microcontroller datasheet
-and writes a working, tested Rust hardware abstraction library.
-No human code in the generated output.
-
-Stack:   Claude + OpenHands SDK + Rust + compiler-in-the-loop
-Target:  MSPM0L2228 (ARM Cortex-M0+)
-Status:  Milestone 1 complete ✓
-
-Milestone 1 results:
-  128 passing cargo tests
-  73 GPIO pins (GPIOA, GPIOB, GPIOC)
-  no_std · typestate pattern · embedded-hal 1.0 compliant` },
+Contributed to a research project at CACTILab.
+Details to be shared at a later date.` },
               'pipeline.txt': { type: 'file', size: 384, modified: 'May  2 18:41',
-                content: `Stage 1    Parse datasheet → board_features.json + unit_tests.rs
-Stage 1.5  TDD red-phase: compile tests against stub HAL (OpenHands)
-Stage 2    Generate HAL crate via cargo check loop (40 turns, Sonnet)
-Stage 3    Run cargo test · fix failures · retry ×3 (Haiku)
-
-Cost optimisations:
-  Model tiering (Sonnet/Haiku)  →  ~40–60% reduction
-  Stage 1 artifact caching       →  ~$1–2 saved per re-run
-  Per-stage turn limits          →  ~25% reduction on stages 1+3` },
+                content: `[contents not available for public sharing]` },
               'hal_gpio.elf': { type: 'file', size: 42108, modified: 'May  2 2026',
                 content: '[ELF binary — use checksec, readelf, or strings to inspect]' },
               '.classified': { type: 'dir', hidden: true, modified: 'May 10 14:33', entries: {
@@ -105,20 +87,7 @@ fix: strip { } before feeding to agent.
 FLAG{gh0st_1n_th3_h4l}` }
               }},
               'progress.md': { type: 'file', size: 540, modified: 'May 10 14:33',
-                content: `## Milestone 1 — Complete ✓
-  GPIO HAL: 128 tests, 73 pins, 0 failures
-  Two-agent Writer/Reviewer TDD loop (pair_state.json handoff)
-  FFI verification at Rust↔C boundary (in-memory register stubs)
-  Langfuse per-turn cost observability
-
-## Milestone 2 — In Progress
-  OpenHands backend for both pair agents (replacing custom SDK loop)
-  Hardware-in-the-loop investigation (probe-rs + defmt-test)
-  Status: blocked on TI MSPM0 startup — no Rust HAL community yet
-
-## Next
-  UART, Timer, SPI peripherals
-  Prompt caching (~90% input cost reduction)` }
+                content: `[contents not available for public sharing]` }
             }}}
           },
           'projects': { type: 'dir', modified: 'Jan 15 2026', entries: {
@@ -197,7 +166,7 @@ FLAG{d0tf1l3s_n3v3r_l13}` },
             content: `cat about.txt
 cd research/cactilab
 cargo build --target thumbv6m-none-eabi
-probe-rs flash --chip MSPM0L2228
+cargo test
 strings resume.pdf | grep FLAG
 checksec research/cactilab/hal_gpio.elf
 readelf -S research/cactilab/hal_gpio.elf
@@ -502,7 +471,7 @@ GLI Emerging Graduate Leader Award
             ['    1', 'S', 'Sep  1 2025  ', 'init — nextcube workstation'],
             ['  124', 'R', 'Jan 10 2026  ', 'ta-service — cs3100 khoury college'],
             ['  201', 'R', 'Jan 15 2026  ', 'escalion — rust game engine (nu launch labs)'],
-            ['  314', 'R', 'May  2 2026  ', 'cactilab-pipeline — llm hardware abstraction layer generation'],
+            ['  314', 'R', 'May  2 2026  ', 'cactilab-pipeline'],
             ['  315', 'S', 'May  2 2026  ', '  └─ claude-sonnet — stage 2 codegen (40 turns)'],
             ['  316', 'S', 'May  2 2026  ', '  └─ claude-haiku  — stages 1+3 (fast)'],
             ['  317', 'S', 'May  2 2026  ', '  └─ openhands     — tdd red-phase verifier'],
@@ -595,15 +564,13 @@ GLI Emerging Graduate Leader Award
               'GCC: (Ubuntu 11.4.0) 11.4.0','PDF-1.4','Helvetica-Bold',
               'bhatiadhairya19@gmail.com','Northeastern University',
               'Khoury College of Computer Science','Master of Science',
-              'MSPM0L2228','CACTILab','OpenHands SDK',
+              'CACTILab','Northeastern University',
               '__libc_start_main','_IO_puts','malloc','free',
               '.text','.rodata','.data','.bss',
               'LLM-Assisted Hardware Abstraction Layer (HAL) Generation',
               'cargo test -- --nocapture',
-              '128 passing tests',
               '/home/dhairya/research/cactilab',
               'FLAG{str1ngs_4r3_y0ur_fr13nd}',
-              'probe-rs flash --chip MSPM0L2228',
               'embedded-hal = "1.0"','no_std',
               'typestate pattern','PhantomData',
               '/tmp/.X0-lock','_start','atexit',
@@ -619,7 +586,7 @@ GLI Emerging Graduate Leader Award
               'SystemInit','main','gpio_init','gpio_set_high','gpio_set_low',
               'DL_GPIO_setPins','DL_GPIO_clearPins','DL_GPIO_readPins',
               '.text','.rodata','.bss','.data','.flag',
-              'embedded-hal','no_std','cortex-m','MSPM0L2228',
+              'embedded-hal','no_std',
               'PA0_PIN','PB0_PIN','PC0_PIN','GPIOA','GPIOB','GPIOC',
               'unsafe { (*GPIOA::ptr()).dout31_0.write(|w| w.bits(val)) }',
             ];
