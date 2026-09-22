@@ -17,7 +17,7 @@ linkedin  linkedin.com/in/dhairyanbhatia
 github    github.com/dhairyab0069
 web       dhairyab0069.github.io` },
     'resume.pdf': { type: 'file', size: 89012, modified: 'May 16 09:14',
-      content: '[binary PDF]\n→ https://dhairyab0069.github.io/Dhairya_Bhatia_Embedded_Security.pdf' },
+      content: '[binary PDF]\n→ https://drive.google.com/file/d/1HLc4u9NgO_n4kmFPCKYFJQZMsC6Ssd_a/view?usp=sharing' },
     'research': { type: 'dir', modified: 'May 10 14:33', entries: {
       'cactilab': { type: 'dir', modified: 'May 10 14:33', entries: {
         'README.md': { type: 'file', size: 512, modified: 'May 10 14:33',

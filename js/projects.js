@@ -16,8 +16,10 @@ const renderProject = (key) => {
 
 export function initProjects() {
   document.querySelectorAll('.project-card').forEach(card => card.addEventListener('click', () => {
-    document.querySelectorAll('.project-card').forEach(node => node.classList.remove('active'));
-    card.classList.add('active');
+    document.querySelectorAll('.project-card').forEach(node => {
+      node.classList.toggle('active', node === card);
+      node.setAttribute('aria-pressed', String(node === card));
+    });
     renderProject(card.dataset.project);
   }));
   renderProject('aclab');

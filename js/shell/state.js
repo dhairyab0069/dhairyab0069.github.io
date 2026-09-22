@@ -27,7 +27,7 @@ export function formatCwd() {
 }
 
 export function updatePromptLabel() {
-  shellPromptEl.textContent = `dhairya@nextcube:${formatCwd()}$`;
+  shellPromptEl.textContent = `dhairya@nextcube:${formatCwd()}$\u00a0`;
 }
 
 export function setCwd(pathArr) {

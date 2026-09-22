@@ -10,7 +10,7 @@ function dgEnemy() {
   return { key: r.enemy, ...window._dg.enemies[r.enemy] };
 }
 function dgHpBar(cur, max) {
-  const filled = Math.round((cur/max)*10);
+  const filled = Math.max(0, Math.min(10, Math.round((cur/max)*10)));
   return '█'.repeat(filled) + '░'.repeat(10-filled) + ` ${cur}/${max}`;
 }
 export function dgLook() {
@@ -106,7 +106,7 @@ export function dgCmd(line) {
       }
       // Enemy fights back
       const edmg=Math.max(1,en.dmg+Math.floor(Math.random()*2)-1);
-      dg.hp-=edmg;
+      dg.hp=Math.max(0,dg.hp-edmg);
       w(`<span ${m}>${esc(en.name)} retaliates for ${edmg}. [Your HP: ${dgHpBar(dg.hp,dg.maxHp)}]</span>`);
       if (dg.hp<=0) {
         dg.active=false; window._dgMode=false;
@@ -141,7 +141,7 @@ export function dgCmd(line) {
       return;
     }
     const edmg=Math.max(1,en.dmg+Math.floor(Math.random()*2)-1);
-    dg.hp-=edmg;
+    dg.hp=Math.max(0,dg.hp-edmg);
     w(`<span ${m}>${esc(en.name)} hits you for ${edmg}. [Your HP: ${dgHpBar(dg.hp,dg.maxHp)}]</span>`);
     if (dg.hp<=0) {
       dg.active=false; window._dgMode=false;

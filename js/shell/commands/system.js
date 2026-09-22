@@ -1,13 +1,13 @@
 // System-flavoured commands: identity, processes, manual page, fastfetch banner.
 
-import { output, w, wErr, esc } from '../output.js';
+import { output, w, wErr, esc, pinScroll } from '../output.js';
 import { shell } from '../state.js';
 
 export const systemCommands = {
   whoami() { w(`<span style="color:var(--color-green)">dhairya</span>`); },
 
   uname(args) {
-    if (args.includes('-a') || args.includes('-a')) {
+    if (args.includes('-a')) {
       w(`<span style="color:var(--color-text-faint)">NeXTSTEP 4.2 nextcube 68040 #42 Sat Sep 1 00:00:00 EST 2025 Rust/aarch64</span>`);
     } else {
       w(`<span style="color:var(--color-text-faint)">NeXTSTEP</span>`);
@@ -68,7 +68,7 @@ export const systemCommands = {
       w(``); w(`<span ${p}>FILES</span>`);
       w(`       <span ${f}>~/about.txt  ~/contact.txt  ~/research/  ~/projects/  ~/senate/</span>`);
       w(``); w(`<span ${p}>SEE ALSO</span>`);
-      w(`       <a href="https://dhairyab0069.github.io" target="_blank" style="color:var(--color-primary)">dhairyab0069.github.io</a>  <a href="https://github.com/dhairyab0069" target="_blank" style="color:var(--color-primary)">github.com/dhairyab0069</a>`);
+      w(`       <a href="https://dhairyab0069.github.io" target="_blank" rel="noopener" style="color:var(--color-primary)">dhairyab0069.github.io</a>  <a href="https://github.com/dhairyab0069" target="_blank" rel="noopener" style="color:var(--color-primary)">github.com/dhairyab0069</a>`);
       w(``);
       w(`<span ${g}>Northeastern University             May 2026             DHAIRYA(1)</span>`);
     } else if (!page) {
@@ -111,7 +111,7 @@ export const systemCommands = {
       ['Memory',   'caffeine / infinite'],
     ];
     const PAD = '             '; // 13 spaces to match art width
-    w(`<span ${m}>dhairya</span><span ${f}>@</span><span ${g}>nextcube</span>`);
+    pinScroll(w(`<span ${m}>dhairya</span><span ${f}>@</span><span ${g}>nextcube</span>`));
     w(`<span ${f}>\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500</span>`);
     rows.forEach(([k,v], i) => {
       const artCol = i < art.length
@@ -120,8 +120,6 @@ export const systemCommands = {
       w(`<span ${pre}>${artCol}  <span ${p}>${k.padEnd(9)}</span><span ${f}>${v}</span></span>`);
     });
     w('');
-    const sw=document.getElementById('screen-wrap');
-    if(sw) sw.scrollTop=0;
   },
 
   clear() { output.innerHTML = ''; },

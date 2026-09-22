@@ -1,6 +1,9 @@
 // The CTF challenge surface inside the terminal: briefing, hints, flag submission.
 
 import { w, wErr } from '../output.js';
+import {
+  FLAGS, REQUIRED_FLAGS, lookupFlag, recordFlag, isFound, requiredFound, bonusFound
+} from '../../ctf/flags.js';
 
 export const ctfCommands = {
   ctf() {
@@ -52,54 +55,34 @@ export const ctfCommands = {
 
   submit(args) {
     const input = args.join(' ').trim();
-    const flags = {
-      'FLAG{str1ngs_4r3_y0ur_fr13nd}': { n:1, name:'Binary Strings' },
-      'FLAG{d0tf1l3s_n3v3r_l13}':      { n:2, name:'Hidden Files' },
-      'FLAG{ch3cks3c_pr0t3ct10ns}':    { n:3, name:'Binary Protections' },
-      'FLAG{3lf_s3ct10n_hunt3r}':      { n:4, name:'Section Headers' },
-      'FLAG{gh0st_1n_th3_h4l}':        { n:5, name:'Classified Directory' },
-      'FLAG{k3rn3l_dungeon_master}':   { n:6, name:'Kernel Dungeon' },
-    };
     const g = `style="color:var(--color-gold)"`;
     const r = `style="color:var(--color-magenta)"`;
     if (!input.startsWith('FLAG{')) {
       wErr('submit: flag must start with FLAG{...}');
       return;
     }
-    if (flags[input]) {
-      const f = flags[input];
-      if (!window._ctfFound) window._ctfFound = new Set();
-      window._ctfFound.add(input);
-      w(`<span ${g}>✓  CORRECT — Flag ${f.n}: ${f.name}</span>`);
-      w(`<span style="color:var(--color-text-faint)">${window._ctfFound.size}/5 flags found. ${window._ctfFound.size === 5 ? '🎉 All flags captured!' : 'Keep going...'}</span>`);
-    } else {
+    const entry = lookupFlag(input);
+    if (!entry) {
       w(`<span ${r}>✗  Wrong flag. Keep looking.</span>`);
+      return;
     }
+    const isNew = recordFlag(input);
+    const n = requiredFound();
+    w(`<span ${g}>✓  ${isNew ? 'CORRECT' : 'ALREADY CLAIMED'} — ${entry.bonus ? 'Bonus flag' : `Flag ${entry.n}`}: ${entry.name}</span>`);
+    w(`<span style="color:var(--color-text-faint)">${n}/${REQUIRED_FLAGS} flags found${bonusFound() ? ' + bonus ⚔️' : ''}. ${n === REQUIRED_FLAGS ? '🎉 All flags captured!' : 'Keep going...'}</span>`);
   },
 
   scoreboard() {
-    const found = window._ctfFound || new Set();
-    const all = [
-      { n:1, name:'Binary Strings',      flag:'FLAG{str1ngs_4r3_y0ur_fr13nd}' },
-      { n:2, name:'Hidden Files',         flag:'FLAG{d0tf1l3s_n3v3r_l13}' },
-      { n:3, name:'Binary Protections',   flag:'FLAG{ch3cks3c_pr0t3ct10ns}' },
-      { n:4, name:'Section Headers',      flag:'FLAG{3lf_s3ct10n_hunt3r}' },
-      { n:5, name:'Classified Directory', flag:'FLAG{gh0st_1n_th3_h4l}' },
-    { n:6, name:'Kernel Dungeon (bonus ⚔️)', flag:'FLAG{k3rn3l_dungeon_master}' },
-    ];
+    const n = requiredFound();
     const g = `style="color:var(--color-gold)"`;
-    const f2 = `style="color:var(--color-text-faint)"`;
-    const p = `style="color:var(--color-primary)"`;
-    w(`<span ${g}>Scoreboard — ${Math.min(found.size,5)}/5 flags${found.size>=6?' + bonus ⚔️':''}</span>`);
-    for (const entry of all) {
-      const done = found.has(entry.flag);
-      w(`  ${done ? '<span style="color:var(--color-green)">✓' : '<span style="color:var(--color-magenta)">○'} Flag ${entry.n}: ${entry.name}</span>`);
+    w(`<span ${g}>Scoreboard — ${n}/${REQUIRED_FLAGS} flags${bonusFound() ? ' + bonus ⚔️' : ''}</span>`);
+    for (const entry of FLAGS) {
+      const label = entry.bonus ? `Bonus: ${entry.name} ⚔️` : `Flag ${entry.n}: ${entry.name}`;
+      w(`  ${isFound(entry.n) ? '<span style="color:var(--color-green)">✓' : '<span style="color:var(--color-magenta)">○'} ${label}</span>`);
     }
-    if (found.size === 5) {
+    if (n === REQUIRED_FLAGS) {
       w(``);
       w(`<span ${g}>All flags captured. You'd fit in at CACTILab.</span>`);
     }
   },
-
-  // ── FLIP COMMAND ─────────────────────────────────────────────
 };

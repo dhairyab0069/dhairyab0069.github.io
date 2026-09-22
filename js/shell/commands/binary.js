@@ -76,7 +76,6 @@ export const binaryCommands = {
   },
 
   readelf(args) {
-    const longFlag = args.includes('-S') || args.includes('--sections') || args.includes('-a') || args.includes('-h');
     const target = args.find(a => !a.startsWith('-'));
     if (!target) { wErr('readelf: missing operand'); return; }
     const p = resolvePath(target);
@@ -124,6 +123,7 @@ export const binaryCommands = {
     const p = resolvePath(target);
     const node = getNode(p);
     if (!node) { wErr(`xxd: ${target}: No such file or directory`); return; }
+    if (node.type === 'dir') { wErr(`xxd: ${target}: Is a directory`); return; }
     const name = p[p.length-1] || '';
     const f = `style="color:var(--color-text-faint)"`;
     const y = `style="color:var(--color-gold)"`;
@@ -148,10 +148,17 @@ export const binaryCommands = {
   },
 
   objdump(args) {
-    const sFlag = args.includes('-s');
-    const secIdx = args.findIndex(a => a === '--section');
-    const sec = secIdx >= 0 ? args[secIdx+1] : (args.find(a => a.startsWith('.')) || null);
-    const target = args.find(a => !a.startsWith('-') && !a.startsWith('.') && a !== '--section');
+    // Accept --section=.flag, --section .flag, -j .flag, or a bare .flag.
+    let sec = null;
+    const rest = [];
+    for (let i = 0; i < args.length; i++) {
+      const a = args[i];
+      if (a.startsWith('--section=')) sec = a.slice('--section='.length);
+      else if (a === '--section' || a === '-j') sec = args[++i] || null;
+      else if (a.startsWith('.') && !a.includes('/')) sec = a;
+      else rest.push(a);
+    }
+    const target = rest.find(a => !a.startsWith('-'));
     if (!target) { wErr('objdump: missing operand'); return; }
     const p = resolvePath(target);
     const node = getNode(p);
@@ -168,7 +175,7 @@ export const binaryCommands = {
     } else if (name.endsWith('.elf')) {
       w(`<span ${f}>${esc(name)}:     file format elf32-littlearm</span>`);
       w(`<span ${f}>Disassembly of section .text:</span>`);
-      w(`<span ${f}>08010000 <Reset_Handler>:</span>`);
+      w(`<span ${f}>08010000 &lt;Reset_Handler&gt;:</span>`);
       w(`<span ${f}> 8010000: 4800      ldr  r0, [pc, #0]</span>`);
       w(`<span ${f}> 8010002: 4700      bx   r0</span>`);
     } else {

@@ -1,6 +1,17 @@
 // Everything that writes into the terminal's output pane.
 
 export const output = document.getElementById('terminal-output');
+const screenWrap = document.getElementById('screen-wrap');
+
+// After a command runs, the REPL scrolls to the newest line unless a command
+// pinned an earlier element (fastfetch pins its header so the art stays in view).
+let scrollPin = null;
+export function pinScroll(el) { scrollPin = el; }
+export function settleScroll() {
+  if (scrollPin) screenWrap.scrollTop += scrollPin.getBoundingClientRect().top - screenWrap.getBoundingClientRect().top;
+  else screenWrap.scrollTop = screenWrap.scrollHeight;
+  scrollPin = null;
+}
 
 export function esc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -11,6 +22,7 @@ export function w(html) {
   const d = document.createElement('div');
   d.innerHTML = html;
   output.appendChild(d);
+  return d;
 }
 
 // Append preformatted plain text (file contents, ASCII art).

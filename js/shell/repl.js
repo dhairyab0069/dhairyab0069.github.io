@@ -1,7 +1,7 @@
 // The read-eval-print loop: echoes the typed line, dispatches it, and owns the
 // input element's history (↑/↓) and Tab bindings.
 
-import { w, wErr, esc } from './output.js';
+import { w, wErr, esc, settleScroll } from './output.js';
 import { shell, formatCwd } from './state.js';
 import { CMDS } from './commands/index.js';
 import { tabComplete } from './completion.js';
@@ -30,6 +30,7 @@ export function initRepl() {
     if (window._dgMode) { try { dgCmd(line); } catch(e) { w(`<span style="color:var(--color-magenta)">dungeon error: ${esc(String(e.message))}. type quit to exit.</span>`); } }
     else { execCmd(line); }
     shellInput.value = '';
+    settleScroll();
   });
 
   shellInput.addEventListener('keydown', (e) => {
@@ -39,9 +40,12 @@ export function initRepl() {
     } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       shell.histIdx > 0 ? (shellInput.value = shell.history[--shell.histIdx]) : (shell.histIdx = -1, shellInput.value = '');
-    } else if (e.key === 'Tab') {
+    } else if (e.key === 'Tab' && !e.shiftKey && shellInput.value) {
+      // Only complete when there's something to complete, so Tab / Shift+Tab
+      // on an empty prompt still move focus out of the terminal.
       e.preventDefault();
       shellInput.value = tabComplete(shellInput.value);
+      settleScroll();
     }
   });
 }
