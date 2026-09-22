@@ -50,23 +50,24 @@ export const systemCommands = {
       const f = `style="color:var(--color-text-faint)"`;
       w(`<span ${g}>DHAIRYA(1)                User Commands                DHAIRYA(1)</span>`);
       w(``); w(`<span ${p}>NAME</span>`);
-      w(`       <span ${t}>dhairya</span> <span ${f}>- MS CS student, builder, systems thinker</span>`);
+      w(`       <span ${t}>dhairya</span> <span ${f}>- ML researcher, MS CS student, builder</span>`);
       w(``); w(`<span ${p}>SYNOPSIS</span>`);
       w(`       <span ${f}>dhairya [--research] [--build] [--teach] [--lead]</span>`);
       w(``); w(`<span ${p}>DESCRIPTION</span>`);
       w(`       <span ${f}>Graduate student at Northeastern University, Khoury College</span>`);
       w(`       <span ${f}>of Computer Science (MS 2025–2027).</span>`);
       w(``);
-      w(`       <span ${f}>Builds agentic LLM pipelines for embedded Rust firmware</span>`);
-      w(`       <span ${f}>generation at CACTILab. Founding a Rust game engine at NU</span>`);
-      w(`       <span ${f}>Launch Labs. GSG Senator for Student Affairs.</span>`);
+      w(`       <span ${f}>Builds and evaluates video-language models at ACLab;</span>`);
+      w(`       <span ${f}>designed and led the MotionBlind benchmark. Builds agentic</span>`);
+      w(`       <span ${f}>code-generation pipelines at CACTILab. Co-founded a Rust</span>`);
+      w(`       <span ${f}>game engine studio at NU Launch Labs. GSG Senator.</span>`);
       w(``); w(`<span ${p}>OPTIONS</span>`);
-      w(`       <span ${f}>--research    LLM tooling, embedded Rust, agentic pipelines</span>`);
+      w(`       <span ${f}>--research    video-LLMs, benchmarking, agentic pipelines</span>`);
       w(`       <span ${f}>--build       Escalion engine, CACTILab Hardware Abstraction Layer pipeline</span>`);
       w(`       <span ${f}>--teach       TA for CS3100, Khoury College</span>`);
       w(`       <span ${f}>--lead        GSG Senator, GLI Emerging Graduate Leader</span>`);
       w(``); w(`<span ${p}>FILES</span>`);
-      w(`       <span ${f}>~/about.txt  ~/contact.txt  ~/research/  ~/projects/  ~/senate/</span>`);
+      w(`       <span ${f}>~/about.txt  ~/contact.txt  ~/publications/  ~/research/  ~/projects/</span>`);
       w(``); w(`<span ${p}>SEE ALSO</span>`);
       w(`       <a href="https://dhairyab0069.github.io" target="_blank" rel="noopener" style="color:var(--color-primary)">dhairyab0069.github.io</a>  <a href="https://github.com/dhairyab0069" target="_blank" rel="noopener" style="color:var(--color-primary)">github.com/dhairyab0069</a>`);
       w(``);
@@ -102,9 +103,9 @@ export const systemCommands = {
       ['OS',       'NeXTSTEP 4.2 (nextcube 68040)'],
       ['Host',     'Dhairya Bhatia'],
       ['Role',     'MS CS \u00b7 Khoury \u00b7 Northeastern'],
-      ['Research', 'ACLab \u00b7 TimeBlind \u00b7 CVPR 2026'],
+      ['Research', 'ACLab \u00b7 MotionBlind \u00b7 video-LLMs'],
       ['Shell',    'nextcube-term'],
-      ['Stack',    'Python \u00b7 PyTorch \u00b7 Rust \u00b7 Git'],
+      ['Stack',    'Python \u00b7 PyTorch \u00b7 SLURM \u00b7 Rust'],
       ['Site',     'dhairyab0069.github.io'],
       ['GitHub',   'github.com/dhairyab0069'],
       ['Uptime',   'June 2026'],

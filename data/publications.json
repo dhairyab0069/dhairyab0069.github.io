@@ -1,0 +1,34 @@
+{
+  "self": "Dhairya Bhatia",
+  "publications": [
+    {
+      "id": "motionblind",
+      "title": "MotionBlind: Probing the Illusion of Motion Understanding in Video-LLMs",
+      "authors": [
+        "Dhairya Bhatia",
+        "Bishoy Galoaa",
+        "Oliver Fritsche",
+        "Shahid Kamal",
+        "Muhammad Obaidullah Abdul Salam",
+        "Umer Saleem",
+        "Om Rastogi",
+        "Frania Felix Chettiar",
+        "Nesli Erdogmus",
+        "Sarah Ostadabbas"
+      ],
+      "bibNames": { "Muhammad Obaidullah Abdul Salam": "Abdul Salam, Muhammad Obaidullah" },
+      "year": 2026,
+      "date": "2026-09-08",
+      "venue": "arXiv preprint",
+      "status": "Under review · NeurIPS 2026 Workshop",
+      "role": "Co-first author",
+      "arxiv": "2609.09528",
+      "summary": "A contrastive benchmark of near-identical video pairs that differ only in motion (speed, magnitude or direction). Across eight video-language models, open models score near chance, and even the strongest model fails on speed.",
+      "tags": ["Video-LLMs", "Benchmark", "Motion reasoning", "cs.CV"],
+      "links": {
+        "arXiv": "https://arxiv.org/abs/2609.09528",
+        "PDF": "https://arxiv.org/pdf/2609.09528"
+      }
+    }
+  ]
+}

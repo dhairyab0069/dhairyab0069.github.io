@@ -9,7 +9,11 @@ export const VFS = {
 MS Computer Science — Northeastern University (2025–2027)
 BSc Computer Science — University of British Columbia (2020–2024)
 
-Building at the intersection of LLM tooling, embedded systems, and Rust.
+ML researcher building and evaluating multimodal and video-language
+models. Research Assistant at ACLab (MotionBlind), volunteer at CACTILab
+(agentic code generation), Rust on the side.
+
+See ~/publications/ for papers.
 Boston, MA · bhatiadhairya19@gmail.com` },
     'contact.txt': { type: 'file', size: 148, modified: 'May 16 10:22',
       content: `email     bhatiadhairya19@gmail.com
@@ -79,7 +83,7 @@ FLAG{gh0st_1n_th3_h4l}` }
     'projects': { type: 'dir', modified: 'Jan 15 2026', entries: {
       'aclab': { type: 'dir', modified: 'May 20 2026', entries: {
         'README.md': { type: 'file', size: 412, modified: 'May 20 2026',
-          content: `# ACLab — Augmented Cognition Lab\nNortheastern University\n\nRole: Research Lab Member (May 2026 – Present)\n\nContributions:\n  Paper reviewer — CV4Smalls Workshop, CVPR 2026\n  Collected 50+ video pairs contributing to the TimeBlind\n  spatio-temporal compositionality benchmark\n\nThesis project starting Fall 2026.` }
+          content: `# ACLab — Augmented Cognition Lab\nNortheastern University\n\nRole: Research Assistant (May 2026 – Present)\nAdvisor: Prof. Sarah Ostadabbas\n\nContributions:\n  Designed and led MotionBlind — contrastive video benchmark for\n  temporal and motion reasoning in video-LLMs (arXiv:2609.09528)\n  100+ paired clips across 9 motion categories\n  VLM evaluation pipelines on an HPC cluster (SLURM)\n  Collected 50+ video pairs for the TimeBlind benchmark\n  Paper reviewer — CV4Smalls Workshop, CVPR 2026\n\ncat ~/publications/motionblind.txt` }
       }},
       'escalion': { type: 'dir', modified: 'May 16 11:20', entries: {
         'escalion.elf': { type: 'file', size: 18432, modified: 'May 16 11:20',

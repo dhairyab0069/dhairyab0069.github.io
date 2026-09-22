@@ -2,7 +2,7 @@
 
 const bootLines = [
   'INIT :: aclab research .......... READY',
-  'MOUNT :: timeblind dataset ...... READY',
+  'MOUNT :: motionblind dataset .... READY',
   'LOAD :: escalion engine ......... READY',
   'SPAWN :: gsg senate ............. READY',
   'SYNC :: rust toolchain .......... READY'

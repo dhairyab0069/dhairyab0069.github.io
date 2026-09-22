@@ -11,6 +11,7 @@ import { updatePromptLabel } from './shell/state.js';
 import { printBanner } from './shell/banner.js';
 import { initProjects } from './projects.js';
 import { initKonami } from './konami.js';
+import { initPublications } from './publications.js';
 
 initTheme();
 tickBoot();
@@ -24,3 +25,4 @@ printBanner();
 
 initProjects();
 initKonami();
+initPublications();
