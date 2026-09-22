@@ -37,7 +37,7 @@
     </header>
 
     <main id="main">
-      <div id="panel-about" class="panel" tabindex="-1" aria-label="About">
+      <div id="panel-about" class="panel" role="region" tabindex="-1" aria-label="About">
 <section class="hero-rack">
         <article class="next-cube" aria-labelledby="hero-title">
           <div class="cube-face cube-top" aria-hidden="true"></div>
@@ -52,7 +52,7 @@
                 <p class="eyebrow">MS Computer Science // Northeastern University</p>
                 <h1 id="hero-title">Dhairya <span class="accent">Bhatia</span></h1>
                 <p class="lede">ML researcher and second-year MS CS student at Northeastern (Khoury). I build and evaluate multimodal and video-language models in PyTorch, with a focus on benchmarking, temporal reasoning and large-scale experiments on HPC. At ACLab I designed and led <a class="inline-link" href="#pub-motionblind">MotionBlind</a>, a benchmark that probes motion understanding in video-LLMs. I also co-founded a Rust game studio at NU Launch Labs, serve as a GSG Senator, and recently TAed CS3100. Before this: BSc CS at UBC, internships at Oriv and Intella Payments.</p>
-                <div class="philosophy" aria-label="Design pillars">
+                <div class="philosophy" role="group" aria-label="Design pillars">
                   <div class="philo-card"><strong>Research</strong><span>Video-language models, temporal and motion reasoning, model evaluation and benchmarking.</span></div>
                   <div class="philo-card"><strong>Systems</strong><span>Agentic LLM pipelines, HPC experimentation, Rust, embedded systems.</span></div>
                   <div class="philo-card"><strong>Leadership</strong><span>GSG Senator for Student Affairs, TA at Khoury, GLI award recipient.</span></div>
@@ -199,7 +199,7 @@
       </section>
       </div>
 
-      <div id="panel-workbench" class="panel" tabindex="-1" aria-label="Workbench" hidden>
+      <div id="panel-workbench" class="panel" role="region" tabindex="-1" aria-label="Workbench" hidden>
 <section class="bay" aria-labelledby="bay-title">
         <div class="chrome">
           <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -226,11 +226,11 @@
             <h2>What I'm working on.</h2>
             <p class="lede">Click a card to see more detail. ACLab, CACTILab and Escalion are active; the others are recent completed work.</p>
             <div class="project-rack">
-              <button class="project-card active" type="button" data-project="aclab" aria-pressed="true"><small>Cartridge 01</small><h3>ACLab / MotionBlind</h3><p>Designed and led MotionBlind, a contrastive benchmark for motion reasoning in video-LLMs. Co-first author, arXiv 2026.</p><div class="chips"><span class="chip">Video-LLMs</span><span class="chip">Benchmark</span><span class="chip">arXiv 2026</span></div></button>
-              <button class="project-card" type="button" data-project="cactilab" aria-pressed="false"><small>Cartridge 02</small><h3>CACTILab / Agentic codegen</h3><p>Multi-stage agentic code-generation pipeline with compiler-in-the-loop verification.</p><div class="chips"><span class="chip">LLM agents</span><span class="chip">Rust</span><span class="chip">Research</span></div></button>
-              <button class="project-card" type="button" data-project="escalion" aria-pressed="false"><small>Cartridge 03</small><h3>Escalion</h3><p>Custom Rust game engine built from scratch at NU Launch Labs. Performance-critical systems design.</p><div class="chips"><span class="chip">Rust</span><span class="chip">Engine</span><span class="chip">Systems</span></div></button>
-              <button class="project-card" type="button" data-project="teaching" aria-pressed="false"><small>Cartridge 04</small><h3>TA // CS3100</h3><p>Teaching Assistant at Khoury. AI-assisted programming curriculum, student feedback research.</p><div class="chips"><span class="chip">CS3100</span><span class="chip">AI</span><span class="chip">Education</span></div></button>
-              <button class="project-card" type="button" data-project="senate" aria-pressed="false"><small>Cartridge 05</small><h3>Senate Signal</h3><p>GSG Senator for Student Affairs. Senator of the Month · GLI Emerging Graduate Leader.</p><div class="chips"><span class="chip">GSG</span><span class="chip">GLI</span><span class="chip">Leadership</span></div></button>
+              <button class="project-card active" type="button" data-project="aclab" aria-pressed="true"><small>Cartridge 01</small><span class="pc-title">ACLab / MotionBlind</span><span class="pc-desc">Designed and led MotionBlind, a contrastive benchmark for motion reasoning in video-LLMs. Co-first author, arXiv 2026.</span><span class="chips"><span class="chip">Video-LLMs</span><span class="chip">Benchmark</span><span class="chip">arXiv 2026</span></span></button>
+              <button class="project-card" type="button" data-project="cactilab" aria-pressed="false"><small>Cartridge 02</small><span class="pc-title">CACTILab / Agentic codegen</span><span class="pc-desc">Multi-stage agentic code-generation pipeline with compiler-in-the-loop verification.</span><span class="chips"><span class="chip">LLM agents</span><span class="chip">Rust</span><span class="chip">Research</span></span></button>
+              <button class="project-card" type="button" data-project="escalion" aria-pressed="false"><small>Cartridge 03</small><span class="pc-title">Escalion</span><span class="pc-desc">Custom Rust game engine built from scratch at NU Launch Labs. Performance-critical systems design.</span><span class="chips"><span class="chip">Rust</span><span class="chip">Engine</span><span class="chip">Systems</span></span></button>
+              <button class="project-card" type="button" data-project="teaching" aria-pressed="false"><small>Cartridge 04</small><span class="pc-title">TA // CS3100</span><span class="pc-desc">Teaching Assistant at Khoury. AI-assisted programming curriculum, student feedback research.</span><span class="chips"><span class="chip">CS3100</span><span class="chip">AI</span><span class="chip">Education</span></span></button>
+              <button class="project-card" type="button" data-project="senate" aria-pressed="false"><small>Cartridge 05</small><span class="pc-title">Senate Signal</span><span class="pc-desc">GSG Senator for Student Affairs. Senator of the Month · GLI Emerging Graduate Leader.</span><span class="chips"><span class="chip">GSG</span><span class="chip">GLI</span><span class="chip">Leadership</span></span></button>
             </div>
             <div class="project-detail" id="project-detail" aria-live="polite"></div>
           </article>
