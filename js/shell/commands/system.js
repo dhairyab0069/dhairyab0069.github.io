@@ -20,7 +20,7 @@ export const systemCommands = {
       ['    1', 'S', 'Sep  1 2025  ', 'init — nextcube workstation'],
       ['  124', 'R', 'Jan 10 2026  ', 'ta-service — cs3100 khoury college'],
       ['  201', 'R', 'Jan 15 2026  ', 'escalion — rust game engine (nu launch labs)'],
-      ['  314', 'R', 'May  2 2026  ', 'cactilab-pipeline — llm hardware abstraction layer generation'],
+      ['  314', 'R', 'May  2 2026  ', 'cactilab-pipeline'],
       ['  315', 'S', 'May  2 2026  ', '  └─ claude-sonnet — stage 2 codegen (40 turns)'],
       ['  316', 'S', 'May  2 2026  ', '  └─ claude-haiku  — stages 1+3 (fast)'],
       ['  317', 'S', 'May  2 2026  ', '  └─ openhands     — tdd red-phase verifier'],

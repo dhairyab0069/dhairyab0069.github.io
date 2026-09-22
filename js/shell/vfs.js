@@ -21,34 +21,16 @@ linkedin  linkedin.com/in/dhairyanbhatia
 github    github.com/dhairyab0069
 web       dhairyab0069.github.io` },
     'resume.pdf': { type: 'file', size: 89012, modified: 'May 16 09:14',
-      content: '[binary PDF]\n→ https://drive.google.com/file/d/1HLc4u9NgO_n4kmFPCKYFJQZMsC6Ssd_a/view?usp=sharing' },
+      content: '[binary PDF]\n→ https://drive.google.com/file/d/1_D8LCjK2bfaHo3-4DXggA0et4CKQkHvg/view?usp=sharing' },
     'research': { type: 'dir', modified: 'May 10 14:33', entries: {
       'cactilab': { type: 'dir', modified: 'May 10 14:33', entries: {
         'README.md': { type: 'file', size: 512, modified: 'May 10 14:33',
-          content: `# LLM-Assisted Hardware Abstraction Layer Generation — CACTILab, Northeastern
+          content: `# Research Project — CACTILab, Northeastern University
 
-Built an agentic pipeline that reads a microcontroller datasheet
-and writes a working, tested Rust hardware abstraction library.
-No human code in the generated output.
-
-Stack:   Claude + OpenHands SDK + Rust + compiler-in-the-loop
-Target:  MSPM0L2228 (ARM Cortex-M0+)
-Status:  Milestone 1 complete ✓
-
-Milestone 1 results:
-  128 passing cargo tests
-  73 GPIO pins (GPIOA, GPIOB, GPIOC)
-  no_std · typestate pattern · embedded-hal 1.0 compliant` },
+Contributed to a research project at CACTILab.
+Details to be shared at a later date.` },
         'pipeline.txt': { type: 'file', size: 384, modified: 'May  2 18:41',
-          content: `Stage 1    Parse datasheet → board_features.json + unit_tests.rs
-Stage 1.5  TDD red-phase: compile tests against stub HAL (OpenHands)
-Stage 2    Generate HAL crate via cargo check loop (40 turns, Sonnet)
-Stage 3    Run cargo test · fix failures · retry ×3 (Haiku)
-
-Cost optimisations:
-  Model tiering (Sonnet/Haiku)  →  ~40–60% reduction
-  Stage 1 artifact caching       →  ~$1–2 saved per re-run
-  Per-stage turn limits          →  ~25% reduction on stages 1+3` },
+          content: `[contents not available for public sharing]` },
         'hal_gpio.elf': { type: 'file', size: 42108, modified: 'May  2 2026',
           content: '[ELF binary — use checksec, readelf, or strings to inspect]' },
         '.classified': { type: 'dir', hidden: true, modified: 'May 10 14:33', entries: {
@@ -64,26 +46,13 @@ fix: strip { } before feeding to agent.
 FLAG{gh0st_1n_th3_h4l}` }
         }},
         'progress.md': { type: 'file', size: 540, modified: 'May 10 14:33',
-          content: `## Milestone 1 — Complete ✓
-  GPIO HAL: 128 tests, 73 pins, 0 failures
-  Two-agent Writer/Reviewer TDD loop (pair_state.json handoff)
-  FFI verification at Rust↔C boundary (in-memory register stubs)
-  Langfuse per-turn cost observability
-
-## Milestone 2 — In Progress
-  OpenHands backend for both pair agents (replacing custom SDK loop)
-  Hardware-in-the-loop investigation (probe-rs + defmt-test)
-  Status: blocked on TI MSPM0 startup — no Rust HAL community yet
-
-## Next
-  UART, Timer, SPI peripherals
-  Prompt caching (~90% input cost reduction)` }
+          content: `[contents not available for public sharing]` }
       }}}
     },
     'projects': { type: 'dir', modified: 'Jan 15 2026', entries: {
       'aclab': { type: 'dir', modified: 'May 20 2026', entries: {
         'README.md': { type: 'file', size: 412, modified: 'May 20 2026',
-          content: `# ACLab — Augmented Cognition Lab\nNortheastern University\n\nRole: Research Assistant (May 2026 – Present)\nAdvisor: Prof. Sarah Ostadabbas\n\nContributions:\n  Designed and led MotionBlind — contrastive video benchmark for\n  temporal and motion reasoning in video-LLMs (arXiv:2609.09528)\n  100+ paired clips across 9 motion categories\n  VLM evaluation pipelines on an HPC cluster (SLURM)\n  Collected 50+ video pairs for the TimeBlind benchmark\n  Paper reviewer — CV4Smalls Workshop, CVPR 2026\n\ncat ~/publications/motionblind.txt` }
+          content: `# ACLab — Augmented Cognition Lab\nNortheastern University\n\nRole: Research Assistant (May 2026 – Present)\nAdvisor: Prof. Sarah Ostadabbas\n\nContributions:\n  Designed and led MotionBlind — contrastive video benchmark for\n  temporal and motion reasoning in video-LLMs (arXiv:2609.09528)\n  100+ paired clips across 9 motion categories\n  VLM evaluation pipelines on an HPC cluster (SLURM)\n  Collected 50+ video pairs for the TimeBlind Challenge\n  benchmark (CV4Smalls Workshop, CVPR 2026)\n  Paper reviewer — CV4Smalls Workshop, CVPR 2026\n\ncat ~/publications/motionblind.txt` }
       }},
       'escalion': { type: 'dir', modified: 'May 16 11:20', entries: {
         'escalion.elf': { type: 'file', size: 18432, modified: 'May 16 11:20',
@@ -156,7 +125,7 @@ FLAG{d0tf1l3s_n3v3r_l13}` },
       content: `cat about.txt
 cd research/cactilab
 cargo build --target thumbv6m-none-eabi
-probe-rs flash --chip MSPM0L2228
+cargo test
 strings resume.pdf | grep FLAG
 checksec research/cactilab/hal_gpio.elf
 readelf -S research/cactilab/hal_gpio.elf
