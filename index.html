@@ -210,16 +210,10 @@
             <p class="eyebrow">Systems · Research · Leadership</p>
             <h2>Build first. Understand deeply. Teach clearly.</h2>
             <p class="lede">The workbench is intentionally split instead of collapsed into one monolithic panel. That reflects the Unix idea of modular tools that do one thing well, while the dock and window framing nod to NeXTSTEP’s workstation model.</p>
-            <div class="terminal" id="terminal">
-              <div class="terminal-bar">dhairya@nextcube — virtualized unix shell</div>
-              <div class="screen-wrap" id="screen-wrap">
-                <div class="screen" id="terminal-output" role="log" aria-live="polite"></div>
-                <form class="input-row" id="terminal-form">
-                  <label id="shell-prompt" for="terminal-input">dhairya@nextcube:~$&nbsp;</label>
-                  <input id="terminal-input" autocomplete="off" spellcheck="false" />
-                </form>
-              </div>
+            <div class="terminal-frame">
+              <iframe id="terminal-frame" src="/nextcube-terminal/?embed=1" title="nextcube terminal: a virtual Unix shell with a CTF" loading="lazy"></iframe>
             </div>
+            <a class="run-btn terminal-open" href="/nextcube-terminal/" target="_blank" rel="noopener">Open full screen ↗</a>
           </article>
           <article class="section-copy" id="projects">
             <p class="eyebrow">Current and recent projects</p>
