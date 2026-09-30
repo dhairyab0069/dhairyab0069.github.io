@@ -26,6 +26,7 @@ export const helpCommands = {
       ['submit FLAG{..}','submit a flag'],
       ['scoreboard',     'see your progress'],
       ['fastfetch',      'system information'],
+      ['labs [name]',    'open the ML Lab Bench (try: labs mlp) 🧠'],
       ['flip',           '🙃 cheat: flip the page'],
       ['dungeon',        '⚔️  cheat: enter the kernel dungeon'],
     ];
