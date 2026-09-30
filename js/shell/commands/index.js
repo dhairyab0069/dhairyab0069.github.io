@@ -7,7 +7,6 @@ import { systemCommands } from './system.js';
 import { binaryCommands } from './binary.js';
 import { ctfCommands } from './ctf.js';
 import { easterEggCommands } from './easter-eggs.js';
-import { labsCommands } from './labs.js';
 
 export const CMDS = {
   ...helpCommands,
@@ -15,6 +14,5 @@ export const CMDS = {
   ...systemCommands,
   ...binaryCommands,
   ...ctfCommands,
-  ...labsCommands,
   ...easterEggCommands
 };

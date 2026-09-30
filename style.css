@@ -204,7 +204,6 @@
     .explore-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;padding:1.25rem}
     .explore-btn{display:flex;align-items:center;gap:.85rem;padding:1.1rem 1.25rem;border-radius:1rem;font-size:var(--text-base);text-align:left;height:auto;line-height:1.4}
     .explore-btn svg{flex-shrink:0}
-    .explore-btn--wide{grid-column:1/-1;text-decoration:none;white-space:normal}
     .explore-btn strong{display:block}
     .explore-btn strong+span{font-size:var(--text-sm);opacity:.7}
     @media(max-width:580px){.explore-grid{grid-template-columns:1fr;gap:.75rem;padding:1rem}}
