@@ -18,8 +18,7 @@ const syncTheme = () => {
   window.dispatchEvent(new CustomEvent('site:state'));
 };
 
-// Flip the palette. Changes are announced as `site:state` so the embedded
-// terminal (js/terminal-embed.js) can follow the theme and cheat mode.
+// Flip the palette. Theme and cheat changes are announced as `site:state`.
 export function toggleCheatMode() {
   body.classList.toggle('palette-flip');
   window._cheatMode = body.classList.contains('palette-flip');
