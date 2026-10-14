@@ -15,8 +15,10 @@ import { execFileSync } from 'node:child_process';
 
 const ROOT = process.cwd();
 const OUT = path.join(ROOT, '_site');
-const EXCLUDE = new Set(['.git', '.github', '_site', 'node_modules', '.gitignore', '.DS_Store', 'README.md', '.claude', '.htmlvalidate.json', 'lychee.toml']);
+const EXCLUDE = new Set(['.git', '.github', '_site', 'scripts', 'node_modules', '.gitignore', '.DS_Store', 'README.md', '.claude', '.htmlvalidate.json', 'lychee.toml']);
 const sha = (process.env.GITHUB_SHA || 'dev').slice(0, 8);
+// Same-origin paths served by other repos' Pages sites (not in this build).
+const OTHER_REPOS = ['/nextcube-terminal/'];
 const errors = [];
 
 // ── 1. copy ──
@@ -56,6 +58,7 @@ const exists = (fromFile, spec) => fs.existsSync(path.resolve(path.dirname(fromF
 for (const m of html.matchAll(/(?:href|src)="(\.?\/?[^"#:]+?)(?:[?#][^"]*)?"/g)) {
   const url = m[1];
   if (!url || url.startsWith('//') || url.startsWith('data') || url === '/') continue;
+  if (OTHER_REPOS.some(p => url.startsWith(p))) continue;
   if (!exists(indexPath, url.startsWith('/') ? '.' + url : url)) errors.push(`index.html → missing ${url}`);
 }
 for (const file of jsFiles) {

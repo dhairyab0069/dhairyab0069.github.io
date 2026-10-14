@@ -5,14 +5,21 @@ My Personal Website inspired by NeXTSTEP and Sega Genesis
 ## Features:
 
 - My Portfolio
-- miniCTF challenge
+- miniCTF challenge (terminal: [nextcube-terminal](https://github.com/dhairyab0069/nextcube-terminal))
 - Publications (from `data/publications.json`)
 
 ## Local preview
 
+The Workbench terminal lives in its own repo,
+[nextcube-terminal](https://github.com/dhairyab0069/nextcube-terminal). In
+production it's served at `/nextcube-terminal/` and embedded in an iframe. To
+preview both together, clone it next to this repo and run:
+
 ```sh
-python3 -m http.server   # then open http://localhost:8000
+scripts/dev.sh           # then open http://localhost:8000
 ```
+
+Plain `python3 -m http.server` still works for everything except the terminal.
 
 ## Deploy
 

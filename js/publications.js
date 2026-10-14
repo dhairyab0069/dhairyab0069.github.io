@@ -1,8 +1,7 @@
 // Publications: rendered from data/publications.json (the single source of
 // truth, which GitHub Actions can later enrich, e.g. with citation counts).
-// The same data is mounted into the terminal as ~/publications/.
-
-import { VFS } from './shell/vfs.js';
+// The nextcube-terminal repo reads the same file to build ~/publications/;
+// its toBibtex mirrors the one here.
 
 const DATA_URL = './data/publications.json';
 const list = document.getElementById('publications-list');
@@ -55,28 +54,6 @@ async function copyText(text) {
   try { await navigator.clipboard.writeText(text); return true; } catch { return false; }
 }
 
-// Mount ~/publications/<id>.txt and <id>.bib into the terminal's filesystem.
-function mountInVfs(pubs) {
-  const entries = {};
-  for (const p of pubs) {
-    const body = [
-      p.title,
-      '',
-      p.authors.join(', '),
-      [p.venue, p.arxiv && `arXiv:${p.arxiv}`, p.year].filter(Boolean).join(' · '),
-      [p.role, p.status].filter(Boolean).join(' · '),
-      '',
-      p.summary || '',
-      '',
-      ...Object.entries(p.links || {}).map(([k, v]) => `${k.padEnd(6)} ${v}`),
-    ].join('\n');
-    entries[`${p.id}.txt`] = { type: 'file', size: body.length, modified: 'Sep  8 2026', content: body };
-    const bib = toBibtex(p);
-    entries[`${p.id}.bib`] = { type: 'file', size: bib.length, modified: 'Sep  8 2026', content: bib };
-  }
-  VFS.entries.publications = { type: 'dir', modified: 'Sep  8 2026', entries };
-}
-
 export async function initPublications() {
   let data;
   try {
@@ -87,7 +64,6 @@ export async function initPublications() {
     return; // keep the static fallback markup in index.html
   }
   const pubs = data.publications || [];
-  mountInVfs(pubs);
   if (!list || !pubs.length) return;
   list.innerHTML = pubs.map(p => renderCard(p, data.self)).join('');
   list.addEventListener('click', async (e) => {
@@ -95,7 +71,7 @@ export async function initPublications() {
     if (!btn) return;
     const pub = pubs.find(p => p.id === btn.dataset.bibtex);
     const status = btn.parentElement.querySelector('.pub-copy-status');
-    status.textContent = (await copyText(toBibtex(pub))) ? 'Copied ✓' : 'Copy failed. Try `cat publications/' + pub.id + '.bib` in the terminal';
+    status.textContent = (await copyText(toBibtex(pub))) ? 'Copied ✓' : 'Copy failed. Try `cat publications/' + pub.id + '.bib` in the terminal.';
     setTimeout(() => { status.textContent = ''; }, 2500);
   });
 }

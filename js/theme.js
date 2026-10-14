@@ -15,14 +15,17 @@ const syncTheme = () => {
   body.setAttribute('data-theme', theme);
   themeBtn.textContent = theme === 'dark' ? 'Light mode' : 'Dark mode';
   themeBtn.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  window.dispatchEvent(new CustomEvent('site:state'));
 };
 
-// Flip the palette and expose the state so shell easter eggs can gate on it.
+// Flip the palette. Changes are announced as `site:state` so the embedded
+// terminal (js/terminal-embed.js) can follow the theme and cheat mode.
 export function toggleCheatMode() {
   body.classList.toggle('palette-flip');
   window._cheatMode = body.classList.contains('palette-flip');
   cheatBtn.textContent = window._cheatMode ? 'Cheat ON 🔓' : 'Cheat code';
   cheatBtn.setAttribute('aria-pressed', String(window._cheatMode));
+  window.dispatchEvent(new CustomEvent('site:state'));
 }
 
 export function initTheme() {
