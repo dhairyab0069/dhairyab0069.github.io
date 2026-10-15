@@ -146,7 +146,7 @@
         <div class="explore-grid">
           <button type="button" data-panel="workbench" class="ctf-btn explore-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m8 10 2 2-2 2"/><path d="M12.5 16H16"/></svg>
-            <span><strong>Workbench →</strong><span>Live terminal, projects &amp; a 5-flag CTF hidden in the filesystem.</span></span>
+            <span><strong>Workbench →</strong><span>Current and recent projects.</span></span>
           </button>
           <button type="button" data-panel="mail" class="ctf-btn ctf-btn--gold explore-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -210,10 +210,6 @@
             <p class="eyebrow">Systems · Research · Leadership</p>
             <h2>Build first. Understand deeply. Teach clearly.</h2>
             <p class="lede">The workbench is intentionally split instead of collapsed into one monolithic panel. That reflects the Unix idea of modular tools that do one thing well, while the dock and window framing nod to NeXTSTEP’s workstation model.</p>
-            <div class="terminal-frame">
-              <iframe id="terminal-frame" src="/nextcube-terminal/?embed=1" title="nextcube terminal: a virtual Unix shell with a CTF" loading="lazy"></iframe>
-            </div>
-            <a class="run-btn terminal-open" href="/nextcube-terminal/" target="_blank" rel="noopener">Open full screen ↗</a>
           </article>
           <article class="section-copy" id="projects">
             <p class="eyebrow">Current and recent projects</p>
@@ -231,41 +227,6 @@
         </div>
       </section>
 
-      <section class="ctf-panel" aria-labelledby="ctf-title">
-        <div class="chrome">
-          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="titlebar" id="ctf-title">/ctf/leaderboard — find 5 flags in the terminal</div>
-        </div>
-        <div class="ctf-grid">
-
-          <div class="ctf-progress">
-            <p class="eyebrow">Your progress</p>
-            <h3 class="section-title" id="ctf-score-label">0 / 5 flags found</h3>
-            <div class="ctf-score-bar"><div class="ctf-score-fill" id="ctf-score-fill"></div></div>
-            <p class="ctf-score-label">Type <code class="term-code">ctf</code> in the terminal above to start</p>
-            <div class="ctf-flags" id="ctf-flag-list">
-              <div class="ctf-flag-row" data-flag="1"><span class="flag-icon">○</span><span class="flag-name">Binary Strings</span><span class="flag-cmd">strings</span></div>
-              <div class="ctf-flag-row" data-flag="2"><span class="flag-icon">○</span><span class="flag-name">Hidden Files</span><span class="flag-cmd">ls -la</span></div>
-              <div class="ctf-flag-row" data-flag="3"><span class="flag-icon">○</span><span class="flag-name">Binary Protections</span><span class="flag-cmd">checksec</span></div>
-              <div class="ctf-flag-row" data-flag="4"><span class="flag-icon">○</span><span class="flag-name">Section Headers</span><span class="flag-cmd">readelf</span></div>
-              <div class="ctf-flag-row" data-flag="5"><span class="flag-icon">○</span><span class="flag-name">Classified Directory</span><span class="flag-cmd">find / ls -la</span></div>
-              <div class="ctf-flag-row" data-flag="6"><span class="flag-icon">○</span><span class="flag-name">Kernel Dungeon ⚔️ <em class="flag-bonus">bonus</em></span><span class="flag-cmd">dungeon</span></div>
-            </div>
-          </div>
-
-          <div class="ctf-submit-area">
-            <p class="eyebrow">Claim your score</p>
-            <h3 class="section-title">Found all 5 flags?</h3>
-            <p class="ctf-note">Submit flags in the terminal above using <code class="term-code">submit FLAG{...}</code>, then drop your handle here.</p>
-            <div class="ctf-input-row ctf-locked" id="ctf-submit-row">
-              <input class="ctf-input" id="ctf-handle" placeholder="your handle / name" maxlength="32" aria-label="CTF handle" disabled />
-              <button class="ctf-btn" id="ctf-submit-btn" type="button" disabled>Claim</button>
-            </div>
-            <p class="ctf-status" id="ctf-status" role="status"></p>
-          </div>
-
-        </div>
-      </section>
       </div>
 
       <section id="panel-mail" class="panel" tabindex="-1" aria-label="Mail" hidden>
