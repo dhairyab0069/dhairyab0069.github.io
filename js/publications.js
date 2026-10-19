@@ -71,7 +71,7 @@ export async function initPublications() {
     if (!btn) return;
     const pub = pubs.find(p => p.id === btn.dataset.bibtex);
     const status = btn.parentElement.querySelector('.pub-copy-status');
-    status.textContent = (await copyText(toBibtex(pub))) ? 'Copied ✓' : 'Copy failed.';
+    status.textContent = (await copyText(toBibtex(pub))) ? 'Copied ✓' : 'Copy failed. Try `cat publications/' + pub.id + '.bib` in the terminal.';
     setTimeout(() => { status.textContent = ''; }, 2500);
   });
 }
