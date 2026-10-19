@@ -123,6 +123,7 @@
     .resume-dl{display:flex;align-items:center;gap:.65rem;padding:.65rem .85rem;border-radius:.75rem;border:1px solid rgba(255,193,7,.55);background:rgba(255,193,7,.14);color:var(--color-gold);font-size:var(--text-sm);font-weight:500;text-decoration:none;transition:all var(--transition)}
     .resume-dl:hover{background:rgba(255,193,7,.26);border-color:rgba(255,193,7,.8);transform:translateY(-1px)}
     .resume-dl svg{flex-shrink:0}
+    .resume-dl+.resume-dl{margin-top:.6rem}
 
     .site-footer{padding:1.25rem 0 .5rem;text-align:center}
     .btn-strip{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.4rem;margin-bottom:.75rem}
