@@ -39,11 +39,11 @@ jobs:
       - name: Build _site (cache-bust, version.json, file/import/syntax checks)
         run: node .github/scripts/build.mjs
 
-      # Installed into a temp prefix: `npx` in the repo root hits an npm
-      # resolver crash ("Cannot read properties of null (reading 'edgesOut')").
+      # --legacy-peer-deps: resolving html-validate's optional vitest/jest peers
+      # crashes npm's resolver ("Cannot read properties of null (reading 'edgesOut')").
       - name: Validate HTML
         run: |
-          npm install --no-save --no-audit --no-fund --prefix "$RUNNER_TEMP/html-validate" html-validate@10.9.0
+          npm install --no-save --no-audit --no-fund --legacy-peer-deps --prefix "$RUNNER_TEMP/html-validate" html-validate@10.9.0
           "$RUNNER_TEMP/html-validate/node_modules/.bin/html-validate" _site/index.html
 
       - name: Check external links (non-blocking)
