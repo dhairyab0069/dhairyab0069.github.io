@@ -146,7 +146,7 @@
         <div class="explore-grid">
           <button type="button" data-panel="workbench" class="ctf-btn explore-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m8 10 2 2-2 2"/><path d="M12.5 16H16"/></svg>
-            <span><strong>Workbench →</strong><span>Current and recent projects.</span></span>
+            <span><strong>Workbench →</strong><span>Live terminal, projects &amp; a 5-flag CTF hidden in the filesystem.</span></span>
           </button>
           <button type="button" data-panel="mail" class="ctf-btn ctf-btn--gold explore-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -210,6 +210,10 @@
             <p class="eyebrow">Systems · Research · Leadership</p>
             <h2>Build first. Understand deeply. Teach clearly.</h2>
             <p class="lede">The workbench is intentionally split instead of collapsed into one monolithic panel. That reflects the Unix idea of modular tools that do one thing well, while the dock and window framing nod to NeXTSTEP’s workstation model.</p>
+            <div class="terminal-frame">
+              <iframe id="terminal-frame" src="/nextcube-terminal/?embed=1" title="nextcube terminal: a virtual Unix shell with a CTF" loading="lazy"></iframe>
+            </div>
+            <a class="run-btn terminal-open" href="/nextcube-terminal/" target="_blank" rel="noopener">Open full screen ↗</a>
           </article>
           <article class="section-copy" id="projects">
             <p class="eyebrow">Current and recent projects</p>

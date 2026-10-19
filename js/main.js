@@ -8,11 +8,13 @@ import { initPanels } from './panels.js';
 import { initProjects } from './projects.js';
 import { initKonami } from './konami.js';
 import { initPublications } from './publications.js';
+import { initTerminalEmbed } from './terminal-embed.js';
 
 initTheme();
 tickBoot();
 
 initPanels();
+initTerminalEmbed();
 
 initProjects();
 initKonami();
