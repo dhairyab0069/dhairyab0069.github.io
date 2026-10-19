@@ -39,8 +39,12 @@ jobs:
       - name: Build _site (cache-bust, version.json, file/import/syntax checks)
         run: node .github/scripts/build.mjs
 
+      # Installed into a temp prefix: `npx` in the repo root hits an npm
+      # resolver crash ("Cannot read properties of null (reading 'edgesOut')").
       - name: Validate HTML
-        run: npx --yes html-validate@10.9.0 _site/index.html
+        run: |
+          npm install --no-save --no-audit --no-fund --prefix "$RUNNER_TEMP/html-validate" html-validate@10.9.0
+          "$RUNNER_TEMP/html-validate/node_modules/.bin/html-validate" _site/index.html
 
       - name: Check external links (non-blocking)
         uses: lycheeverse/lychee-action@v2
