@@ -14,13 +14,20 @@ const renderProject = (key) => {
   projectDetail.innerHTML = `<p class="eyebrow">Inserted cartridge</p><h3 class="section-title">${p.title}</h3><p class="lede">${p.body}</p><div class="chips detail-chips">${p.chips.map(c => `<span class="chip">${c}</span>`).join('')}</div>${runBtn}`;
 };
 
+// Insert a cartridge by key, as if its card was clicked. Also used by the
+// interest tags on the about panel (js/interests.js).
+export function selectProject(key) {
+  document.querySelectorAll('.project-card').forEach(node => {
+    const on = node.dataset.project === key;
+    node.classList.toggle('active', on);
+    node.setAttribute('aria-pressed', String(on));
+  });
+  renderProject(key);
+}
+
+export const projectTitle = (key) => projectData[key].title;
+
 export function initProjects() {
-  document.querySelectorAll('.project-card').forEach(card => card.addEventListener('click', () => {
-    document.querySelectorAll('.project-card').forEach(node => {
-      node.classList.toggle('active', node === card);
-      node.setAttribute('aria-pressed', String(node === card));
-    });
-    renderProject(card.dataset.project);
-  }));
+  document.querySelectorAll('.project-card').forEach(card => card.addEventListener('click', () => selectProject(card.dataset.project)));
   renderProject('aclab');
 }
