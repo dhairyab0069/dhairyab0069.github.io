@@ -6,7 +6,7 @@
 import { reveal, trackProgress, spotlight, countUp, scrollToEl } from './motion.js';
 
 const DATA_URL = './data/journey.json';
-const KINDS = { course: 'Course', research: 'Research', project: 'Project', role: 'Role' };
+const KINDS = { course: 'Course', research: 'Research', project: 'Project', role: 'Role', goal: 'Goal' };
 
 const timeline = document.getElementById('journey-timeline');
 const rail = document.getElementById('journey-rail');
@@ -43,12 +43,15 @@ function renderEntry(e, index) {
 function renderChapter(c) {
   const list = c.entries.map(renderEntry).join('');
   const count = c.entries.length;
-  return `<section class="jr-chapter" id="ch-${esc(c.id)}" aria-labelledby="ch-${esc(c.id)}-title">
+  // Chapters still ahead are drawn dashed with a "planned" feel; a branch is an
+  // optional detour off the main line (the postdoc, which may not happen).
+  const cls = ['jr-chapter', c.future && 'jr-chapter--future', c.branch && 'jr-chapter--branch'].filter(Boolean).join(' ');
+  return `<section class="${cls}" id="ch-${esc(c.id)}" aria-labelledby="ch-${esc(c.id)}-title">
     <div class="jr-node reveal" aria-hidden="true"></div>
     <header class="jr-chapter-head reveal">
       <small>${esc(c.note || '')}</small>
       <h3 id="ch-${esc(c.id)}-title">${esc(c.name)}</h3>
-      <span>${esc(c.place || '')}${count ? ` · ${count} ${count === 1 ? 'entry' : 'entries'}` : ''}</span>
+      <span>${esc(c.place || '')}${count && !c.future ? ` · ${count} ${count === 1 ? 'entry' : 'entries'}` : ''}</span>
     </header>
     <div class="jr-entries">${list}</div>
   </section>`;
@@ -110,14 +113,14 @@ export async function initJourney() {
   chapters.forEach(c => c.entries.forEach(e => entries.set(e.id, e)));
 
   const all = [...entries.values()];
-  const counts = { chapters: chapters.length, course: 0, research: 0, project: 0, role: 0 };
+  const counts = { chapters: chapters.filter(c => !c.future).length, course: 0, research: 0, project: 0, role: 0, goal: 0 };
   all.forEach(e => { if (e.kind in counts) counts[e.kind]++; });
 
   stats.innerHTML = [
-    ['chapters', 'schools'], ['course', 'courses'], ['research', 'research'], ['project', 'projects'], ['role', 'roles'],
+    ['chapters', 'schools'], ['course', 'courses'], ['research', 'research'], ['project', 'projects'], ['role', 'roles'], ['goal', 'goals ahead'],
   ].filter(([k]) => counts[k]).map(([k, label]) => `<div class="jr-stat"><strong data-to="${counts[k]}">0</strong><span>${label}</span></div>`).join('');
 
-  rail.innerHTML = chapters.map(c => `<a href="#ch-${esc(c.id)}" data-chapter="${esc(c.id)}"><small>${esc(c.note || '')}</small>${esc(c.name)}</a>`).join('');
+  rail.innerHTML = chapters.map(c => `<a href="#ch-${esc(c.id)}" data-chapter="${esc(c.id)}"${c.future ? ' class="future"' : ''}><small>${esc(c.note || '')}</small>${esc(c.name)}</a>`).join('');
   filters.innerHTML = [['all', 'All'], ...Object.entries(KINDS)]
     .filter(([k]) => k === 'all' || counts[k])
     .map(([k, label]) => `<button type="button" data-kind="${k}" aria-pressed="${k === 'all'}">${label}</button>`).join('');

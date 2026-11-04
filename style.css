@@ -382,3 +382,17 @@
     .theme-switch button[data-theme-mode="auto"]:hover svg{transform:rotate(90deg)}
     .theme-switch button[data-theme-mode="dark"]:hover svg{transform:rotate(-20deg)}
     @media (prefers-reduced-motion:reduce){.theme-switch::before,.theme-switch svg{transition:none}.theme-switch button:hover svg{transform:none}}
+
+    /* Journey: chapters still ahead */
+    :root{--k-goal:#ff8fcf}
+    [data-theme="light"]{--k-goal:#b0246e}
+    .jr-entry[data-kind="goal"]{--k:var(--k-goal);border-style:dashed;border-left-style:solid}
+    .jr-chapter--future .jr-node{border-style:dashed;box-shadow:none;background:transparent}
+    .jr-chapter--future .jr-chapter-head small::after{content:"planned";margin-left:.5rem;padding:.05rem .45rem;border:1px dashed var(--color-border);border-radius:999px;font-size:.62rem;letter-spacing:.1em}
+    .jr-chapter--branch{margin-left:1.6rem;padding-bottom:1.2rem}
+    .jr-chapter--branch .jr-node{width:.8rem;height:.8rem;left:-2.1rem;top:.5rem}
+    .jr-chapter--branch::before{content:"";position:absolute;left:-3.4rem;top:.9rem;width:1.3rem;height:0;border-top:2px dashed var(--color-text-muted)}
+    .jr-chapter--branch .jr-chapter-head h3{font-size:var(--text-base)}
+    .jr-rail a.future{border-style:dashed}
+    .footer-credits{max-width:46rem;margin:.5rem auto 0;color:var(--color-text-muted);font-size:var(--text-xs);line-height:1.5}
+    .footer-credits a{color:inherit;text-decoration:underline;text-underline-offset:2px}

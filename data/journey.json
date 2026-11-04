@@ -266,6 +266,79 @@
           }
         }
       ]
+    },
+    {
+      "id": "phd",
+      "name": "PhD",
+      "place": "Applying for Fall 2027 and Spring 2028",
+      "note": "Next · planned",
+      "future": true,
+      "entries": [
+        {
+          "id": "goal-phd",
+          "kind": "goal",
+          "title": "PhD in computer science",
+          "period": "",
+          "code": "",
+          "summary": "Research on whether video-language models really understand motion and time, and on how to measure and fix it.",
+          "detail": "The question I want to work on: do multimodal models understand how things move and change, or do they pattern-match appearance? MotionBlind is the first step, a benchmark of near-identical clips that differ only in motion. The PhD is where I want to turn what benchmarks expose into methods that improve the models.",
+          "tags": [
+            "Video-LLMs",
+            "Motion reasoning",
+            "Benchmarking",
+            "Evaluation"
+          ],
+          "links": {}
+        }
+      ]
+    },
+    {
+      "id": "postdoc",
+      "name": "Postdoc",
+      "place": "An optional detour after the PhD",
+      "note": "Maybe",
+      "future": true,
+      "branch": true,
+      "entries": [
+        {
+          "id": "goal-postdoc",
+          "kind": "goal",
+          "title": "A postdoc, if the research calls for it",
+          "period": "",
+          "code": "",
+          "summary": "Not sure yet. It is a possible step between the PhD and industry, not a plan.",
+          "detail": "",
+          "tags": [
+            "Optional"
+          ],
+          "links": {}
+        }
+      ]
+    },
+    {
+      "id": "industry",
+      "name": "Applied scientist",
+      "place": "Apple · NVIDIA · Meta",
+      "note": "Then · aiming for",
+      "future": true,
+      "entries": [
+        {
+          "id": "goal-industry",
+          "kind": "goal",
+          "title": "Applied scientist at Apple, NVIDIA or Meta",
+          "period": "",
+          "code": "",
+          "summary": "Take research on multimodal models into products used at scale.",
+          "detail": "I want to work where evaluation and training of multimodal models ship in real products. Apple, NVIDIA and Meta are the teams I am aiming for.",
+          "tags": [
+            "Apple",
+            "NVIDIA",
+            "Meta",
+            "Applied research"
+          ],
+          "links": {}
+        }
+      ]
     }
   ]
 }
