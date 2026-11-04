@@ -7,7 +7,8 @@ export const body = document.body;
 export const themeBtn = document.querySelector('[data-theme-toggle]');
 export const cheatBtn = document.querySelector('[data-secret-toggle]');
 
-const THEME_MS = 900;
+const THEME_MS = 1400;
+const EASE_CINEMA = 'cubic-bezier(.6,.04,.2,1)';
 
 let theme = root.getAttribute('data-theme')
   || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -39,18 +40,30 @@ export function initTheme() {
   };
   themeBtn.addEventListener('click', () => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { flip(); return; }
-    // Preferred: a View Transition. The browser snapshots the old and new page and a
-    // circle of the new theme grows out of the button, redrawn at the display's full
-    // refresh rate. The frame count follows the screen, not a fixed number.
+    // Preferred: a cinematic View Transition. The browser snapshots the old and new
+    // page; the old one defocuses and dims while a circle of the new theme
+    // opens out of the button, overexposed at first and settling to normal, like a
+    // camera adjusting. The browser redraws every display refresh, so the frame count
+    // follows the screen: roughly 1.4 s is about 84 frames at 60 Hz, 168 at 120 Hz.
     if (document.startViewTransition) {
       const r = themeBtn.getBoundingClientRect();
       const x = r.left + r.width / 2, y = r.top + r.height / 2;
-      const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+      const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 120;
       const transition = document.startViewTransition(flip);
       transition.ready.then(() => {
+        const opts = { duration: THEME_MS, easing: EASE_CINEMA, fill: 'both' };
+        // clip-path circles interpolate everywhere; gradients in a mask would not.
         root.animate(
           { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
-          { duration: THEME_MS, easing: 'cubic-bezier(.65,0,.35,1)', pseudoElement: '::view-transition-new(root)' },
+          { ...opts, pseudoElement: '::view-transition-new(root)' },
+        );
+        root.animate(
+          { filter: ['brightness(1.7) saturate(1.3)', 'brightness(1) saturate(1)'] },
+          { ...opts, easing: 'cubic-bezier(.2,.6,.3,1)', pseudoElement: '::view-transition-new(root)' },
+        );
+        root.animate(
+          { filter: ['blur(0px) brightness(1)', 'blur(10px) brightness(.55)'], transform: ['scale(1)', 'scale(.97)'] },
+          { ...opts, pseudoElement: '::view-transition-old(root)' },
         );
       }).catch(() => {});
       return;
