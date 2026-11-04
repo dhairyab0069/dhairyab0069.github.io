@@ -367,3 +367,18 @@
       .tilt,.tilt.tilting{transform:none}
       #hero-title .accent,.slot::after,.row::after,.avatar-module::before,.flash-ring{animation:none}
     }
+
+    /* Theme control: sun, moon and gear (auto) */
+    .theme-switch{position:relative;display:inline-flex;padding:.15rem;border:1px solid var(--color-border);border-radius:999px;background:var(--color-surface-2)}
+    .theme-switch::before{content:"";position:absolute;top:.15rem;left:.15rem;width:2rem;height:2rem;border-radius:50%;background:color-mix(in srgb,var(--color-primary) 22%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--color-primary) 55%,transparent);transition:transform .5s var(--ease-out)}
+    [data-theme-mode="dark"] .theme-switch::before{transform:translateX(2rem)}
+    [data-theme-mode="auto"] .theme-switch::before{transform:translateX(4rem)}
+    .theme-switch button{position:relative;z-index:1;display:grid;place-items:center;width:2rem;height:2rem;padding:0;border:0;border-radius:50%;background:none;color:var(--color-text-muted);cursor:pointer;transition:color .25s,transform .12s var(--ease-out)}
+    .theme-switch button[aria-checked="true"]{color:var(--color-primary)}
+    .theme-switch button:active{transform:scale(.88)}
+    .theme-switch button:focus-visible{outline:2px solid var(--color-primary);outline-offset:1px}
+    .theme-switch svg{width:1.1rem;height:1.1rem;transition:transform .6s var(--ease-out)}
+    .theme-switch button:hover svg{transform:rotate(40deg)}
+    .theme-switch button[data-theme-mode="auto"]:hover svg{transform:rotate(90deg)}
+    .theme-switch button[data-theme-mode="dark"]:hover svg{transform:rotate(-20deg)}
+    @media (prefers-reduced-motion:reduce){.theme-switch::before,.theme-switch svg{transition:none}.theme-switch button:hover svg{transform:none}}
