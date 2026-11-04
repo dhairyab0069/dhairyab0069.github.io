@@ -286,6 +286,7 @@
                 "Teaching"
               ],
               "links": {
+                "Project page": "https://dhairyab0069.github.io/calendar-app-io/",
                 "Project": "https://github.com/dhairyab0069/calendar-app"
               }
             }
@@ -440,6 +441,50 @@
                 "GitHub": "https://github.com/dhairyab0069"
               },
               "code": ""
+            },
+            {
+              "id": "abiogenesis",
+              "kind": "project",
+              "title": "Abiogenesis",
+              "short": "Abiogenesis",
+              "period": "",
+              "code": "",
+              "summary": "A Rust simulation of how life could arise from non-living matter, from a primordial soup to self-copying RNA.",
+              "detail": "A small, plain-language simulation written in Rust with egui, shipped as one self-contained app for macOS, Windows and Linux. Molecules drift in a pool that dries and refills; amino acid chains mutate and recombine; droplets (protocells) form where chains crowd; RNA-like strands build themselves from nucleotides, copy themselves into their complement and compete on fitness. Version 0.3.0 covers stages 1 to 3 of a six-stage roadmap (metrics, cells to complex life and a scenario lab come next). The project page has a live soup, an animation for every stage, a lineage tree and optional synthesized sound effects.",
+              "tags": [
+                "Rust",
+                "egui",
+                "Simulation",
+                "Artificial life",
+                "Evolution"
+              ],
+              "links": {
+                "Project page": "https://dhairyab0069.github.io/abiogenesis-io/",
+                "GitHub": "https://github.com/dhairyab0069/abiogenesis",
+                "Download": "https://github.com/dhairyab0069/abiogenesis/releases/latest"
+              }
+            },
+            {
+              "id": "himawari",
+              "kind": "project",
+              "title": "Himawari",
+              "short": "Himawari",
+              "period": "",
+              "code": "",
+              "summary": "A live video wallpaper for macOS that turns into your music: animated album art, retro hi-fi gear and synced lyrics.",
+              "detail": "A macOS menu-bar app that plays any video as your wallpaper and, while a song plays, shows the album's animated cover with hi-fi gear from any era beside it, whose meters follow the real music. Skins are small JSON files you can write yourself, and lyrics are synced from LRCLIB or Apple Music. Built with SwiftUI, AVFoundation, Core Animation and Core Audio process taps, and updates itself from its GitHub releases. The project page is a playable hi-fi deck with optional synthesized sound effects.",
+              "tags": [
+                "Swift",
+                "SwiftUI",
+                "macOS",
+                "AVFoundation",
+                "Core Audio"
+              ],
+              "links": {
+                "Project page": "https://dhairyab0069.github.io/himawari-io/",
+                "Source": "https://github.com/dhairyab0069/himawari-mac",
+                "Download": "https://github.com/dhairyab0069/himawari-io/releases/latest"
+              }
             },
             {
               "id": "senate",
