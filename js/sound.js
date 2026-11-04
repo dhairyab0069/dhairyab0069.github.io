@@ -1,22 +1,25 @@
-// Touch sound effects: short synthesized sounds on taps, navigation, toggles and the
-// theme switch.
+// Touch sound effects: short action-style sounds on taps, navigation, toggles and the
+// theme switch. Real recordings (blade draws, swooshes, metal hits, a magic charge) from
+// CC0 packs by Kenney and artisticdude, credited in the page footer and in
+// assets/sounds/CREDITS.md. If the files cannot load, small synthesized tones play
+// instead, so the Sound button always does something.
 //
 // Design choices:
 // - Off until the visitor turns it on with the Sound button, and the choice is
 //   remembered. A portfolio gets opened in meetings and libraries; sound has to be
 //   opt-in. To change the default, set DEFAULT_ON.
-// - Synthesized with the Web Audio API (oscillators and a noise burst), so there are
-//   no audio files to source, license or load.
 // - Played on pointer-down, not on release, so the sound lands with the press
-//   (the same rule the visuals follow). One short sound per interaction, quiet,
-//   with a little random pitch variation so repeats don't grate.
-// - Browsers only allow audio after a user gesture, so the audio context is created
-//   (or resumed) inside the first pointer-down.
+//   (the same rule the visuals follow). One short sound per interaction, with a little
+//   random pitch variation so repeats don't grate.
+// - The ten clips total about 40 KB. They are fetched and decoded on the first press
+//   after sound is on, since browsers only allow audio after a user gesture.
 // - The mapping from element to sound is a pure function, tested without a browser.
 
 const KEY = 'sound';
 const DEFAULT_ON = false;
-const MASTER_GAIN = 0.14;
+const MASTER_GAIN = 0.14; // the synthesized fallback tones
+const SAMPLE_GAIN = 0.8; // the recordings, which are normalized to about -3 dB
+const SAMPLE_DIR = './assets/sounds/';
 const MIN_GAP_MS = 35; // never stack sounds on top of each other
 
 /** Which sound a pressed element should make, or null for none. Order matters: the
@@ -27,7 +30,8 @@ export const SOUND_MAP = [
   ['.dock a', 'nav'],
   ['button.jt-head', 'open'],
   ['[data-motion-toggle], [data-secret-toggle]', 'toggle'],
-  ['.jr-filters button, .jr-step a, .run-btn, .explore-btn, .ctf-btn, .about-tag, .live-dots span', 'tap'],
+  ['.run-btn, .explore-btn, .ctf-btn', 'strike'],
+  ['.jr-filters button, .jr-step a, .about-tag, .live-dots span', 'tap'],
 ];
 
 export function soundFor(target) {
@@ -45,6 +49,48 @@ export const RECIPES = {
   on: [[600, 600, 0.07, 'sine', 0.9, 0], [900, 900, 0.1, 'sine', 0.9, 0.07]],
   off: [[900, 900, 0.07, 'sine', 0.9, 0], [600, 600, 0.1, 'sine', 0.9, 0.07]],
 };
+
+/** The recording(s) each sound plays: file (without .mp3), gain, delay in seconds. */
+export const SAMPLES = {
+  tap: [{ file: 'tap', gain: 0.5 }],
+  strike: [{ file: 'strike', gain: 0.6 }], // a blade ting
+  nav: [{ file: 'nav', gain: 0.7 }], // a swoosh
+  open: [{ file: 'open', gain: 0.7 }], // a blade draw
+  close: [{ file: 'close', gain: 0.55 }], // sheathed with a metal latch
+  toggle: [{ file: 'toggle', gain: 0.6 }],
+  on: [{ file: 'on', gain: 0.6 }],
+  off: [{ file: 'off', gain: 0.6 }],
+  theme: [{ file: 'theme-a', gain: 0.75 }, { file: 'theme-b', gain: 0.7, delay: 0.5 }], // a magic charge, then a metal hit
+};
+
+const buffers = new Map(); // file -> decoded AudioBuffer
+let loading = false;
+
+async function loadSamples() {
+  if (loading || !ctx) return;
+  loading = true;
+  const files = [...new Set(Object.values(SAMPLES).flat().map(l => l.file))];
+  await Promise.all(files.map(async (file) => {
+    try {
+      const res = await fetch(`${SAMPLE_DIR}${file}.mp3`);
+      if (!res.ok) throw new Error(res.status);
+      buffers.set(file, await ctx.decodeAudioData(await res.arrayBuffer()));
+    } catch { /* this clip falls back to a synthesized tone */ }
+  }));
+}
+
+function playSample(layer) {
+  const buffer = buffers.get(layer.file);
+  if (!buffer) return false;
+  const src = ctx.createBufferSource();
+  const amp = ctx.createGain();
+  src.buffer = buffer;
+  src.playbackRate.value = 1 + (Math.random() - 0.5) * 0.08;
+  amp.gain.value = layer.gain * SAMPLE_GAIN;
+  src.connect(amp).connect(ctx.destination);
+  src.start(ctx.currentTime + (layer.delay || 0));
+  return true;
+}
 
 let ctx = null;
 let master = null;
@@ -68,6 +114,7 @@ function ensureContext() {
     master.connect(ctx.destination);
   }
   if (ctx.state === 'suspended') ctx.resume();
+  loadSamples();
   return true;
 }
 
@@ -115,6 +162,10 @@ export function play(kind) {
   const now = performance.now();
   if (now - lastAt < MIN_GAP_MS) return;
   lastAt = now;
+  const layers = SAMPLES[kind] || SAMPLES.tap;
+  // Use the recordings once they have loaded; until then (or if they failed) play the
+  // synthesized version so a press is never silent.
+  if (layers.every(l => buffers.has(l.file))) { layers.forEach(playSample); return; }
   if (kind === 'theme') { whoosh(); return; }
   (RECIPES[kind] || RECIPES.tap).forEach(tone);
 }
