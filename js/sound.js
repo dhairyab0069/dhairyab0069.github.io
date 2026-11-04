@@ -124,7 +124,8 @@ export function initSound() {
   const btn = document.querySelector('[data-sound-toggle]');
   const render = () => {
     if (!btn) return;
-    btn.textContent = enabled ? 'Sound: on' : 'Sound: off';
+    // The speaker icon swaps with aria-pressed (see style.css); the title says what it is.
+    btn.title = enabled ? 'Sound effects: on' : 'Sound effects: off';
     btn.setAttribute('aria-pressed', String(enabled));
   };
   render();

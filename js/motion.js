@@ -16,23 +16,34 @@ export const prefersReducedMotion = () => {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 };
 
+const storedMotion = () => {
+  try { const v = localStorage.getItem('motion'); return v === 'reduced' || v === 'full' ? v : null; } catch { return null; }
+};
+
 /** Wires the Motion button: flips between reduced and full motion, remembers the choice
- *  and announces it as a `site:motion` event so canvases and loops can stop or start. */
+ *  and announces it as a `site:motion` event so canvases and loops can stop or start.
+ *  The button shows a runner while motion is on and a seated person while it is off. */
 export function initMotionToggle() {
   const btn = document.querySelector('[data-motion-toggle]');
   if (!btn) return;
   const render = () => {
     const off = prefersReducedMotion();
-    btn.textContent = off ? 'Motion: off' : 'Motion: on';
+    btn.title = off ? 'Motion: off' : 'Motion: on';
     btn.setAttribute('aria-pressed', String(off));
+  };
+  const apply = (value) => {
+    document.documentElement.dataset.motion = value;
+    render();
+    window.dispatchEvent(new CustomEvent('site:motion'));
   };
   btn.addEventListener('click', () => {
     const next = prefersReducedMotion() ? 'full' : 'reduced';
-    document.documentElement.dataset.motion = next;
     try { localStorage.setItem('motion', next); } catch {}
-    render();
-    window.dispatchEvent(new CustomEvent('site:motion'));
+    apply(next);
   });
+  // Until the visitor chooses, follow the system setting, including when it changes.
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  mq.addEventListener?.('change', () => { if (!storedMotion()) apply(mq.matches ? 'reduced' : 'full'); });
   render();
 }
 

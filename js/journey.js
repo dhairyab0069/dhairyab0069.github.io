@@ -181,6 +181,12 @@ export async function initJourney() {
     tracker?.querySelectorAll('b[data-to]').forEach(el => countUp(el, Number(el.dataset.to)));
     tracker?.classList.add('go'); // the bar fills once the panel is on screen
   };
-  new MutationObserver(countWhenVisible).observe(panel, { attributes: true, attributeFilter: ['hidden'] });
+  // The points pop up again each time the Journey page is opened, not only the first
+  // time, so the animation is never missed.
+  const replay = () => {
+    timeline.querySelectorAll('.reveal.in').forEach(el => el.classList.remove('in'));
+    reveal(timeline.querySelectorAll('.reveal'));
+  };
+  new MutationObserver(() => { if (!panel.hidden && counted) replay(); countWhenVisible(); }).observe(panel, { attributes: true, attributeFilter: ['hidden'] });
   countWhenVisible();
 }

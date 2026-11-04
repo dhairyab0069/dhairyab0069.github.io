@@ -26,10 +26,12 @@
       var t = m === 'auto' ? (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : m;
       document.documentElement.setAttribute('data-theme', t);
       document.documentElement.setAttribute('data-theme-mode', m);
-      // An explicit motion choice (the Motion button) wins over the system setting.
+      // Motion: an explicit choice (the Motion button) wins; otherwise follow the system
+      // "reduce motion" setting. The attribute is always set so CSS and JS agree.
       var mo;
       try { mo = localStorage.getItem('motion'); } catch (e) {}
-      if (mo === 'reduced' || mo === 'full') document.documentElement.setAttribute('data-motion', mo);
+      if (mo !== 'reduced' && mo !== 'full') mo = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'reduced' : 'full';
+      document.documentElement.setAttribute('data-motion', mo);
     })();
   </script>
 </head>
@@ -44,8 +46,8 @@
           <button type="button" role="radio" aria-checked="false" data-theme-mode="dark" aria-label="Dark theme" title="Dark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg></button>
           <button type="button" role="radio" aria-checked="false" data-theme-mode="auto" aria-label="Match system theme" title="Auto (match system)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button>
         </div>
-        <button type="button" data-sound-toggle aria-label="Touch sound effects" aria-pressed="false">Sound: off</button>
-        <button type="button" data-motion-toggle aria-label="Reduce motion" aria-pressed="false">Motion: on</button>
+        <button type="button" class="icon-btn" data-sound-toggle aria-label="Touch sound effects" title="Sound effects: off" aria-pressed="false"><svg class="ico ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="M15.5 9a4 4 0 0 1 0 6"/><path d="M18.2 6.5a8 8 0 0 1 0 11"/></svg><svg class="ico ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5z"/><path d="m16 9.5 5 5M21 9.5l-5 5"/></svg></button>
+        <button type="button" class="icon-btn" data-motion-toggle aria-label="Reduce motion" title="Motion: on" aria-pressed="false"><svg class="ico ico-run" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="15.5" cy="4.2" r="1.9"/><path d="M13.8 8 10.8 14"/><path d="M13.6 8.6 17.2 10.2 19 8"/><path d="M13.4 9.2 10 9.8 8.2 12.2"/><path d="M10.8 14 14.4 16.4 13.4 20.8"/><path d="M10.8 14 7.4 16.8 4.4 15.6"/></svg><svg class="ico ico-sit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="9" cy="4.6" r="1.9"/><path d="M9 8v6.2h6.2V20"/><path d="M9 9.6 12.6 12 14.8 13.4"/><path d="M5 20.6h14"/></svg></button>
         <button type="button" data-secret-toggle aria-label="Toggle neon palette" aria-pressed="false">Cheat code</button>
       </div>
     </header>
