@@ -33,6 +33,11 @@ export const SOUND_MAP = [
   ['[data-secret-toggle]', 'cheat'],
   ['.run-btn, .explore-btn, .ctf-btn', 'strike'],
   ['.jr-filters button, .jr-step a, .about-tag, .live-dots span', 'tap'],
+  // Projects: filters and spotlight controls tap, cards and "Open" draw the blade, steps swoosh, close latches.
+  ['.pj-filters button, .pj-dots button, .pj-spot-btn', 'tap'],
+  ['.pj-card, .pj-open', 'open'],
+  ['.pj-step', 'nav'],
+  ['.pj-close', 'close'],
 ];
 
 export function soundFor(target) {

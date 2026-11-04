@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 378" width="720" height="378" role="img" aria-hidden="true">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#06090f"/><stop offset="1" stop-color="#0c1424"/></linearGradient></defs>
+<rect width="720" height="378" fill="url(#g)"/>
+<rect x="90" y="52" width="540" height="274" rx="14" fill="#05080e" stroke="#55c1ff" stroke-opacity=".5" stroke-width="2"/><rect x="90" y="52" width="540" height="34" rx="14" fill="#121826"/><circle cx="114" cy="69" r="6" fill="#ff8b6b"/><circle cx="134" cy="69" r="6" fill="#ffd166"/><circle cx="154" cy="69" r="6" fill="#7ee787"/>
+<g font-family="ui-monospace,Menlo,monospace" font-size="19" fill="#93f0bb"><text x="116" y="124">$ ls -a</text><text x="116" y="156" fill="#9eaac7">. .. notes  .hidden  flag.txt</text><text x="116" y="196">$ cat notes</text><text x="116" y="228" fill="#9eaac7">nothing to see here...</text><text x="116" y="268">$ <tspan fill="#55c1ff">_</tspan></text></g>
+</svg>

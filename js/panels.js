@@ -1,18 +1,19 @@
 // Dock navigation: shows one top-level panel at a time. The active panel is
-// kept in the URL hash (#about, #journey, #workbench, #mail) so reload, deep links and
-// the Back button all work.
+// kept in the URL hash (#about, #journey, #projects, #workbench, #mail) so reload, deep links and
+// the Back button all work. A panel may add its own path after a slash (#projects/himawari);
+// only the part before the slash picks the panel.
 
 import { tickBoot } from './boot-sequence.js';
 import { prefersReducedMotion } from './motion.js';
 
-const PANELS = { about: 'panel-about', journey: 'panel-journey', workbench: 'panel-workbench', mail: 'panel-mail' };
+const PANELS = { about: 'panel-about', journey: 'panel-journey', projects: 'panel-projects', workbench: 'panel-workbench', mail: 'panel-mail' };
 const ORDER = Object.keys(PANELS); // the dock's left-to-right order
 const DEFAULT_PANEL = 'about';
 const root = document.documentElement;
 let current = null;
 
 const panelFromHash = () => {
-  const name = location.hash.slice(1);
+  const name = location.hash.slice(1).split('/')[0];
   return name in PANELS ? name : DEFAULT_PANEL;
 };
 
@@ -75,8 +76,9 @@ export function initPanels() {
   // React to panel hashes (and an empty hash, i.e. Back to the bare URL);
   // other fragments such as the #main skip link leave the current panel alone.
   window.addEventListener('hashchange', () => {
-    const name = location.hash.slice(1);
-    if (!name || name in PANELS) showPanel(panelFromHash());
+    const name = location.hash.slice(1).split('/')[0];
+    // Moving within the current panel (#projects to #projects/himawari) is that panel's own business.
+    if ((!name || name in PANELS) && panelFromHash() !== current) showPanel(panelFromHash());
   });
   showPanel(panelFromHash(), { focus: false, animate: false });
 }
