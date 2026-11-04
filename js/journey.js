@@ -1,13 +1,16 @@
-// The Journey panel: school, research, projects, roles and coursework on one
-// timeline, rendered from data/journey.json. Chapters (schools) run in order;
-// entries keep the order they have in the JSON, so a new entry is just a data
-// edit. Dates are optional and shown only when known.
+// The Journey panel: one vertical line running down the middle of the page, with a
+// point on it wherever something happened. Chapters (school, university, startups,
+// the masters, what is planned) are labelled stops on the line; each point holds the
+// courses, projects and roles from that moment, listed compactly. Tap an item to open
+// its details. Everything is rendered from data/journey.json, in the order it has
+// there, so a new point is a data edit. Dates are optional and shown only when known.
 
-import { reveal, trackProgress, spotlight, countUp, scrollToEl } from './motion.js';
+import { reveal, trackProgress, countUp, scrollToEl } from './motion.js';
 import { progress } from './progress.js';
 
 const DATA_URL = './data/journey.json';
 const KINDS = { course: 'Course', research: 'Research', project: 'Project', role: 'Role', goal: 'Goal' };
+const STATUS_LABEL = { done: 'Completed', current: 'In progress', planned: 'Planned' };
 
 const timeline = document.getElementById('journey-timeline');
 const filters = document.getElementById('journey-filters');
@@ -15,50 +18,53 @@ const stats = document.getElementById('journey-stats');
 const tracker = document.getElementById('journey-tracker');
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-const clean = (t) => t.replace(/ \/\/ /g, ' · ');
 
-const entries = new Map(); // id -> entry data
+const items = new Map(); // id -> item data
 
-export const entryTitle = (id) => (entries.has(id) ? clean(entries.get(id).title) : id);
+export const entryTitle = (id) => (items.has(id) ? items.get(id).title : id);
 
-function renderEntry(e, index) {
-  const meta = [e.code, e.period].filter(Boolean).map(esc).join(' · ');
-  const links = Object.entries(e.links || {})
+function renderItem(it) {
+  const meta = [it.code].filter(Boolean).map(esc).join(' · ');
+  const links = Object.entries(it.links || {})
     .map(([label, href]) => `<a class="run-btn" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)} ↗</a>`).join('');
-  const tags = (e.tags || []).map(t => `<span class="chip">${esc(t)}</span>`).join('');
-  const expandable = Boolean(e.detail || links);
-  const head = `<span class="jr-kind">${KINDS[e.kind] || esc(e.kind)}</span>
-      ${meta ? `<small class="jr-meta">${meta}</small>` : ''}
-      <span class="jr-title">${esc(clean(e.title))}</span>
-      ${e.summary ? `<span class="jr-summary">${esc(e.summary)}</span>` : ''}
-      ${tags ? `<span class="chips">${tags}</span>` : ''}`;
+  const tags = (it.tags || []).map(t => `<span class="chip">${esc(t)}</span>`).join('');
+  const expandable = Boolean(it.detail || links || tags);
+  const head = `<span class="jt-kind" aria-hidden="true"></span>
+      <span class="jt-text">
+        <span class="jt-title">${esc(it.title)}${meta ? ` <small>${meta}</small>` : ''}</span>
+        ${it.summary ? `<span class="jt-summary">${esc(it.summary)}</span>` : ''}
+      </span>`;
   const body = expandable
-    ? `<button class="jr-head" type="button" aria-expanded="false" aria-controls="jr-${esc(e.id)}-detail">${head}<span class="jr-caret" aria-hidden="true"></span></button>
-       <div class="jr-detail" id="jr-${esc(e.id)}-detail" inert><div class="jr-detail-inner">
-         ${e.detail ? `<p>${esc(e.detail)}</p>` : ''}${links ? `<div class="jr-links">${links}</div>` : ''}
+    ? `<button class="jt-head" type="button" aria-expanded="false" aria-controls="jt-${esc(it.id)}-detail">${head}<span class="jt-caret" aria-hidden="true"></span></button>
+       <div class="jt-detail" id="jt-${esc(it.id)}-detail" inert><div class="jt-detail-inner">
+         ${it.detail ? `<p>${esc(it.detail)}</p>` : ''}${tags ? `<div class="chips">${tags}</div>` : ''}${links ? `<div class="jt-links">${links}</div>` : ''}
        </div></div>`
-    : `<div class="jr-head jr-head--static">${head}</div>`;
-  return `<article class="jr-entry reveal" data-kind="${esc(e.kind)}" id="jr-${esc(e.id)}" style="--i:${index}">${body}</article>`;
+    : `<div class="jt-head jt-head--static">${head}</div>`;
+  return `<li class="jt-item" data-kind="${esc(it.kind)}" id="jt-${esc(it.id)}">${body}</li>`;
 }
 
-function renderChapter(c) {
-  const list = c.entries.map(renderEntry).join('');
-  const count = c.entries.length;
-  // Chapters still ahead are drawn dashed with a "planned" feel; a branch is an
-  // optional detour off the main line (the postdoc, which may not happen).
-  const cls = ['jr-chapter', c.future && 'jr-chapter--future', c.branch && 'jr-chapter--branch'].filter(Boolean).join(' ');
-  return `<section class="${cls}" id="ch-${esc(c.id)}" data-status="${esc(c.status || (c.future ? 'planned' : 'done'))}" aria-labelledby="ch-${esc(c.id)}-title">
-    <div class="jr-node reveal" aria-hidden="true"></div>
-    <header class="jr-chapter-head reveal">
+// Points alternate sides of the line, continuing across chapters.
+function renderNode(n, side) {
+  return `<div class="jt-node reveal" data-side="${side}" id="nd-${esc(n.id)}">
+    <span class="jt-when">${esc(n.when || '')}</span>
+    <span class="jt-dot" aria-hidden="true"></span>
+    <ul class="jt-items">${n.items.map(renderItem).join('')}</ul>
+  </div>`;
+}
+
+function renderChapter(c, state) {
+  const status = c.status || (c.future ? 'planned' : 'done');
+  const cls = ['jt-chapter', c.future && 'jt-chapter--future', c.branch && 'jt-chapter--branch'].filter(Boolean).join(' ');
+  const nodes = c.nodes.map(n => renderNode(n, state.side++ % 2 === 0 ? 'r' : 'l')).join('');
+  return `<section class="${cls}" id="ch-${esc(c.id)}" data-status="${status}" aria-labelledby="ch-${esc(c.id)}-title">
+    <header class="jt-mark reveal">
       <small>${esc(c.note || '')}</small>
       <h3 id="ch-${esc(c.id)}-title">${esc(c.name)}</h3>
-      <span>${esc(c.place || '')}${count && !c.future ? ` · ${count} ${count === 1 ? 'entry' : 'entries'}` : ''}</span>
+      <span>${esc(c.place || '')}</span>
     </header>
-    <div class="jr-entries">${list}</div>
+    ${nodes}
   </section>`;
 }
-
-const STATUS_LABEL = { done: 'Completed', current: 'In progress', planned: 'Planned' };
 
 function renderTracker(chapters) {
   const p = progress(chapters);
@@ -78,28 +84,25 @@ function renderTracker(chapters) {
     <ol class="jr-steps">${steps}</ol>`;
 }
 
-function setExpanded(entry, open) {
-  const head = entry.querySelector('button.jr-head');
-  const detail = entry.querySelector('.jr-detail');
+function setExpanded(item, open) {
+  const head = item.querySelector('button.jt-head');
+  const detail = item.querySelector('.jt-detail');
   if (!head) return;
   head.setAttribute('aria-expanded', String(open));
-  entry.classList.toggle('open', open);
+  item.classList.toggle('open', open);
   if (open) detail.removeAttribute('inert'); else detail.setAttribute('inert', '');
 }
 
 function applyFilter(kind) {
   filters.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.kind === kind)));
-  timeline.querySelectorAll('.jr-entry').forEach(el => {
-    const show = kind === 'all' || el.dataset.kind === kind;
-    const wasHidden = el.hidden;
-    el.hidden = !show;
-    if (show && wasHidden) { el.classList.remove('enter'); void el.offsetWidth; el.classList.add('enter'); }
-  });
+  timeline.querySelectorAll('.jt-item').forEach(el => { el.hidden = !(kind === 'all' || el.dataset.kind === kind); });
+  // A point with nothing left to show disappears too, line and all.
+  timeline.querySelectorAll('.jt-node').forEach(n => { n.hidden = !n.querySelector('.jt-item:not([hidden])'); });
 }
 
-/** Opens an entry from elsewhere (the interest tags on About), clearing any filter. */
+/** Opens an item from elsewhere (the interest tags on About), clearing any filter. */
 export function openEntry(id) {
-  const el = document.getElementById(`jr-${id}`);
+  const el = document.getElementById(`jt-${id}`);
   if (!el) return;
   applyFilter('all');
   setExpanded(el, true);
@@ -109,14 +112,14 @@ export function openEntry(id) {
 
 function initScrollSpy() {
   if (!('IntersectionObserver' in window)) return;
-  const io = new IntersectionObserver(items => {
-    items.forEach(i => {
-      if (!i.isIntersecting) return;
-      const id = i.target.id.replace('ch-', '');
+  const io = new IntersectionObserver(seen => {
+    seen.forEach(s => {
+      if (!s.isIntersecting) return;
+      const id = s.target.id.replace('ch-', '');
       tracker?.querySelectorAll('a[data-chapter]').forEach(a => a.classList.toggle('active', a.dataset.chapter === id));
     });
   }, { rootMargin: '-35% 0px -55% 0px' });
-  timeline.querySelectorAll('.jr-chapter').forEach(c => io.observe(c));
+  timeline.querySelectorAll('.jt-chapter').forEach(c => io.observe(c));
 }
 
 export async function initJourney() {
@@ -131,44 +134,42 @@ export async function initJourney() {
     return;
   }
   const chapters = data.chapters || [];
-  chapters.forEach(c => c.entries.forEach(e => entries.set(e.id, e)));
+  chapters.forEach(c => c.nodes.forEach(n => n.items.forEach(i => items.set(i.id, i))));
 
-  const all = [...entries.values()];
   const counts = { chapters: chapters.filter(c => !c.future).length, course: 0, research: 0, project: 0, role: 0, goal: 0 };
-  all.forEach(e => { if (e.kind in counts) counts[e.kind]++; });
+  items.forEach(i => { if (i.kind in counts) counts[i.kind]++; });
 
   if (tracker) renderTracker(chapters);
 
   stats.innerHTML = [
-    ['chapters', 'schools'], ['course', 'courses'], ['research', 'research'], ['project', 'projects'], ['role', 'roles'], ['goal', 'goals ahead'],
+    ['chapters', 'chapters'], ['course', 'courses'], ['research', 'research'], ['project', 'projects'], ['role', 'roles'], ['goal', 'goals ahead'],
   ].filter(([k]) => counts[k]).map(([k, label]) => `<div class="jr-stat"><strong data-to="${counts[k]}">0</strong><span>${label}</span></div>`).join('');
 
   filters.innerHTML = [['all', 'All'], ...Object.entries(KINDS)]
     .filter(([k]) => k === 'all' || counts[k])
     .map(([k, label]) => `<button type="button" data-kind="${k}" aria-pressed="${k === 'all'}">${label}</button>`).join('');
 
-  timeline.insertAdjacentHTML('beforeend', chapters.map(renderChapter).join(''));
-  const spine = timeline.querySelector('.jr-spine');
+  const state = { side: 0 };
+  timeline.insertAdjacentHTML('beforeend', `${chapters.map(c => renderChapter(c, state)).join('')}<div class="jt-arrow" aria-hidden="true"><span>and onward</span></div>`);
+  const spine = timeline.querySelector('.jt-spine');
 
-  // Open and close entries; a second tap mid-animation just reverses it.
+  // Open and close items; a second tap mid-animation just reverses it.
   timeline.addEventListener('click', e => {
-    const head = e.target.closest('button.jr-head');
-    if (head) setExpanded(head.closest('.jr-entry'), head.getAttribute('aria-expanded') !== 'true');
+    const head = e.target.closest('button.jt-head');
+    if (head) setExpanded(head.closest('.jt-item'), head.getAttribute('aria-expanded') !== 'true');
   });
   filters.addEventListener('click', e => { const b = e.target.closest('button'); if (b) applyFilter(b.dataset.kind); });
-  const scrollToChapter = e => {
+  tracker?.addEventListener('click', e => {
     const a = e.target.closest('a[data-chapter]');
     if (!a) return;
     e.preventDefault(); // the hash belongs to the dock; scroll instead of navigating
     scrollToEl(document.getElementById(`ch-${a.dataset.chapter}`), 'start');
-  };
-  tracker?.addEventListener('click', scrollToChapter);
+  });
 
-  spotlight(timeline, '.jr-entry');
   initScrollSpy();
   const update = trackProgress(timeline, spine);
 
-  // Entries and numbers animate when the panel is actually on screen.
+  // Points and numbers animate when the panel is actually on screen.
   reveal(timeline.querySelectorAll('.reveal'));
   const panel = document.getElementById('panel-journey');
   let counted = false;
