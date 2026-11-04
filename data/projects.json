@@ -1,0 +1,716 @@
+{
+  "groups": [
+    {
+      "id": "apps",
+      "label": "Apps"
+    },
+    {
+      "id": "research",
+      "label": "Research"
+    },
+    {
+      "id": "ml",
+      "label": "ML and vision"
+    },
+    {
+      "id": "tools",
+      "label": "Tools"
+    }
+  ],
+  "projects": [
+    {
+      "id": "himawari",
+      "title": "Himawari",
+      "kind": "Project",
+      "groups": [
+        "apps"
+      ],
+      "when": "2026",
+      "featured": true,
+      "hue": 320,
+      "tagline": "A live video wallpaper for macOS that turns into your music.",
+      "what": "A macOS menu-bar app that plays any video as your wallpaper and, while a song plays, shows the album's animated cover with hi-fi gear from any era beside it, whose meters follow the real music. Songs without an animated cover get their cover on a record, a cassette, a game cartridge or a hologram. Synced lyrics appear on the gear's display and, with a karaoke sweep, under the cover.",
+      "interesting": "Skins are small JSON files you can write yourself, and design files lay out whole new eras from blocks; both reload as you save. It updates itself from its GitHub releases in one click. The project page is a playable hi-fi deck with optional synthesized sound effects.",
+      "stack": [
+        "SwiftUI",
+        "AVFoundation",
+        "Core Animation",
+        "Core Audio"
+      ],
+      "tags": [
+        "macOS",
+        "Wallpaper",
+        "Music",
+        "Lyrics",
+        "Skins"
+      ],
+      "status": {
+        "label": "Public beta",
+        "tone": "live"
+      },
+      "facts": [
+        [
+          "Latest release",
+          "Beta 1.5.1"
+        ],
+        [
+          "Runs on",
+          "macOS 14.4 or newer, Apple silicon and Intel"
+        ],
+        [
+          "Looks",
+          "Fourteen skins"
+        ],
+        [
+          "Lyrics",
+          "From LRCLIB or Apple Music"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/himawari.webp",
+        "alt": "Neon heads-up-display panels either side of a song's cover projected as a hologram, with the lyric being sung underneath"
+      },
+      "links": [
+        {
+          "label": "Project page",
+          "href": "https://dhairyab0069.github.io/himawari-io/",
+          "kind": "live"
+        },
+        {
+          "label": "Source",
+          "href": "https://github.com/dhairyab0069/himawari-mac",
+          "kind": "repo"
+        },
+        {
+          "label": "Download",
+          "href": "https://github.com/dhairyab0069/himawari-io/releases/latest",
+          "kind": "more"
+        }
+      ]
+    },
+    {
+      "id": "abiogenesis",
+      "title": "Abiogenesis",
+      "kind": "Project",
+      "groups": [
+        "apps"
+      ],
+      "when": "2026",
+      "featured": true,
+      "hue": 160,
+      "tagline": "A Rust simulation of how life could arise from non-living matter.",
+      "what": "A small, plain-language simulation written in Rust with egui, shipped as one self-contained app for macOS, Windows and Linux. Molecules drift in a pool that dries and refills; amino acid chains mutate and recombine; droplets (protocells) form where chains crowd; RNA-like strands build themselves from nucleotides, copy themselves into their complement and compete on fitness.",
+      "interesting": "The project page has a live soup running the same rules, an animation for every stage, a lineage tree drawn from the simulation's event log and optional synthesized sound effects. Version 0.3.0 covers stages 1 to 3 of a six-stage roadmap.",
+      "stack": [
+        "Rust",
+        "egui",
+        "HTML canvas"
+      ],
+      "tags": [
+        "Simulation",
+        "Origin of life",
+        "Desktop app",
+        "Open source"
+      ],
+      "status": {
+        "label": "v0.3.0 released",
+        "tone": "live"
+      },
+      "facts": [
+        [
+          "Released",
+          "Version 0.3.0, stages 1 to 3 of 6"
+        ],
+        [
+          "Platforms",
+          "macOS, Windows and Linux"
+        ],
+        [
+          "Page",
+          "Live soup, lineage tree, a picture per stage"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/abiogenesis.webp",
+        "alt": "The Abiogenesis project page banner"
+      },
+      "links": [
+        {
+          "label": "Project page",
+          "href": "https://dhairyab0069.github.io/abiogenesis-io/",
+          "kind": "live"
+        },
+        {
+          "label": "Repo",
+          "href": "https://github.com/dhairyab0069/abiogenesis",
+          "kind": "repo"
+        },
+        {
+          "label": "Download",
+          "href": "https://github.com/dhairyab0069/abiogenesis/releases/latest",
+          "kind": "more"
+        }
+      ]
+    },
+    {
+      "id": "calendar",
+      "title": "Calendar",
+      "kind": "Project",
+      "groups": [
+        "apps"
+      ],
+      "when": "2025",
+      "hue": 190,
+      "tagline": "A desktop calendar for people who live in more than one timezone.",
+      "what": "Keep as many calendars as you like, each in its own timezone, add single, all-day and recurring events, copy them between calendars with timezone conversion, and import or export CSV and iCal. Use it from a graphical interface, an interactive prompt or a script file. It began as a team project in Programming Design Paradigms.",
+      "interesting": "The same model sits behind all three ways of using it. A Rust port with the same MVC structure has started: the model layer is done, with the Java model tests ported. The project page is a working model of the app as a 1980s office desktop, with a terminal that runs a subset of the real command language.",
+      "stack": [
+        "Java",
+        "Gradle",
+        "Rust"
+      ],
+      "tags": [
+        "Desktop app",
+        "Timezones",
+        "CSV and iCal",
+        "Rust port"
+      ],
+      "status": {
+        "label": "Java app out, Rust port started",
+        "tone": "building"
+      },
+      "facts": [
+        [
+          "Original",
+          "Java 11 or newer: GUI, prompt and script modes"
+        ],
+        [
+          "Rust port",
+          "Phase 1 (model layer) done, command parser next"
+        ],
+        [
+          "Views",
+          "Day, week and month"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/calendar.webp",
+        "alt": "A one-bit calendar window titled Calendar 1.0, with the line: Java original, Rust port under way"
+      },
+      "links": [
+        {
+          "label": "Project page",
+          "href": "https://dhairyab0069.github.io/calendar-app-io/",
+          "kind": "live"
+        },
+        {
+          "label": "Repo",
+          "href": "https://github.com/dhairyab0069/calendar-app",
+          "kind": "repo"
+        }
+      ]
+    },
+    {
+      "id": "atlas-mobile",
+      "title": "Atlas-Mobile",
+      "kind": "Project",
+      "groups": [
+        "apps"
+      ],
+      "when": "2026",
+      "hue": 215,
+      "tagline": "One spec, two native gym apps: SwiftUI on iOS and Compose on Android.",
+      "what": "A gym progress tracker: check in and see who is where, a lift journal (sets, reps, 1-rep max, personal best), a calorie diary, rankings and friends. It started as a Java Android app for a Human Computer Interaction course at UBC Okanagan, built by a team of five, and was rewritten natively for iOS and Android.",
+      "interesting": "Both apps keep their logic in a small core module and run every case in one shared spec file, so the two stay in step without a simulator. The project page lets you use a phone drawn in CSS, switch between the two platform looks and run the spec in the browser, even against a model of the old Java bug.",
+      "stack": [
+        "SwiftUI",
+        "Kotlin",
+        "Jetpack Compose",
+        "Swift package"
+      ],
+      "tags": [
+        "iOS",
+        "Android",
+        "Shared spec",
+        "Rewrite"
+      ],
+      "status": {
+        "label": "In development",
+        "tone": "building"
+      },
+      "facts": [
+        [
+          "iOS",
+          "SwiftUI, iOS 18 or newer"
+        ],
+        [
+          "Android",
+          "Kotlin and Compose, minSdk 26"
+        ],
+        [
+          "Data",
+          "Friends and leaderboard are placeholder data; no backend yet"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/atlas.webp",
+        "alt": "Atlas: one spec, two native gym apps, drawn as an iOS and an Android phone"
+      },
+      "links": [
+        {
+          "label": "Project page",
+          "href": "https://dhairyab0069.github.io/atlas-mobile-io/",
+          "kind": "live"
+        },
+        {
+          "label": "Repo",
+          "href": "https://github.com/dhairyab0069/Atlas-Mobile",
+          "kind": "repo"
+        },
+        {
+          "label": "Original Java app",
+          "href": "https://github.com/dhairyab0069/Atlas",
+          "kind": "more"
+        }
+      ]
+    },
+    {
+      "id": "focuslock",
+      "title": "FocusLock",
+      "kind": "Project",
+      "groups": [
+        "apps",
+        "tools"
+      ],
+      "when": "2026",
+      "hue": 150,
+      "tagline": "A minimal macOS focus timer that pauses when an LLM program or a social site takes over.",
+      "what": "A focus timer with a watchdog that pauses the clock when LLM programs are running or a browser lands on a filtered site, and emergency exits so it can never lock you in. It is designed to be ADHD-friendly.",
+      "interesting": "The source is private for now, so the project page describes behaviour only. It holds a pretend Mac you can use: a session simulator, a probe that judges look-alike domains and background tabs against your rules, and the emergency exits to practise.",
+      "stack": [
+        "macOS",
+        "Simulator page in plain JavaScript"
+      ],
+      "tags": [
+        "macOS",
+        "Focus",
+        "Accessibility",
+        "Private source"
+      ],
+      "status": {
+        "label": "Source private for now",
+        "tone": "private"
+      },
+      "facts": [
+        [
+          "Source",
+          "Private; only the project page is public"
+        ],
+        [
+          "Page",
+          "Session simulator, filter probe, exits you can try"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/focuslock.webp",
+        "alt": "FocusLock: a timer plus a distraction blocker, nothing else, with a timer reading 18:00"
+      },
+      "links": [
+        {
+          "label": "Project page",
+          "href": "https://dhairyab0069.github.io/focuslock-io/",
+          "kind": "live"
+        }
+      ]
+    },
+    {
+      "id": "lucascheck",
+      "title": "LucasCheck",
+      "kind": "Project",
+      "groups": [
+        "apps"
+      ],
+      "when": "2022",
+      "hue": 18,
+      "tagline": "A mock sporting-goods store you can check out of, and the tables behind it.",
+      "what": "The COSC 304 (Introduction to Database Systems) term project of Group 4, rebuilt in 2026 on Next.js 16 and Postgres for Vercel. Browse products, fill a cart, log in with a sample account, check out, and use an admin tab to ship orders.",
+      "interesting": "The project page is the store in miniature plus the database: an animated diagram of the tables, three walkthroughs of the queries a click touches, and a then-and-now comparison of the course project and the rebuild.",
+      "stack": [
+        "Next.js 16",
+        "Postgres",
+        "Vercel"
+      ],
+      "tags": [
+        "Web app",
+        "Databases",
+        "Course project",
+        "Rebuild"
+      ],
+      "status": {
+        "label": "Course project, rebuilt",
+        "tone": "done"
+      },
+      "facts": [
+        [
+          "Origin",
+          "COSC 304, Group 4, UBC Okanagan"
+        ],
+        [
+          "Rebuild",
+          "Next.js 16 and Postgres, 2026"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/lucascheck.webp",
+        "alt": "A price tag reading Lucas-Check, sporting goods, beside a small database diagram"
+      },
+      "links": [
+        {
+          "label": "Project page",
+          "href": "https://dhairyab0069.github.io/lucascheck-io/",
+          "kind": "live"
+        },
+        {
+          "label": "Repo",
+          "href": "https://github.com/dhairyab0069/LucasCheck",
+          "kind": "repo"
+        }
+      ]
+    },
+    {
+      "id": "ml-town",
+      "title": "CV and ML Town",
+      "kind": "Project",
+      "groups": [
+        "ml"
+      ],
+      "when": "2026",
+      "featured": true,
+      "hue": 140,
+      "tagline": "A walkable town that is the hub for my vision and machine learning projects.",
+      "what": "One side-scrolling street with buildings you walk into. Two projects live there. The ECG project trains a 1D ResNet for multi-label diagnosis on PTB-XL and probes whether it relies on rhythm or on beat shape by shuffling segments. The taxi project predicts NYC trip duration and tip, from a baseline to LightGBM and an MLP, with evaluation under temporal shift.",
+      "interesting": "The interesting part of the ECG work is the probe: instead of only reporting a score, it asks what the model is using. The town has a map, a plain text version of every place, a stop-motion switch and optional sound.",
+      "stack": [
+        "PyTorch",
+        "LightGBM",
+        "PTB-XL",
+        "Vanilla JavaScript"
+      ],
+      "tags": [
+        "ECG",
+        "Interpretability probe",
+        "Tabular ML",
+        "Temporal shift"
+      ],
+      "status": {
+        "label": "Live",
+        "tone": "live"
+      },
+      "facts": [
+        [
+          "ECG",
+          "1D ResNet, multi-label, segment-shuffle probe"
+        ],
+        [
+          "Taxi",
+          "Duration regression and tip classification"
+        ],
+        [
+          "Town",
+          "Map, text version, keyboard and touch controls"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/ml-town.svg",
+        "alt": "A green ECG trace above a dotted taxi route between two points"
+      },
+      "links": [
+        {
+          "label": "The town",
+          "href": "https://dhairyab0069.github.io/ml-projects-io/",
+          "kind": "live"
+        },
+        {
+          "label": "ECG repo",
+          "href": "https://github.com/dhairyab0069/ecg-diagnostic-classification-ptbxl",
+          "kind": "repo"
+        },
+        {
+          "label": "Taxi repo",
+          "href": "https://github.com/dhairyab0069/nyc-taxi-duration-tip-prediction",
+          "kind": "repo"
+        }
+      ]
+    },
+    {
+      "id": "manifold-search",
+      "title": "Manifold search",
+      "kind": "Research",
+      "groups": [
+        "research"
+      ],
+      "when": "2026",
+      "featured": true,
+      "hue": 245,
+      "tagline": "My independent research in computational geometry: shortest paths over curved surfaces.",
+      "what": "Shortest paths over curved surface meshes, and a coarse-to-fine search that answers them faster. Part 1 was the Algorithms (CS 5800) project: sphere and torus meshes, Dijkstra and A* baselines, and a two-level patch search, benchmarked in a notebook.",
+      "interesting": "Part 2 is my own continuation as computational geometry: irregular and real meshes, scaling up, what controls the error, and comparison with established geodesic methods. It is research in progress, so no headline claims are made here.",
+      "stack": [
+        "Python",
+        "Jupyter notebooks",
+        "Graph search"
+      ],
+      "tags": [
+        "Computational geometry",
+        "Geodesics",
+        "Algorithms",
+        "Independent research"
+      ],
+      "status": {
+        "label": "Research in progress",
+        "tone": "building"
+      },
+      "facts": [
+        [
+          "Part 1",
+          "The course project, finished"
+        ],
+        [
+          "Part 2",
+          "Independent research, ongoing"
+        ],
+        [
+          "Public",
+          "Code and tests in the repository"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/manifold.svg",
+        "alt": "A wireframe sphere with a path drawn across it between two points"
+      },
+      "links": [
+        {
+          "label": "Repo",
+          "href": "https://github.com/dhairyab0069/manifold-search",
+          "kind": "repo"
+        }
+      ]
+    },
+    {
+      "id": "biot6900",
+      "title": "BIOT 6900 report",
+      "kind": "Research",
+      "groups": [
+        "research"
+      ],
+      "when": "2026",
+      "hue": 285,
+      "tagline": "A coursework report on Alzheimer's disease, from genes to drug targets.",
+      "what": "The coursework for AI-Powered Biotech Workflows, written up like a medical report: a summary of findings, one section per module with lab-style result tables and flags, and the report PDFs. A second deliverable covers drug response and variant interpretation.",
+      "interesting": "The figures are interactive, including 3D AlphaFold structures you can turn, and the page has a folder-opening intro, a theme switch and optional sounds.",
+      "stack": [
+        "Plain SVG",
+        "3Dmol.js",
+        "AlphaFold models"
+      ],
+      "tags": [
+        "Target discovery",
+        "Alzheimer's disease",
+        "Report",
+        "Coursework"
+      ],
+      "status": {
+        "label": "Coursework in progress",
+        "tone": "building"
+      },
+      "facts": [
+        [
+          "Course",
+          "AI-Powered Biotech Workflows: From Discovery to Clinic"
+        ],
+        [
+          "Deliverable 1",
+          "Alzheimer's target discovery"
+        ],
+        [
+          "Deliverable 2",
+          "Drug response and variant interpretation"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/biot6900.svg",
+        "alt": "A double helix in green and violet"
+      },
+      "links": [
+        {
+          "label": "Report",
+          "href": "https://dhairyab0069.github.io/biot6900-io/",
+          "kind": "live"
+        }
+      ]
+    },
+    {
+      "id": "agentic-codegen",
+      "title": "Agentic code generation",
+      "kind": "Research",
+      "groups": [
+        "research"
+      ],
+      "when": "2026",
+      "hue": 35,
+      "tagline": "A multi-stage code-generation pipeline with a compiler in the loop.",
+      "what": "A multi-stage agentic code-generation pipeline with LLM orchestration and compiler-in-the-loop verification, built as a volunteer at CACTILab since March 2026.",
+      "interesting": "It implements model tiering, per-turn cost observability and a multi-agent verification loop, so the compiler's verdict feeds back into the next generation turn.",
+      "stack": [
+        "LLM orchestration",
+        "Compiler feedback",
+        "Multi-agent loop"
+      ],
+      "tags": [
+        "Agents",
+        "Code generation",
+        "Verification",
+        "Cost observability"
+      ],
+      "status": {
+        "label": "Ongoing",
+        "tone": "building"
+      },
+      "facts": [
+        [
+          "Where",
+          "CACTILab, as a volunteer since March 2026"
+        ],
+        [
+          "Public",
+          "Described here only; no public page or repository"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/cactilab.svg",
+        "alt": "Four pipeline stages in a row with a dotted line looping from the last back to the first"
+      },
+      "links": []
+    },
+    {
+      "id": "garage",
+      "title": "The Garage",
+      "kind": "Project",
+      "groups": [
+        "tools"
+      ],
+      "when": "2026",
+      "hue": 48,
+      "tagline": "A workshop page for small tools, experiments and class projects.",
+      "what": "Tools and experiments hang on a pegboard, class projects sit in a tool chest, private projects stay in a locked toolbox (described, never linked) and a logbook records the history of projects and their old names. It opens with a roller door and has optional synthesized workshop sounds.",
+      "interesting": "It holds two macOS tools: DepDeck, a menu-bar manager for Homebrew, npm and cargo packages, and Desktop Shell, which adds a Windows-XP-style taskbar and Start menu and iOS-style desktop folders and widgets. Adding a project is a data edit.",
+      "stack": [
+        "Vanilla JavaScript",
+        "Swift (the macOS tools)"
+      ],
+      "tags": [
+        "Tools",
+        "macOS",
+        "DepDeck",
+        "Desktop Shell"
+      ],
+      "status": {
+        "label": "Live",
+        "tone": "live"
+      },
+      "facts": [
+        [
+          "DepDeck",
+          "Menu-bar dependency manager for macOS"
+        ],
+        [
+          "Desktop Shell",
+          "XP-style taskbar and desktop for macOS"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/garage.webp",
+        "alt": "The Garage project page banner"
+      },
+      "links": [
+        {
+          "label": "The Garage",
+          "href": "https://dhairyab0069.github.io/garage-io/",
+          "kind": "live"
+        },
+        {
+          "label": "macOS tools page",
+          "href": "https://dhairyab0069.github.io/macos-tools-io/",
+          "kind": "more"
+        },
+        {
+          "label": "DepDeck",
+          "href": "https://github.com/dhairyab0069/DepDeck",
+          "kind": "repo"
+        },
+        {
+          "label": "Desktop Shell",
+          "href": "https://github.com/dhairyab0069/desktop-shell-mac",
+          "kind": "repo"
+        }
+      ]
+    },
+    {
+      "id": "nextcube-terminal",
+      "title": "nextcube terminal",
+      "kind": "Project",
+      "groups": [
+        "tools"
+      ],
+      "when": "2026",
+      "hue": 200,
+      "tagline": "A NeXTSTEP-style virtual Unix shell with a reverse-engineering CTF.",
+      "what": "A terminal that runs in the browser as a small virtual Unix system, with a capture-the-flag hidden in its filesystem. It is the terminal on this site's Workbench.",
+      "interesting": "The site is split into small panels, and the Workbench is where this one lives; it is embedded in a frame and served from its own repository.",
+      "stack": [
+        "JavaScript",
+        "HTML and CSS"
+      ],
+      "tags": [
+        "Terminal",
+        "CTF",
+        "NeXTSTEP"
+      ],
+      "status": {
+        "label": "Live in the Workbench",
+        "tone": "live"
+      },
+      "facts": [
+        [
+          "Where",
+          "The Workbench panel of this site"
+        ],
+        [
+          "Try it",
+          "Open it full screen from the buttons below"
+        ]
+      ],
+      "image": {
+        "src": "./assets/projects/nextcube-terminal.svg",
+        "alt": "A terminal window listing files and reading a note"
+      },
+      "links": [
+        {
+          "label": "In the Workbench",
+          "href": "#workbench",
+          "kind": "live"
+        },
+        {
+          "label": "Full screen",
+          "href": "/nextcube-terminal/",
+          "kind": "more"
+        },
+        {
+          "label": "Repo",
+          "href": "https://github.com/dhairyab0069/nextcube-terminal",
+          "kind": "repo"
+        }
+      ]
+    }
+  ]
+}
