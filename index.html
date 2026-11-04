@@ -149,9 +149,9 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="m8 10 2 2-2 2"/><path d="M12.5 16H16"/></svg>
             <span><strong>Workbench →</strong><span>Live terminal &amp; a 5-flag CTF hidden in the filesystem.</span></span>
           </button>
-          <button type="button" data-panel="projects" class="ctf-btn explore-btn">
+          <button type="button" data-panel="journey" class="ctf-btn explore-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg>
-            <span><strong>Projects →</strong><span>Research, systems and leadership work, plus coursework.</span></span>
+            <span><strong>Journey →</strong><span>School to research: courses, projects and roles on one timeline.</span></span>
           </button>
           <button type="button" data-panel="mail" class="ctf-btn ctf-btn--gold explore-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -213,43 +213,21 @@
       </section>
       </div>
 
-      <div id="panel-projects" class="panel" role="region" tabindex="-1" aria-label="Projects" hidden>
-<section class="bay" aria-labelledby="panel-projects-title">
+      <div id="panel-journey" class="panel" role="region" tabindex="-1" aria-label="Journey" hidden>
+<section class="bay" aria-labelledby="panel-journey-title">
         <div class="chrome">
           <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="titlebar" id="panel-projects-title">/developer/projects</div>
+          <div class="titlebar" id="panel-journey-title">/developer/journey</div>
         </div>
         <div class="bay-main">
-          <article class="section-copy" id="projects">
-            <p class="eyebrow">Current and recent projects</p>
-            <h2>What I'm working on.</h2>
-            <p class="lede">Click a card to see more detail. ACLab, CACTILab and Escalion are active; the others are recent completed work.</p>
-            <div class="project-rack">
-              <button class="project-card active" type="button" data-project="aclab" aria-pressed="true"><small>Cartridge 01</small><span class="pc-title">ACLab / MotionBlind</span><span class="pc-desc">Designed and led MotionBlind, a contrastive benchmark for motion reasoning in video-LLMs. Co-first author, arXiv 2026.</span><span class="chips"><span class="chip">Video-LLMs</span><span class="chip">Benchmark</span><span class="chip">arXiv 2026</span></span></button>
-              <button class="project-card" type="button" data-project="cactilab" aria-pressed="false"><small>Cartridge 02</small><span class="pc-title">CACTILab / Agentic codegen</span><span class="pc-desc">Multi-stage agentic code-generation pipeline with compiler-in-the-loop verification.</span><span class="chips"><span class="chip">LLM agents</span><span class="chip">Rust</span><span class="chip">Research</span></span></button>
-              <button class="project-card" type="button" data-project="escalion" aria-pressed="false"><small>Cartridge 03</small><span class="pc-title">Escalion</span><span class="pc-desc">Custom Rust game engine built from scratch at NU Launch Labs. Performance-critical systems design.</span><span class="chips"><span class="chip">Rust</span><span class="chip">Engine</span><span class="chip">Systems</span></span></button>
-              <button class="project-card" type="button" data-project="teaching" aria-pressed="false"><small>Cartridge 04</small><span class="pc-title">TA // CS3100</span><span class="pc-desc">Teaching Assistant at Khoury. AI-assisted programming curriculum, student feedback research.</span><span class="chips"><span class="chip">CS3100</span><span class="chip">AI</span><span class="chip">Education</span></span></button>
-              <button class="project-card" type="button" data-project="senate" aria-pressed="false"><small>Cartridge 05</small><span class="pc-title">Senate Signal</span><span class="pc-desc">GSG Senator for Student Affairs. Senator of the Month · GLI Emerging Graduate Leader.</span><span class="chips"><span class="chip">GSG</span><span class="chip">GLI</span><span class="chip">Leadership</span></span></button>
-            </div>
-            <div class="project-detail" id="project-detail" aria-live="polite"></div>
-          </article>
-        </div>
-      </section>
-
-      </div>
-
-      <div id="panel-coursework" class="panel" role="region" tabindex="-1" aria-label="Coursework" hidden>
-<section class="bay" aria-labelledby="panel-coursework-title">
-        <div class="chrome">
-          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="titlebar" id="panel-coursework-title">/developer/coursework</div>
-        </div>
-        <div class="bay-main">
-          <article class="section-copy" id="coursework">
-            <p class="eyebrow">Courses · Directed study · Labs</p>
-            <h2>What I've studied.</h2>
-            <p class="lede">Coursework with something to show for it. Each card links to the work where it's public.</p>
-            <div class="course-list" id="coursework-list" aria-live="polite"></div>
+          <article class="section-copy" id="journey">
+            <p class="eyebrow">School · Research · Projects · Roles</p>
+            <h2>How I got here.</h2>
+            <p class="lede">From Delhi Public School to UBC to Northeastern. Each chapter holds the courses, research, projects and roles from that stretch. Tap an entry to open it.</p>
+            <div class="jr-stats" id="journey-stats" aria-label="Journey totals"></div>
+            <nav class="jr-rail" id="journey-rail" aria-label="Chapters"></nav>
+            <div class="jr-filters" id="journey-filters" role="group" aria-label="Filter the journey"></div>
+            <div class="jr" id="journey-timeline" aria-live="polite"><div class="jr-spine" aria-hidden="true"></div></div>
           </article>
         </div>
       </section>
@@ -324,8 +302,7 @@
 
     <nav class="dock" aria-label="Workstation dock">
       <a class="active" href="#about" data-panel="about" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>About</span></a>
-      <a href="#projects" data-panel="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg><span>Projects</span></a>
-      <a href="#coursework" data-panel="coursework"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5c3-1 6-1 8 1 2-2 5-2 8-1v13c-3-1-6-1-8 1-2-2-5-2-8-1z"/><path d="M12 6v13"/></svg><span>Coursework</span></a>
+      <a href="#journey" data-panel="journey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="6" cy="18" r="2"/><path d="M8 6h4a4 4 0 0 1 4 4M16 14a4 4 0 0 1-4 4H8"/></svg><span>Journey</span></a>
       <a href="#workbench" data-panel="workbench"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4z"/><path d="m8 10 2 2-2 2"/><path d="M12.5 16H16"/></svg><span>Workbench</span></a>
       <a href="#mail" data-panel="mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Mail</span></a>
     </nav>
