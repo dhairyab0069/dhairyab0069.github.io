@@ -1,32 +1,59 @@
 {
+  "institutions": [
+    { "id": "dps", "name": "Delhi Public School", "place": "Delhi, India", "note": "School" },
+    { "id": "ubc", "name": "The University of British Columbia", "place": "Okanagan campus", "note": "Undergraduate" },
+    { "id": "neu", "name": "Northeastern University", "place": "Khoury College of Computer Sciences", "note": "Graduate" }
+  ],
   "courses": [
     {
+      "id": "algorithms",
+      "institution": "neu",
+      "code": "CS 5800",
+      "title": "Algorithms",
+      "term": "",
+      "summary": "Algorithm design and analysis. Project: manifold-search.",
+      "tags": ["Algorithm design"],
+      "links": { "Project": "https://github.com/dhairyab0069/manifold-search" }
+    },
+    {
+      "id": "pdp",
+      "institution": "neu",
+      "code": "CS 5010",
+      "title": "Programming Design Paradigms (PDP)",
+      "term": "",
+      "summary": "Object-oriented design. Project: a calendar app, built with Krish Nagaral.",
+      "tags": ["Java", "Object-oriented design", "Group project"],
+      "links": { "Project": "https://github.com/dhairyab0069/calendar-app" }
+    },
+    {
+      "id": "software-vulnerabilities",
+      "institution": "neu",
+      "code": "",
+      "title": "Software Vulnerabilities",
+      "term": "",
+      "summary": "",
+      "tags": ["Security"],
+      "links": {}
+    },
+    {
       "id": "biot6900",
+      "institution": "neu",
       "code": "BIOT 6900",
       "title": "Directed Study: Shared Genomics in Neurodevelopmental Disorders",
       "term": "Fall 2026",
       "summary": "Per-disorder variant analysis and expression track across NDDs, written up as a medical-style report.",
-      "tags": [
-        "Genomics",
-        "PCA",
-        "HPC"
-      ],
-      "links": {
-        "Report": "https://dhairyab0069.github.io/biot6900-io/"
-      }
+      "tags": ["Genomics", "PCA", "HPC"],
+      "links": { "Report": "https://dhairyab0069.github.io/biot6900-io/" }
     },
     {
       "id": "cosc304",
+      "institution": "ubc",
       "code": "COSC 304",
       "title": "Databases: Group 4 Online Store",
       "term": "",
       "summary": "Mock store rebuilt in Next.js 16 for Vercel.",
-      "tags": [
-        "Next.js",
-        "SQL",
-        "Group project"
-      ],
-      "links": {}
+      "tags": ["Next.js", "SQL", "Group project"],
+      "links": { "Repo": "https://github.com/dhairyab0069/LucasCheck" }
     }
   ]
 }
