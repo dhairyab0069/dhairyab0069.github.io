@@ -28,7 +28,7 @@ export function initMotionToggle() {
   if (!btn) return;
   const render = () => {
     const off = prefersReducedMotion();
-    btn.title = off ? 'Motion: off' : 'Motion: on';
+    btn.dataset.tip = off ? 'Motion: off' : 'Motion: on';
     btn.setAttribute('aria-pressed', String(off));
   };
   const apply = (value) => {
