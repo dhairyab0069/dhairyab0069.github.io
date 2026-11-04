@@ -283,3 +283,32 @@
       .jr-entry:hover{transform:none}
       .jr-detail,.jr-detail-inner,.jr-caret{transition:none}
     }
+
+    /* Workbench panel: full width, with scenes that follow the pointer */
+    #panel-workbench .bay-main{grid-template-columns:minmax(0,1fr)}
+    #panel-workbench:not([hidden]){animation:jr-panel-in .5s var(--ease-out)}
+    .wb-stage{position:relative;isolation:isolate}
+    .wb-copy{position:relative;z-index:1}
+    .wb-aura{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.9;transition:opacity .5s var(--ease-out);
+      background:radial-gradient(var(--aura-r,22rem) circle at var(--ax,50%) var(--ay,40%),var(--aura,rgba(147,240,187,.14)),transparent 70%)}
+    .wb-stage[data-zone="focus"]{--aura:rgba(147,240,187,.16);--aura-r:20rem}
+    .wb-stage[data-zone="orbit"]{--aura:rgba(140,170,255,.14);--aura-r:30rem}
+    .wb-stage[data-zone="quiet"]{--aura:rgba(255,255,255,.05);--aura-r:36rem}
+    .wb-stage[data-zone="quiet"] .wb-aura{opacity:.5}
+    .wb-copy .eyebrow,.wb-copy h2,.wb-copy .lede{transition:opacity .45s var(--ease-out)}
+    .wb-stage[data-zone="quiet"] .wb-copy .lede{opacity:.6}
+    .wb-scene{position:absolute;top:1rem;right:1rem;z-index:2;padding:.15rem .6rem;border:1px solid var(--color-border);border-radius:999px;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-muted);background:var(--color-surface-2);pointer-events:none}
+    .wb-stage[data-zone="focus"] .wb-scene{color:rgb(147,240,187);border-color:rgba(147,240,187,.45)}
+    .wb-stage[data-zone="orbit"] .wb-scene{color:rgb(140,170,255);border-color:rgba(140,170,255,.45)}
+    #wb-frame{height:min(34rem,70vh);transform:perspective(1000px) rotateX(calc(var(--ty,0) * -4deg)) rotateY(calc(var(--tx,0) * 5deg)) scale(var(--sc,1));transform-origin:center;will-change:transform;
+      box-shadow:0 0 calc(var(--glow,0) * 40px) rgba(147,240,187,calc(var(--glow,0) * .28)),0 18px 40px rgba(0,0,0,calc(.15 + var(--glow,0) * .2))}
+    #panel-workbench .terminal-open{transition:transform .12s var(--ease-out),border-color .2s}
+    #panel-workbench .terminal-open:active{transform:scale(.96)}
+    .wb-reveal{opacity:0;transform:translateY(12px);transition:opacity .55s var(--ease-out),transform .55s var(--ease-out)}
+    .wb-reveal.in{opacity:1;transform:none}
+    #wb-frame.wb-reveal.in{transform:perspective(1000px) rotateX(calc(var(--ty,0) * -4deg)) rotateY(calc(var(--tx,0) * 5deg)) scale(var(--sc,1));transition:opacity .55s var(--ease-out)}
+    @media (prefers-reduced-motion:reduce){
+      #panel-workbench:not([hidden]){animation:none}
+      .wb-reveal{transform:none;transition:opacity .2s}
+      #wb-frame,#wb-frame.wb-reveal.in{transform:none;will-change:auto}
+    }

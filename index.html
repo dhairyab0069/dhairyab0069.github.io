@@ -240,15 +240,17 @@
           <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
           <div class="titlebar" id="bay-title">/developer/workbench</div>
         </div>
-        <div class="bay-main">
-          <article class="section-copy">
-            <p class="eyebrow">Systems · Research · Leadership</p>
-            <h2>Build first. Understand deeply. Teach clearly.</h2>
-            <p class="lede">The workbench is a live terminal with a CTF hidden in its filesystem. The site is split into small panels instead of one monolithic page. That reflects the Unix idea of modular tools that do one thing well, while the dock and window framing nod to NeXTSTEP’s workstation model.</p>
-            <div class="terminal-frame">
+        <div class="bay-main wb-stage" id="wb-stage" data-zone="focus">
+          <div class="wb-aura" aria-hidden="true"></div>
+          <article class="section-copy wb-copy">
+            <span class="wb-scene" id="wb-scene" aria-hidden="true">scene: focus</span>
+            <p class="eyebrow wb-reveal">Systems · Research · Leadership</p>
+            <h2 class="wb-reveal">Build first. Understand deeply. Teach clearly.</h2>
+            <p class="lede wb-reveal">The workbench is a live terminal with a CTF hidden in its filesystem. The site is split into small panels instead of one monolithic page. That reflects the Unix idea of modular tools that do one thing well, while the dock and window framing nod to NeXTSTEP’s workstation model.</p>
+            <div class="terminal-frame wb-reveal" id="wb-frame">
               <iframe id="terminal-frame" src="/nextcube-terminal/?embed=1" title="nextcube terminal: a virtual Unix shell with a CTF" loading="lazy"></iframe>
             </div>
-            <a class="run-btn terminal-open" href="/nextcube-terminal/" target="_blank" rel="noopener">Open full screen ↗</a>
+            <a class="run-btn terminal-open wb-reveal" href="/nextcube-terminal/" target="_blank" rel="noopener">Open full screen ↗</a>
           </article>
         </div>
       </section>
