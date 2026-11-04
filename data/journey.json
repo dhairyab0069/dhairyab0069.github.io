@@ -315,11 +315,11 @@
             {
               "id": "cactilab",
               "kind": "research",
-              "title": "First research volunteer, CACTILab",
+              "title": "Volunteer, CACTILab",
               "short": "CACTILab / Agentic codegen",
               "period": "Since March 2026",
               "summary": "Multi-stage agentic code-generation pipeline with compiler-in-the-loop verification.",
-              "detail": "Since March 2026, the first volunteer at the lab. Designed and built a multi-stage agentic code-generation pipeline with LLM orchestration and compiler-in-the-loop verification. Implemented model tiering, per-turn cost observability, and a multi-agent verification loop.",
+              "detail": "Started as a volunteer in March 2026. Designed and built a multi-stage agentic code-generation pipeline with LLM orchestration and compiler-in-the-loop verification. Implemented model tiering, per-turn cost observability, and a multi-agent verification loop.",
               "tags": [
                 "LLM Agents",
                 "Code Generation",
