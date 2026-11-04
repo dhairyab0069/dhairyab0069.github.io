@@ -276,13 +276,14 @@
               "id": "pdp",
               "kind": "course",
               "title": "Programming Design Paradigms (PDP)",
-              "code": "CS 5010",
-              "summary": "Object-oriented design. Project: a calendar app, built with Krish Nagaral.",
-              "detail": "",
+              "code": "CS 5010 · CS 3100",
+              "summary": "Object-oriented design. Took it as a student (CS 5010) in Fall 2025, then was a Teaching Assistant for it (CS 3100).",
+              "detail": "Teaching Assistant for the same course (CS 3100) at Khoury College of Computer Science. Work includes designing and testing labs and assignments pre-release, analyzing student feedback on AI-assisted programming workflows, and exploring a human subjects study on AI usage patterns in CS education. Office hours and lab support.",
               "tags": [
                 "Java",
                 "Object-oriented design",
-                "Group project"
+                "Group project",
+                "Teaching"
               ],
               "links": {
                 "Project": "https://github.com/dhairyab0069/calendar-app"
@@ -438,23 +439,6 @@
               "links": {
                 "GitHub": "https://github.com/dhairyab0069"
               },
-              "code": ""
-            },
-            {
-              "id": "teaching",
-              "kind": "role",
-              "title": "Teaching Assistant, CS3100",
-              "short": "TA // CS3100",
-              "period": "",
-              "summary": "Teaching Assistant at Khoury. AI-assisted programming curriculum, student feedback research.",
-              "detail": "Teaching Assistant for CS3100 (Programming and Design Paradigms II) at Khoury College of Computer Science. Work includes designing and testing labs and assignments pre-release, analyzing student feedback on AI-assisted programming workflows, and exploring a human subjects study on AI usage patterns in CS education. Office hours and lab support.",
-              "tags": [
-                "CS3100",
-                "Curriculum",
-                "AI Research",
-                "Student Support"
-              ],
-              "links": {},
               "code": ""
             },
             {
