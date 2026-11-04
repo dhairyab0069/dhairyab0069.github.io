@@ -23,7 +23,7 @@ const items = new Map(); // id -> item data
 
 export const entryTitle = (id) => (items.has(id) ? items.get(id).title : id);
 
-function renderItem(it) {
+function renderItem(it, index) {
   const meta = [it.code].filter(Boolean).map(esc).join(' · ');
   const links = Object.entries(it.links || {})
     .map(([label, href]) => `<a class="run-btn" href="${esc(href)}" target="_blank" rel="noopener">${esc(label)} ↗</a>`).join('');
@@ -40,7 +40,7 @@ function renderItem(it) {
          ${it.detail ? `<p>${esc(it.detail)}</p>` : ''}${tags ? `<div class="chips">${tags}</div>` : ''}${links ? `<div class="jt-links">${links}</div>` : ''}
        </div></div>`
     : `<div class="jt-head jt-head--static">${head}</div>`;
-  return `<li class="jt-item" data-kind="${esc(it.kind)}" id="jt-${esc(it.id)}">${body}</li>`;
+  return `<li class="jt-item" data-kind="${esc(it.kind)}" id="jt-${esc(it.id)}" style="--n:${index}">${body}</li>`;
 }
 
 // Points alternate sides of the line, continuing across chapters.
@@ -48,7 +48,7 @@ function renderNode(n, side) {
   return `<div class="jt-node reveal" data-side="${side}" id="nd-${esc(n.id)}">
     <span class="jt-when">${esc(n.when || '')}</span>
     <span class="jt-dot" aria-hidden="true"></span>
-    <ul class="jt-items">${n.items.map(renderItem).join('')}</ul>
+    <ul class="jt-items">${n.items.map((it, i) => renderItem(it, i)).join('')}</ul>
   </div>`;
 }
 

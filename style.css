@@ -471,3 +471,32 @@
       .jt-detail,.jt-detail-inner,.jt-caret,.jt-dot{transition:none}
       .jt-node:hover .jt-dot{transform:none}
     }
+
+    /* Progress bar fixed to the top of every page */
+    .page-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:100;pointer-events:none}
+    .page-progress span{display:block;height:100%;transform-origin:left;transform:scaleX(var(--p,0));background:linear-gradient(90deg,var(--color-primary),var(--k-research));box-shadow:0 0 10px color-mix(in srgb,var(--color-primary) 70%,transparent)}
+
+    /* Journey: points pop up as they scroll into view */
+    :root{--pop:cubic-bezier(.34,1.56,.64,1)}
+    .jt-node.reveal,.jt-node.reveal.in{opacity:1;transform:none;transition:none}
+    .jt-node[data-side="r"]{--from:30px}
+    .jt-node[data-side="l"]{--from:-30px}
+    .jt-node.reveal:not(.in) .jt-dot,.jt-node.reveal:not(.in) .jt-item,.jt-node.reveal:not(.in) .jt-when{opacity:0}
+    .jt-node.in .jt-dot{animation:jt-dot-pop .6s var(--pop) both}
+    .jt-node.in .jt-dot::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--color-primary);animation:jt-ring .9s ease-out .1s both}
+    .jt-node.in .jt-item{animation:jt-item-pop .65s var(--pop) calc(.12s + var(--n,0) * .09s) both}
+    .jt-node.in .jt-when{animation:jt-fade .5s ease-out .1s both}
+    @keyframes jt-dot-pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+    @keyframes jt-ring{from{opacity:.8;transform:scale(1)}to{opacity:0;transform:scale(3.2)}}
+    @keyframes jt-item-pop{from{opacity:0;transform:translateX(var(--from,0)) translateY(14px) scale(.9)}to{opacity:1;transform:none}}
+    @keyframes jt-fade{from{opacity:0}to{opacity:1}}
+    .jt-mark.reveal{opacity:0;transform:scale(.72) translateY(20px);transition:opacity .4s ease-out,transform .7s var(--pop)}
+    .jt-mark.reveal.in{opacity:1;transform:none}
+    .jt-mark.in small::after{animation:jt-badge-pop .6s var(--pop) .35s both}
+    @keyframes jt-badge-pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+    @media (max-width:680px){.jt-node[data-side]{--from:20px}}
+    @media (prefers-reduced-motion:reduce){
+      .jt-node.in .jt-dot,.jt-node.in .jt-dot::after,.jt-node.in .jt-item,.jt-node.in .jt-when,.jt-mark.in small::after{animation:none}
+      .jt-node.in .jt-dot::after{display:none}
+      .jt-mark.reveal{transform:none;transition:opacity .2s}
+    }
