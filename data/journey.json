@@ -203,30 +203,56 @@
     {
       "id": "startups",
       "name": "Startups",
-      "place": "Oriv and Intella Payments, between the bachelors and the masters",
+      "place": "Intella Payments and Oriv, between the bachelors and the masters",
       "note": "Industry",
       "status": "done",
       "nodes": [
         {
-          "id": "startups-roles",
-          "when": "",
+          "id": "startups-intern",
+          "when": "First",
           "items": [
             {
-              "id": "startup-consultant",
+              "id": "intern-intella",
               "kind": "role",
-              "title": "Intern and Junior Consultant",
+              "title": "Intern, Intella Payments",
               "code": "",
-              "summary": "Across both startups.",
+              "summary": "Started here as an intern.",
               "detail": "",
               "tags": [],
               "links": {}
             },
             {
-              "id": "startup-ai",
+              "id": "intern-oriv",
               "kind": "role",
-              "title": "AI Intern and Developer",
+              "title": "Intern, Oriv",
               "code": "",
-              "summary": "Across both startups.",
+              "summary": "Started here as an intern.",
+              "detail": "",
+              "tags": [],
+              "links": {}
+            }
+          ]
+        },
+        {
+          "id": "startups-roles",
+          "when": "Then",
+          "items": [
+            {
+              "id": "junior-consultant",
+              "kind": "role",
+              "title": "Junior Consultant, Intella Payments",
+              "code": "",
+              "summary": "Stayed on after the internship.",
+              "detail": "",
+              "tags": [],
+              "links": {}
+            },
+            {
+              "id": "ai-developer",
+              "kind": "role",
+              "title": "AI Developer, Oriv",
+              "code": "",
+              "summary": "Stayed on after the internship.",
               "detail": "",
               "tags": [],
               "links": {}
