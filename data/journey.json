@@ -1,0 +1,266 @@
+{
+  "chapters": [
+    {
+      "id": "dps",
+      "name": "Delhi Public School, R.K. Puram",
+      "place": "R.K. Puram, New Delhi",
+      "note": "School",
+      "entries": []
+    },
+    {
+      "id": "ubc",
+      "name": "The University of British Columbia",
+      "place": "Okanagan campus",
+      "note": "Undergraduate",
+      "entries": [
+        {
+          "id": "networks",
+          "kind": "course",
+          "title": "Introduction to Networks",
+          "short": "Introduction to Networks",
+          "code": "",
+          "period": "",
+          "summary": "",
+          "detail": "",
+          "tags": [],
+          "links": {}
+        },
+        {
+          "id": "intro-ai",
+          "kind": "course",
+          "title": "Introduction to AI",
+          "short": "Introduction to AI",
+          "code": "",
+          "period": "",
+          "summary": "",
+          "detail": "",
+          "tags": [],
+          "links": {}
+        },
+        {
+          "id": "cosc304",
+          "kind": "course",
+          "title": "Databases",
+          "short": "Databases: Group 4 Online Store",
+          "code": "COSC 304",
+          "period": "",
+          "summary": "Group 4 project: a mock online store, rebuilt in Next.js 16 for Vercel.",
+          "detail": "",
+          "tags": [
+            "Next.js",
+            "SQL",
+            "Group project"
+          ],
+          "links": {
+            "Repo": "https://github.com/dhairyab0069/LucasCheck"
+          }
+        },
+        {
+          "id": "atlas",
+          "kind": "course",
+          "title": "Human Computer Interaction: Atlas",
+          "short": "Atlas",
+          "code": "COSC 341",
+          "period": "",
+          "summary": "Atlas, a gym progress tracker: check-in, lift journal, calorie diary and leaderboard. Built as a Java Android app, later rewritten natively for iOS and Android.",
+          "detail": "",
+          "tags": [
+            "Java",
+            "Android",
+            "SwiftUI",
+            "Kotlin",
+            "Jetpack Compose"
+          ],
+          "links": {
+            "Original (Java)": "https://github.com/dhairyab0069/Atlas",
+            "Native rewrite": "https://github.com/dhairyab0069/Atlas-Mobile"
+          }
+        },
+        {
+          "id": "image-processing",
+          "kind": "course",
+          "title": "Image Processing",
+          "short": "Image Processing",
+          "code": "",
+          "period": "",
+          "summary": "",
+          "detail": "",
+          "tags": [],
+          "links": {}
+        },
+        {
+          "id": "capstone",
+          "kind": "project",
+          "title": "Capstone project",
+          "short": "Capstone project",
+          "code": "",
+          "period": "Two terms",
+          "summary": "A two-term capstone applying what I had learnt over the four years.",
+          "detail": "",
+          "tags": [
+            "Capstone"
+          ],
+          "links": {}
+        }
+      ]
+    },
+    {
+      "id": "neu",
+      "name": "Northeastern University",
+      "place": "Khoury College of Computer Sciences",
+      "note": "Graduate",
+      "entries": [
+        {
+          "id": "cactilab",
+          "kind": "research",
+          "title": "Research Volunteer // CACTILab, Northeastern University",
+          "short": "CACTILab / Agentic codegen",
+          "period": "Since March 2026",
+          "summary": "Multi-stage agentic code-generation pipeline with compiler-in-the-loop verification.",
+          "detail": "Since March 2026. Designed and built a multi-stage agentic code-generation pipeline with LLM orchestration and compiler-in-the-loop verification. Implemented model tiering, per-turn cost observability, and a multi-agent verification loop.",
+          "tags": [
+            "LLM Agents",
+            "Code Generation",
+            "Rust",
+            "Research"
+          ],
+          "links": {}
+        },
+        {
+          "id": "aclab",
+          "kind": "research",
+          "title": "ACLab — Augmented Cognition Lab // Northeastern University",
+          "short": "ACLab / MotionBlind",
+          "period": "Since May 2026",
+          "summary": "Designed and led MotionBlind, a contrastive benchmark for motion reasoning in video-LLMs. Co-first author, arXiv 2026.",
+          "detail": "Research Assistant since May 2026, advised by Prof. Sarah Ostadabbas. Designed and led MotionBlind, a contrastive video benchmark for temporal and motion reasoning in video-language models (co-first author, arXiv 2026). Collected and curated 100+ paired clips across 9 motion categories, built multimodal VLM evaluation pipelines on an HPC cluster, and established baselines across open-source transformer models. Earlier: collected 50+ video pairs for the TimeBlind Challenge benchmark, presented at the CV4Smalls Workshop, CVPR 2026.",
+          "tags": [
+            "Video-LLMs",
+            "Benchmarking",
+            "HPC",
+            "arXiv 2026"
+          ],
+          "links": {
+            "arXiv paper": "https://arxiv.org/abs/2609.09528"
+          }
+        },
+        {
+          "id": "escalion",
+          "kind": "project",
+          "title": "Project Escalion // NU Launch Labs",
+          "short": "Escalion",
+          "period": "",
+          "summary": "Custom Rust game engine built from scratch at NU Launch Labs. Performance-critical systems design.",
+          "detail": "Co-founded a Rust-based game development studio through NU Launch Labs. Building a custom game engine from scratch — focus on memory layout, performance-critical subsystems, and zero-cost abstractions. Early stage, high ambition. Also contributed embedded security firmware to MITRE eCTF 2026, a hardware-constrained competition environment.",
+          "tags": [
+            "Rust",
+            "Game Engine",
+            "Systems",
+            "eCTF 2026"
+          ],
+          "links": {
+            "GitHub": "https://github.com/dhairyab0069"
+          }
+        },
+        {
+          "id": "teaching",
+          "kind": "role",
+          "title": "TA Console // CS3100",
+          "short": "TA // CS3100",
+          "period": "",
+          "summary": "Teaching Assistant at Khoury. AI-assisted programming curriculum, student feedback research.",
+          "detail": "Teaching Assistant for CS3100 (Programming and Design Paradigms II) at Khoury College of Computer Science. Work includes designing and testing labs and assignments pre-release, analyzing student feedback on AI-assisted programming workflows, and exploring a human subjects study on AI usage patterns in CS education. Office hours and lab support.",
+          "tags": [
+            "CS3100",
+            "Curriculum",
+            "AI Research",
+            "Student Support"
+          ],
+          "links": {}
+        },
+        {
+          "id": "senate",
+          "kind": "role",
+          "title": "Senate Signal // GSG",
+          "short": "Senate Signal",
+          "period": "",
+          "summary": "GSG Senator for Student Affairs. Senator of the Month · GLI Emerging Graduate Leader.",
+          "detail": "Senator for Student Affairs at the Northeastern Graduate Student Government. Awarded Senator of the Month for February 2026. Recipient of the Emerging Graduate Leader Award through the Graduate Leadership Institute (co-sponsored by GSG). Active on initiatives including club auditing, Impact Symposium volunteering, and broader student advocacy work.",
+          "tags": [
+            "GSG",
+            "GLI Award",
+            "Senator of the Month",
+            "Student Affairs"
+          ],
+          "links": {}
+        },
+        {
+          "id": "algorithms",
+          "kind": "course",
+          "title": "Algorithms",
+          "short": "Algorithms",
+          "code": "CS 5800",
+          "period": "",
+          "summary": "Algorithm design and analysis. Project: manifold-search.",
+          "detail": "",
+          "tags": [
+            "Algorithm design"
+          ],
+          "links": {
+            "Project": "https://github.com/dhairyab0069/manifold-search"
+          }
+        },
+        {
+          "id": "pdp",
+          "kind": "course",
+          "title": "Programming Design Paradigms (PDP)",
+          "short": "Programming Design Paradigms (PDP)",
+          "code": "CS 5010",
+          "period": "",
+          "summary": "Object-oriented design. Project: a calendar app, built with Krish Nagaral.",
+          "detail": "",
+          "tags": [
+            "Java",
+            "Object-oriented design",
+            "Group project"
+          ],
+          "links": {
+            "Project": "https://github.com/dhairyab0069/calendar-app"
+          }
+        },
+        {
+          "id": "software-vulnerabilities",
+          "kind": "course",
+          "title": "Software Vulnerabilities",
+          "short": "Software Vulnerabilities",
+          "code": "CY 5770",
+          "period": "",
+          "summary": "",
+          "detail": "",
+          "tags": [
+            "Security"
+          ],
+          "links": {}
+        },
+        {
+          "id": "biot6900",
+          "kind": "course",
+          "title": "Directed Study: Shared Genomics in Neurodevelopmental Disorders",
+          "short": "Directed Study: Shared Genomics in Neurodevelopmental Disorders",
+          "code": "BIOT 6900",
+          "period": "Fall 2026",
+          "summary": "Per-disorder variant analysis and expression track across NDDs, written up as a medical-style report.",
+          "detail": "",
+          "tags": [
+            "Genomics",
+            "PCA",
+            "HPC"
+          ],
+          "links": {
+            "Report": "https://dhairyab0069.github.io/biot6900-io/"
+          }
+        }
+      ]
+    }
+  ]
+}
