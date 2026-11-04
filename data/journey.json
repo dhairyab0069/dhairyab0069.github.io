@@ -17,7 +17,7 @@
       "nodes": [
         {
           "id": "ubc-db-hci",
-          "when": "",
+          "when": "Fall 2022",
           "items": [
             {
               "id": "cosc304",
@@ -60,7 +60,7 @@
         },
         {
           "id": "ubc-algo-web-se",
-          "when": "",
+          "when": "Spring 2022",
           "items": [
             {
               "id": "cosc320",
@@ -203,7 +203,7 @@
     {
       "id": "startups",
       "name": "Startups",
-      "place": "Between the bachelors and the masters",
+      "place": "Oriv and Intella Payments, between the bachelors and the masters",
       "note": "Industry",
       "status": "done",
       "nodes": [
@@ -216,7 +216,7 @@
               "kind": "role",
               "title": "Intern and Junior Consultant",
               "code": "",
-              "summary": "",
+              "summary": "Across both startups.",
               "detail": "",
               "tags": [],
               "links": {}
@@ -226,7 +226,7 @@
               "kind": "role",
               "title": "AI Intern and Developer",
               "code": "",
-              "summary": "",
+              "summary": "Across both startups.",
               "detail": "",
               "tags": [],
               "links": {}
