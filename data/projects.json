@@ -490,6 +490,10 @@
       },
       "links": [
         {
+          "label": "Project page",
+          "href": "https://dhairyab0069.github.io/manifold-io/"
+        },
+        {
           "label": "Repo",
           "href": "https://github.com/dhairyab0069/manifold-search",
           "kind": "repo"
