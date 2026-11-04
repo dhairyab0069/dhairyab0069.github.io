@@ -474,7 +474,7 @@
               "period": "",
               "code": "",
               "summary": "A workshop page for small tools, experiments and class projects, with a logbook of what each was called.",
-              "detail": "A page for the smaller work: tools and experiments on a pegboard, class projects in a tool chest, private projects in a locked toolbox, and a logbook of project histories and old names. It opens with a roller door and has optional synthesized workshop sounds.",
+              "detail": "A page for the smaller work: tools and experiments on a pegboard (including DepDeck and a Windows-XP-style desktop shell for macOS), class projects in a tool chest, private projects in a locked toolbox, and a logbook of project histories and old names. It opens with a roller door and has optional synthesized workshop sounds.",
               "tags": [
                 "JavaScript",
                 "Web Audio",
@@ -522,26 +522,6 @@
                 "Project page": "https://dhairyab0069.github.io/ml-projects-io/",
                 "ECG repo": "https://github.com/dhairyab0069/ecg-diagnostic-classification-ptbxl",
                 "Taxi repo": "https://github.com/dhairyab0069/nyc-taxi-duration-tip-prediction"
-              }
-            },
-            {
-              "id": "macos-tools",
-              "kind": "project",
-              "title": "DepDeck and Desktop Shell",
-              "short": "macOS tools",
-              "period": "",
-              "code": "",
-              "summary": "A menu-bar dependency manager and a Windows-XP-style taskbar and desktop shell for macOS.",
-              "detail": "DepDeck manages Homebrew, npm and cargo packages from the menu bar. Desktop Shell adds an XP-style taskbar and Start menu, iOS-style desktop folders and widgets. The project page recreates both in the browser.",
-              "tags": [
-                "Swift",
-                "SwiftUI",
-                "macOS"
-              ],
-              "links": {
-                "Project page": "https://dhairyab0069.github.io/macos-tools-io/",
-                "DepDeck": "https://github.com/dhairyab0069/DepDeck",
-                "Desktop Shell": "https://github.com/dhairyab0069/desktop-shell-mac"
               }
             },
             {
