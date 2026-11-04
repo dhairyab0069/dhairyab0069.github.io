@@ -14,12 +14,14 @@ import { initAboutMotion } from './about-motion.js';
 import { initMotionToggle } from './motion.js';
 import { initPageProgress } from './page-progress.js';
 import { initSound } from './sound.js';
+import { initTips } from './tips.js';
 import { initWorkbench } from './workbench.js';
 import { initTerminalEmbed } from './terminal-embed.js';
 
 initTheme();
 initMotionToggle();
 initSound();
+initTips();
 tickBoot();
 
 initPanels();

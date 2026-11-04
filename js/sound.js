@@ -29,7 +29,8 @@ export const SOUND_MAP = [
   ['.theme-switch button', 'theme'],
   ['.dock a', 'nav'],
   ['button.jt-head', 'open'],
-  ['[data-motion-toggle], [data-secret-toggle]', 'toggle'],
+  ['[data-motion-toggle]', 'motion'],
+  ['[data-secret-toggle]', 'cheat'],
   ['.run-btn, .explore-btn, .ctf-btn', 'strike'],
   ['.jr-filters button, .jr-step a, .about-tag, .live-dots span', 'tap'],
 ];
@@ -48,6 +49,10 @@ export const RECIPES = {
   close: [[760, 480, 0.08, 'sine', 0.9, 0]],
   on: [[600, 600, 0.07, 'sine', 0.9, 0], [900, 900, 0.1, 'sine', 0.9, 0.07]],
   off: [[900, 900, 0.07, 'sine', 0.9, 0], [600, 600, 0.1, 'sine', 0.9, 0.07]],
+  motionOn: [[400, 700, 0.06, 'triangle', 0.8, 0], [400, 700, 0.06, 'triangle', 0.8, 0.12]],
+  motionOff: [[500, 300, 0.12, 'sine', 0.8, 0]],
+  cheatOn: [[300, 900, 0.18, 'square', 0.35, 0], [1100, 1100, 0.1, 'sine', 0.6, 0.2]],
+  cheatOff: [[900, 300, 0.18, 'square', 0.35, 0]],
 };
 
 /** The recording(s) each sound plays: file (without .mp3), gain, delay in seconds. */
@@ -60,6 +65,12 @@ export const SAMPLES = {
   toggle: [{ file: 'toggle', gain: 0.6 }],
   on: [{ file: 'on', gain: 0.6 }],
   off: [{ file: 'off', gain: 0.6 }],
+  // Motion: a dash and two footsteps when motion turns on, cloth settling when it turns off.
+  motionOn: [{ file: 'dash', gain: 0.55 }, { file: 'step-a', gain: 0.6, delay: 0.05 }, { file: 'step-b', gain: 0.6, delay: 0.19 }],
+  motionOff: [{ file: 'sit', gain: 0.6 }],
+  // Cheat mode: a rising power-up sweep and a chime when it turns on, a falling sweep when it turns off.
+  cheatOn: [{ file: 'cheat-on-a', gain: 0.6 }, { file: 'cheat-on-b', gain: 0.55, delay: 0.22 }],
+  cheatOff: [{ file: 'cheat-off', gain: 0.6 }],
   theme: [{ file: 'theme-a', gain: 0.75 }, { file: 'theme-b', gain: 0.7, delay: 0.5 }], // a magic charge, then a metal hit
 };
 
@@ -176,7 +187,7 @@ export function initSound() {
   const render = () => {
     if (!btn) return;
     // The speaker icon swaps with aria-pressed (see style.css); the title says what it is.
-    btn.title = enabled ? 'Sound effects: on' : 'Sound effects: off';
+    btn.dataset.tip = enabled ? 'Sound effects: on' : 'Sound effects: off';
     btn.setAttribute('aria-pressed', String(enabled));
   };
   render();
@@ -203,6 +214,18 @@ export function initSound() {
       // Opening and closing sound different; this runs before the click toggles it.
       const expanded = e.target.closest('button.jt-head')?.getAttribute('aria-expanded') === 'true';
       play(expanded ? 'close' : 'open');
+      return;
+    }
+    if (kind === 'motion') {
+      // aria-pressed is true while motion is OFF, and this press is about to flip it.
+      const off = e.target.closest('[data-motion-toggle]')?.getAttribute('aria-pressed') === 'true';
+      play(off ? 'motionOn' : 'motionOff');
+      return;
+    }
+    if (kind === 'cheat') {
+      // aria-pressed is true while cheat mode is ON, and this press is about to flip it.
+      const on = e.target.closest('[data-secret-toggle]')?.getAttribute('aria-pressed') === 'true';
+      play(on ? 'cheatOff' : 'cheatOn');
       return;
     }
     play(kind);

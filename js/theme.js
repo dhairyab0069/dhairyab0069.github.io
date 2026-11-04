@@ -32,7 +32,8 @@ const syncTheme = () => {
 export function toggleCheatMode() {
   body.classList.toggle('palette-flip');
   window._cheatMode = body.classList.contains('palette-flip');
-  cheatBtn.textContent = window._cheatMode ? 'Cheat ON 🔓' : 'Cheat code';
+  // The icon swaps with aria-pressed (see style.css); the tip says what it is.
+  cheatBtn.dataset.tip = window._cheatMode ? 'Cheat mode: on' : 'Cheat mode: off';
   cheatBtn.setAttribute('aria-pressed', String(window._cheatMode));
   window.dispatchEvent(new CustomEvent('site:state'));
 }

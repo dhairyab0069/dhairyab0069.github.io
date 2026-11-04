@@ -1,6 +1,6 @@
 # Sound credits
 
-The touch sound effects on the site are short clips cut from two CC0 packs. CC0 is a
+The touch sound effects on the site are short clips cut from CC0 packs by Kenney and artisticdude. CC0 is a
 public-domain dedication, so no credit is required, but credit is given anyway.
 
 | Clip | Used for | Source file | Pack |
@@ -15,6 +15,12 @@ public-domain dedication, so no credit is required, but credit is given anyway.
 | `nav.mp3` | changing page (a swoosh) | `swing` | RPG Sound Pack by artisticdude |
 | `open.mp3` | opening a Journey item (a blade draw) | `sword-unsheathe` | RPG Sound Pack by artisticdude |
 | `theme-a.mp3` | the start of the theme switch (a magic charge) | `magic1` | RPG Sound Pack by artisticdude |
+| `dash.mp3` | the start of turning motion on (a quick swoosh) | `swing3` | RPG Sound Pack by artisticdude |
+| `step-a.mp3`, `step-b.mp3` | turning motion on (two footsteps) | `footstep_concrete_001`, `footstep_concrete_003` | Impact Sounds by Kenney |
+| `sit.mp3` | turning motion off (cloth settling) | `cloth3` | RPG Audio by Kenney |
+| `cheat-on-a.mp3` | turning cheat mode on (a rising sweep) | `maximize_004` | Interface Sounds by Kenney |
+| `cheat-on-b.mp3` | turning cheat mode on (a chime) | `pluck_002` | Interface Sounds by Kenney |
+| `cheat-off.mp3` | turning cheat mode off (a falling sweep) | `minimize_004` | Interface Sounds by Kenney |
 
 - Kenney: https://kenney.nl (Interface Sounds, Impact Sounds, RPG Audio), CC0,
   https://creativecommons.org/publicdomain/zero/1.0/
