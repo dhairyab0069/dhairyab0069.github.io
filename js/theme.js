@@ -2,6 +2,8 @@
 // The initial theme is applied by an inline script in <head> (to avoid a flash
 // of the wrong theme); this module picks it up from there and persists changes.
 
+import { prefersReducedMotion } from './motion.js';
+
 const root = document.documentElement;
 export const body = document.body;
 export const themeSwitch = document.querySelector('.theme-switch');
@@ -10,7 +12,6 @@ export const cheatBtn = document.querySelector('[data-secret-toggle]');
 const THEME_MS = 1400;
 const EASE_CINEMA = 'cubic-bezier(.6,.04,.2,1)';
 const mq = window.matchMedia('(prefers-color-scheme: dark)');
-const reducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // `mode` is what the user picked: light, dark, or auto (follow the system).
 // `theme` is what is actually showing, and is what the rest of the site reads.
@@ -39,7 +40,7 @@ export function toggleCheatMode() {
 /** Runs `commit` (which changes the theme) inside a cinematic View Transition that
  *  opens from `origin`, or a colour fade where View Transitions are missing. */
 function transition(commit, origin) {
-  if (reducedMotion()) { commit(); return; }
+  if (prefersReducedMotion()) { commit(); return; }
   // Preferred: a cinematic View Transition. The browser snapshots the old and new
   // page; the old one defocuses and dims while a circle of the new theme opens out of
   // the control, overexposed at first and settling, like a camera adjusting. The

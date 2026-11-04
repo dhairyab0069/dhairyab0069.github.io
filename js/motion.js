@@ -7,7 +7,34 @@
 //   current value, so a second click mid-animation just reverses smoothly.
 // - Default to critically damped motion (no bounce) unless a gesture carried momentum.
 
-export const prefersReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Reduced motion is decided in two layers: the visitor's explicit choice from the
+// "Motion" button (kept on <html data-motion="reduced|full"> and in localStorage)
+// wins; otherwise the operating system's "Reduce motion" setting applies.
+export const prefersReducedMotion = () => {
+  const choice = document.documentElement.dataset.motion;
+  if (choice) return choice === 'reduced';
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+};
+
+/** Wires the Motion button: flips between reduced and full motion, remembers the choice
+ *  and announces it as a `site:motion` event so canvases and loops can stop or start. */
+export function initMotionToggle() {
+  const btn = document.querySelector('[data-motion-toggle]');
+  if (!btn) return;
+  const render = () => {
+    const off = prefersReducedMotion();
+    btn.textContent = off ? 'Motion: off' : 'Motion: on';
+    btn.setAttribute('aria-pressed', String(off));
+  };
+  btn.addEventListener('click', () => {
+    const next = prefersReducedMotion() ? 'full' : 'reduced';
+    document.documentElement.dataset.motion = next;
+    try { localStorage.setItem('motion', next); } catch {}
+    render();
+    window.dispatchEvent(new CustomEvent('site:motion'));
+  });
+  render();
+}
 
 /** Fade and lift elements in as they scroll into view. Stagger with `--i`. */
 export function reveal(elements) {
@@ -44,14 +71,18 @@ export function trackProgress(container, el) {
   return schedule;
 }
 
-/** A soft light that follows the pointer over any `selector` match inside `root`. */
+/** A soft light that follows the pointer over any `selector` match inside `root`.
+ *  Tiles can nest (a card inside a window), so the position is set on every match
+ *  from the innermost outwards, and an outer tile's glow never lags behind. */
 export function spotlight(root, selector) {
   root.addEventListener('pointermove', e => {
-    const el = e.target.closest(selector);
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    el.style.setProperty('--mx', `${e.clientX - r.left}px`);
-    el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    let el = e.target.closest?.(selector);
+    while (el) {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+      el = el.parentElement?.closest(selector);
+    }
   });
 }
 
