@@ -8,10 +8,12 @@
 // 3. Writes _site/version.json for the front-end ("last deployed" etc.).
 // 4. Fails the build if any local href/src/import points at a missing file
 //    or any module has a syntax error.
+// 5. Checks data/projects.json (shape, and no private names or repositories).
 
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+import { checkProjects } from './check-projects.mjs';
 
 const ROOT = process.cwd();
 const OUT = path.join(ROOT, '_site');
@@ -78,6 +80,9 @@ for (const file of files.filter(f => f.endsWith('.json'))) {
   try { JSON.parse(fs.readFileSync(file, 'utf8')); }
   catch (e) { errors.push(`${path.relative(OUT, file)} → invalid JSON: ${e.message}`); }
 }
+
+// ── 5. the Projects data: its shape, and nothing private in it or in what it renders ──
+errors.push(...await checkProjects(ROOT));
 
 if (errors.length) {
   console.error(`Build checks failed (${errors.length}):\n- ` + errors.join('\n- '));
