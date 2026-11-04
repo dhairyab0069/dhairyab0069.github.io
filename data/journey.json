@@ -32,7 +32,8 @@
                 "Group project"
               ],
               "links": {
-                "Repo": "https://github.com/dhairyab0069/LucasCheck"
+                "Repo": "https://github.com/dhairyab0069/LucasCheck",
+                "Project page": "https://dhairyab0069.github.io/lucascheck-io/"
               }
             },
             {
@@ -53,7 +54,8 @@
               ],
               "links": {
                 "Original (Java)": "https://github.com/dhairyab0069/Atlas",
-                "Native rewrite": "https://github.com/dhairyab0069/Atlas-Mobile"
+                "Native rewrite": "https://github.com/dhairyab0069/Atlas-Mobile",
+                "Project page": "https://dhairyab0069.github.io/atlas-mobile-io/"
               }
             }
           ]
@@ -462,6 +464,84 @@
                 "Project page": "https://dhairyab0069.github.io/abiogenesis-io/",
                 "GitHub": "https://github.com/dhairyab0069/abiogenesis",
                 "Download": "https://github.com/dhairyab0069/abiogenesis/releases/latest"
+              }
+            },
+            {
+              "id": "garage",
+              "kind": "project",
+              "title": "The Garage",
+              "short": "Garage",
+              "period": "",
+              "code": "",
+              "summary": "A workshop page for small tools, experiments and class projects, with a logbook of what each was called.",
+              "detail": "A page for the smaller work: tools and experiments on a pegboard, class projects in a tool chest, private projects in a locked toolbox, and a logbook of project histories and old names. It opens with a roller door and has optional synthesized workshop sounds.",
+              "tags": [
+                "JavaScript",
+                "Web Audio",
+                "Design"
+              ],
+              "links": {
+                "Project page": "https://dhairyab0069.github.io/garage-io/"
+              }
+            },
+            {
+              "id": "focuslock",
+              "kind": "project",
+              "title": "FocusLock",
+              "short": "FocusLock",
+              "period": "",
+              "code": "",
+              "summary": "A minimal macOS focus timer that pauses when an LLM program or a social media site takes over.",
+              "detail": "A focus timer for macOS with a watchdog that pauses the clock when LLM programs are running or a browser lands on a filtered site, and emergency exits so it can never lock you in. Designed to be ADHD-friendly. The source is private for now; the project page has a simulator of a session.",
+              "tags": [
+                "Swift",
+                "macOS",
+                "ADHD-friendly design"
+              ],
+              "links": {
+                "Project page": "https://dhairyab0069.github.io/focuslock-io/"
+              }
+            },
+            {
+              "id": "ml-projects",
+              "kind": "project",
+              "title": "ECG and NYC taxi ML projects",
+              "short": "ML projects",
+              "period": "",
+              "code": "",
+              "summary": "Multi-label ECG diagnosis with a segment-shuffle probe, and NYC taxi duration and tip prediction.",
+              "detail": "Two machine learning projects shown on one animated map. The ECG project trains a 1D ResNet on PTB-XL and probes whether it relies on rhythm or beat shape by shuffling segments. The taxi project goes from a baseline to LightGBM and an MLP, with evaluation under temporal shift.",
+              "tags": [
+                "Python",
+                "PyTorch",
+                "LightGBM",
+                "ECG",
+                "Tabular ML"
+              ],
+              "links": {
+                "Project page": "https://dhairyab0069.github.io/ml-projects-io/",
+                "ECG repo": "https://github.com/dhairyab0069/ecg-diagnostic-classification-ptbxl",
+                "Taxi repo": "https://github.com/dhairyab0069/nyc-taxi-duration-tip-prediction"
+              }
+            },
+            {
+              "id": "macos-tools",
+              "kind": "project",
+              "title": "DepDeck and Desktop Shell",
+              "short": "macOS tools",
+              "period": "",
+              "code": "",
+              "summary": "A menu-bar dependency manager and a Windows-XP-style taskbar and desktop shell for macOS.",
+              "detail": "DepDeck manages Homebrew, npm and cargo packages from the menu bar. Desktop Shell adds an XP-style taskbar and Start menu, iOS-style desktop folders and widgets. The project page recreates both in the browser.",
+              "tags": [
+                "Swift",
+                "SwiftUI",
+                "macOS"
+              ],
+              "links": {
+                "Project page": "https://dhairyab0069.github.io/macos-tools-io/",
+                "DepDeck": "https://github.com/dhairyab0069/DepDeck",
+                "Desktop Shell": "https://github.com/dhairyab0069/desktop-shell-mac"
               }
             },
             {
