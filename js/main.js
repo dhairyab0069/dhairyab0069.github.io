@@ -9,6 +9,8 @@ import { initInterests } from './interests.js';
 import { initKonami } from './konami.js';
 import { initPublications } from './publications.js';
 import { initJourney } from './journey.js';
+import { initMlBackground } from './ml-bg.js';
+import { initAboutMotion } from './about-motion.js';
 import { initWorkbench } from './workbench.js';
 import { initTerminalEmbed } from './terminal-embed.js';
 
@@ -23,3 +25,5 @@ initKonami();
 initPublications();
 initJourney();
 initWorkbench();
+initMlBackground();
+initAboutMotion();
