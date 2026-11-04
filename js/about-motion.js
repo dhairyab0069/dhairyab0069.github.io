@@ -19,7 +19,8 @@ const TILT_SELECTOR = '.philo-card, .slot, .module, .pub-card';
 const EASE = 'cubic-bezier(.22,1,.36,1)';
 const ROLES = ['ml-researcher', 'benchmark-builder', 'rust-tinkerer', 'teaching-assistant'];
 
-function initTilt(panel) {
+/** Cards inside `panel` that match `selector` lean toward the pointer. Other panels (Projects) reuse it. */
+export function initTilt(panel, selector = TILT_SELECTOR) {
   const state = new Map(); // el -> { x, y, tx, ty }
   let raf = 0, last = 0;
   const tick = (now) => {
@@ -42,7 +43,7 @@ function initTilt(panel) {
   const get = (el) => state.get(el) || (state.set(el, { x: 0, y: 0, tx: 0, ty: 0 }), el.classList.add('tilting'), state.get(el));
 
   panel.addEventListener('pointermove', (e) => {
-    const el = e.target.closest(TILT_SELECTOR);
+    const el = e.target.closest(selector);
     if (!el || e.pointerType === 'touch' || prefersReducedMotion()) return;
     const r = el.getBoundingClientRect();
     const s = get(el);
@@ -51,7 +52,7 @@ function initTilt(panel) {
     wake();
   });
   panel.addEventListener('pointerout', (e) => {
-    const el = e.target.closest(TILT_SELECTOR);
+    const el = e.target.closest(selector);
     if (!el || el.contains(e.relatedTarget)) return;
     const s = state.get(el);
     if (s) { s.tx = 0; s.ty = 0; wake(); }

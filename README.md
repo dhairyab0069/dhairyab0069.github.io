@@ -7,6 +7,7 @@ My Personal Website inspired by NeXTSTEP and Sega Genesis
 - My Portfolio
 - miniCTF challenge (terminal: [nextcube-terminal](https://github.com/dhairyab0069/nextcube-terminal))
 - Publications (from `data/publications.json`)
+- Projects (from `data/projects.json`: a filterable, searchable showcase with detail views; add a project by editing that file)
 
 ## Local preview
 

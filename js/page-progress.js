@@ -1,5 +1,5 @@
 // A thin progress bar fixed to the top of the window that fills as you scroll down
-// the current page (About, Journey, Workbench or Mail). It resets when you switch
+// the current page (About, Journey, Projects, Workbench or Mail). It resets when you switch
 // pages, because each page scrolls from the top.
 //
 // It only sets one CSS variable (--p, 0 to 1) that scales a bar; no layout work in the

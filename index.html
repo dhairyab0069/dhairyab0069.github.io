@@ -169,6 +169,10 @@
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg>
             <span><strong>Journey →</strong><span>School to research: courses, projects and roles on one timeline.</span></span>
           </button>
+          <button type="button" data-panel="projects" class="ctf-btn explore-btn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><path d="M17.25 13.5v7.5M13.5 17.25H21"/></svg>
+            <span><strong>Projects →</strong><span>A selected showcase: apps, research, ML and tools, with filters and detail views.</span></span>
+          </button>
           <button type="button" data-panel="mail" class="ctf-btn ctf-btn--gold explore-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             <span><strong>Mail →</strong><span>Get in touch, or grab a copy of my resume or CV.</span></span>
@@ -250,6 +254,33 @@
 
       </div>
 
+      <div id="panel-projects" class="panel" role="region" tabindex="-1" aria-label="Projects" hidden>
+<section class="bay" aria-labelledby="panel-projects-title">
+        <div class="chrome">
+          <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="titlebar" id="panel-projects-title">/developer/projects</div>
+        </div>
+        <div class="bay-main">
+          <article class="section-copy pj" id="projects">
+            <div class="pj-ambient" aria-hidden="true"></div>
+            <p class="eyebrow">Apps · Research · ML and vision · Tools</p>
+            <h2>Things I made and studied.</h2>
+            <p class="lede">A short, selected list: apps I have shipped or am building, research I can show in public, machine learning projects and small tools. Filter, search, or open a card to see what it is and what is interesting about it. In a detail view the arrow keys step through the projects and Esc closes it.</p>
+            <div class="jr-stats" id="projects-stats" role="group" aria-label="Project totals"></div>
+            <section class="pj-spot" id="projects-spot" aria-roledescription="carousel" aria-label="Featured projects"></section>
+            <div class="pj-bar">
+              <div class="pj-filters" id="projects-filters" role="group" aria-label="Filter the projects"></div>
+              <input class="pj-search" id="projects-search" type="search" placeholder="Search projects" aria-label="Search projects" autocomplete="off" spellcheck="false">
+            </div>
+            <p class="pj-count" id="projects-count" role="status"></p>
+            <ul class="pj-grid" id="projects-grid"></ul>
+            <p class="pj-empty" id="projects-empty" hidden>Nothing matches that. Clear the search or pick All.</p>
+          </article>
+        </div>
+      </section>
+
+      </div>
+
       <div id="panel-workbench" class="panel" role="region" tabindex="-1" aria-label="Workbench" hidden>
 <section class="bay" aria-labelledby="bay-title">
         <div class="chrome">
@@ -321,6 +352,7 @@
     <nav class="dock" aria-label="Workstation dock">
       <a class="active" href="#about" data-panel="about" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>About</span></a>
       <a href="#journey" data-panel="journey"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="12" r="2"/><circle cx="6" cy="18" r="2"/><path d="M8 6h4a4 4 0 0 1 4 4M16 14a4 4 0 0 1-4 4H8"/></svg><span>Journey</span></a>
+      <a href="#projects" data-panel="projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.6"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.6"/><path d="M17.25 13.5v7.5M13.5 17.25H21"/></svg><span>Projects</span></a>
       <a href="#workbench" data-panel="workbench"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v14H4z"/><path d="m8 10 2 2-2 2"/><path d="M12.5 16H16"/></svg><span>Workbench</span></a>
       <a href="#mail" data-panel="mail"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><span>Mail</span></a>
     </nav>
