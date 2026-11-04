@@ -491,7 +491,8 @@
       "links": [
         {
           "label": "Project page",
-          "href": "https://dhairyab0069.github.io/manifold-io/"
+          "href": "https://dhairyab0069.github.io/manifold-io/",
+          "kind": "live"
         },
         {
           "label": "Repo",
