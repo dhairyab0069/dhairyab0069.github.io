@@ -496,13 +496,11 @@
               "title": "PhD in computer science",
               "period": "",
               "code": "",
-              "summary": "Research on whether video-language models really understand motion and time, and on how to measure and fix it.",
-              "detail": "The question I want to work on: do multimodal models understand how things move and change, or do they pattern-match appearance? MotionBlind is the first step, a benchmark of near-identical clips that differ only in motion. The PhD is where I want to turn what benchmarks expose into methods that improve the models.",
+              "summary": "I really want to pursue this in computer vision, ML, or something where I can apply what I've learned and grow more. Still exploring.",
+              "detail": "",
               "tags": [
-                "Video-LLMs",
-                "Motion reasoning",
-                "Benchmarking",
-                "Evaluation"
+                "Computer vision",
+                "Machine learning"
               ],
               "links": {}
             }
