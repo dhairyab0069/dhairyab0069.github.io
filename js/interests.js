@@ -1,6 +1,6 @@
 // Interest and hobby tags on the about panel. An interest tag shows which
 // project it shows up in, with a button that inserts that cartridge on the
-// workbench; a hobby tag just lights up and bounces its emoji.
+// projects panel; a hobby tag just lights up and bounces its emoji.
 
 import { selectProject, projectTitle } from './projects.js';
 
@@ -30,7 +30,7 @@ export function initInterests() {
     const btn = e.target.closest('[data-open-project]');
     if (!btn) return;
     selectProject(btn.dataset.openProject);
-    location.hash = 'workbench';
+    location.hash = 'projects';
     // showPanel scrolls to the top; then bring the inserted cartridge into view.
     setTimeout(() => document.getElementById('project-detail')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
   });

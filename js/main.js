@@ -9,6 +9,7 @@ import { initProjects } from './projects.js';
 import { initInterests } from './interests.js';
 import { initKonami } from './konami.js';
 import { initPublications } from './publications.js';
+import { initCoursework } from './coursework.js';
 import { initTerminalEmbed } from './terminal-embed.js';
 
 initTheme();
@@ -21,3 +22,4 @@ initProjects();
 initInterests();
 initKonami();
 initPublications();
+initCoursework();
