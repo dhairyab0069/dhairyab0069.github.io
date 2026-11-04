@@ -111,6 +111,91 @@ const LABELS = ['person', 'laptop', 'cup', 'cat', 'sunflower', 'cube'];
 const rgba = (c, a) => `rgba(${c[0]},${c[1]},${c[2]},${Math.min(1, a).toFixed(3)})`;
 const rand = (a, b) => a + Math.random() * (b - a);
 
+/** A small animated object that matches a detection label, drawn centred at (0,0)
+ *  after translating to the object's position. `s` is its half-size, `t` the time
+ *  in ms. Everything moves a little: legs swing, steam rises, a tail swishes, petals
+ *  turn, a cube rotates, so the box looks like it is tracking something real. */
+export function drawGlyph(ctx, label, cx, cy, s, t, col, a) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.strokeStyle = rgba(col, a);
+  ctx.fillStyle = rgba(col, a * 0.22);
+  ctx.lineWidth = 1.4;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  const line = (x1, y1, x2, y2) => { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); };
+  const circle = (x, y, r, fill) => { ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); if (fill) ctx.fill(); ctx.stroke(); };
+  const w = Math.sin(t * 0.006);
+  switch (label) {
+    case 'person': {
+      circle(0, -s * 0.72, s * 0.2, true);
+      line(0, -s * 0.5, 0, s * 0.12); // torso
+      line(0, -s * 0.38, s * 0.3 * w, s * 0.0); // arms swing opposite to the legs
+      line(0, -s * 0.38, -s * 0.3 * w, s * 0.0);
+      line(0, s * 0.12, s * 0.32 * w, s * 0.78); // legs
+      line(0, s * 0.12, -s * 0.32 * w, s * 0.78);
+      break;
+    }
+    case 'laptop': {
+      const open = 0.92 + 0.06 * Math.sin(t * 0.002);
+      ctx.beginPath(); ctx.rect(-s * 0.55, -s * 0.55 * open, s * 1.1, s * 0.75 * open); ctx.fill(); ctx.stroke(); // screen
+      ctx.beginPath(); ctx.moveTo(-s * 0.7, s * 0.28); ctx.lineTo(s * 0.7, s * 0.28); ctx.lineTo(s * 0.55, s * 0.42); ctx.lineTo(-s * 0.55, s * 0.42); ctx.closePath(); ctx.stroke(); // base
+      for (let i = 0; i < 4; i++) { // lines of "code" being typed
+        const len = (0.25 + 0.55 * (0.5 + 0.5 * Math.sin(t * 0.003 + i * 1.9))) * s * 0.8;
+        line(-s * 0.42, -s * 0.38 * open + i * s * 0.14, -s * 0.42 + len, -s * 0.38 * open + i * s * 0.14);
+      }
+      break;
+    }
+    case 'cup': {
+      ctx.beginPath(); ctx.moveTo(-s * 0.36, -s * 0.2); ctx.lineTo(s * 0.36, -s * 0.2); ctx.lineTo(s * 0.26, s * 0.6); ctx.lineTo(-s * 0.26, s * 0.6); ctx.closePath(); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.arc(s * 0.4, s * 0.12, s * 0.2, -1.3, 1.3); ctx.stroke(); // handle
+      for (let i = -1; i <= 1; i++) { // steam curls upward and fades
+        const p = ((t * 0.0006 + i * 0.33) % 1 + 1) % 1;
+        ctx.strokeStyle = rgba(col, a * (1 - p) * 0.9);
+        ctx.beginPath(); ctx.moveTo(i * s * 0.16, -s * 0.3);
+        ctx.bezierCurveTo(i * s * 0.16 + Math.sin(t * 0.004 + i) * s * 0.18, -s * 0.5, i * s * 0.16 - Math.sin(t * 0.004 + i) * s * 0.18, -s * 0.7, i * s * 0.16, -s * (0.45 + p * 0.5));
+        ctx.stroke();
+      }
+      break;
+    }
+    case 'cat': {
+      ctx.beginPath(); ctx.ellipse(-s * 0.1, s * 0.35, s * 0.55, s * 0.32, 0, 0, 6.283); ctx.fill(); ctx.stroke(); // body
+      circle(s * 0.4, -s * 0.1, s * 0.3, true); // head
+      ctx.beginPath(); ctx.moveTo(s * 0.2, -s * 0.3); ctx.lineTo(s * 0.24, -s * 0.62); ctx.lineTo(s * 0.45, -s * 0.36); ctx.moveTo(s * 0.55, -s * 0.36); ctx.lineTo(s * 0.68, -s * 0.62); ctx.lineTo(s * 0.62, -s * 0.28); ctx.stroke(); // ears
+      const sw = Math.sin(t * 0.004) * s * 0.35; // tail swishes
+      ctx.beginPath(); ctx.moveTo(-s * 0.62, s * 0.3); ctx.quadraticCurveTo(-s * 0.95, s * 0.3 + sw, -s * 0.8, -s * 0.2 + sw * 0.6); ctx.stroke();
+      if (t % 3400 < 130) { line(s * 0.3, -s * 0.12, s * 0.38, -s * 0.12); line(s * 0.46, -s * 0.12, s * 0.54, -s * 0.12); } // blink
+      else { circle(s * 0.34, -s * 0.12, s * 0.035, true); circle(s * 0.5, -s * 0.12, s * 0.035, true); }
+      break;
+    }
+    case 'sunflower': {
+      line(0, s * 0.15, Math.sin(t * 0.002) * s * 0.12, s * 0.9); // stem sways
+      ctx.beginPath(); ctx.ellipse(s * 0.2, s * 0.6, s * 0.2, s * 0.08, -0.5, 0, 6.283); ctx.stroke(); // leaf
+      ctx.save(); ctx.translate(0, -s * 0.15); ctx.rotate(t * 0.0004);
+      for (let i = 0; i < 12; i++) { ctx.rotate(6.283 / 12); ctx.beginPath(); ctx.ellipse(s * 0.5, 0, s * 0.25, s * 0.09, 0, 0, 6.283); ctx.fill(); ctx.stroke(); }
+      ctx.restore();
+      circle(0, -s * 0.15, s * 0.22, true);
+      break;
+    }
+    case 'cube': {
+      const ay = t * 0.0011, ax = 0.55, h = s * 0.55;
+      const pts = [];
+      for (const x of [-1, 1]) for (const y of [-1, 1]) for (const z of [-1, 1]) {
+        const x1 = x * Math.cos(ay) + z * Math.sin(ay), z1 = -x * Math.sin(ay) + z * Math.cos(ay);
+        pts.push([x1 * h, (y * Math.cos(ax) - z1 * Math.sin(ax)) * h]);
+      }
+      ctx.beginPath();
+      for (let i = 0; i < 8; i++) for (let j = i + 1; j < 8; j++) {
+        const d = i ^ j; // vertices differ in exactly one axis bit: an edge
+        if (d === 1 || d === 2 || d === 4) { ctx.moveTo(pts[i][0], pts[i][1]); ctx.lineTo(pts[j][0], pts[j][1]); }
+      }
+      ctx.stroke();
+      break;
+    }
+  }
+  ctx.restore();
+}
+
 export function initMlBackground() {
   if (document.getElementById('ml-bg')) return;
   const canvas = document.createElement('canvas');
@@ -216,8 +301,8 @@ export function initMlBackground() {
       const x0 = b.bx - rx - 6, y0 = b.by - ry - 6, w = rx * 2 + 12, h = ry * 2 + 12, k = Math.min(14, w / 3, h / 3);
       const conf = 0.86 + 0.1 * Math.sin(t * 0.0011 + b.phase);
 
-      ctx.fillStyle = rgba(pal.cool, 0.045 * env * pal.boost);
-      ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, 6.283); ctx.fill();
+      // the object itself: a small animated drawing that matches the label
+      drawGlyph(ctx, b.label, cx, cy + Math.sin(t * 0.003 + b.phase) * 3, Math.min(rx, ry) * 1.15, t + b.phase * 1000, pal.cool, 0.5 * env * pal.boost);
       ctx.strokeStyle = rgba(pal.cool, 0.35 * env * pal.boost); ctx.lineWidth = 1.5;
       ctx.beginPath();
       for (const [px, py, dx, dy] of [[x0, y0, 1, 1], [x0 + w, y0, -1, 1], [x0, y0 + h, 1, -1], [x0 + w, y0 + h, -1, -1]]) {
