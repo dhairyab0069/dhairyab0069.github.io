@@ -1,8 +1,8 @@
 // Interest and hobby tags on the about panel. An interest tag shows which
-// project it shows up in, with a button that inserts that cartridge on the
-// projects panel; a hobby tag just lights up and bounces its emoji.
+// project it shows up in, with a button that opens that entry on the
+// journey panel; a hobby tag just lights up and bounces its emoji.
 
-import { selectProject, projectTitle } from './projects.js';
+import { openEntry, entryTitle } from './journey.js';
 
 const SUMMARY = {
   aclab: 'video-language model benchmarking (MotionBlind).',
@@ -22,17 +22,16 @@ export function initInterests() {
       return;
     }
     const key = tag.dataset.related;
-    note.innerHTML = `<strong>${tag.textContent}</strong> → ${projectTitle(key)}: ${SUMMARY[key]}<br>`
-      + `<button type="button" class="run-btn" data-open-project="${key}">Open in Workbench →</button>`;
+    note.innerHTML = `<strong>${tag.textContent}</strong> → ${entryTitle(key)}: ${SUMMARY[key]}<br>`
+      + `<button type="button" class="run-btn" data-open-project="${key}">Open in Journey →</button>`;
   }));
 
   note.addEventListener('click', e => {
     const btn = e.target.closest('[data-open-project]');
     if (!btn) return;
-    selectProject(btn.dataset.openProject);
-    location.hash = 'projects';
-    // showPanel scrolls to the top; then bring the inserted cartridge into view.
-    setTimeout(() => document.getElementById('project-detail')?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 400);
+    location.hash = 'journey';
+    // showPanel scrolls to the top; then open the entry and bring it into view.
+    setTimeout(() => openEntry(btn.dataset.openProject), 350);
   });
 
   document.querySelectorAll('.about-tag.hobby').forEach(tag => {

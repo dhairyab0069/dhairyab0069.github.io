@@ -1,10 +1,10 @@
 // Dock navigation: shows one top-level panel at a time. The active panel is
-// kept in the URL hash (#about, #projects, #coursework, #workbench, #mail) so reload, deep links and
+// kept in the URL hash (#about, #journey, #workbench, #mail) so reload, deep links and
 // the Back button all work.
 
 import { tickBoot } from './boot-sequence.js';
 
-const PANELS = { about: 'panel-about', projects: 'panel-projects', coursework: 'panel-coursework', workbench: 'panel-workbench', mail: 'panel-mail' };
+const PANELS = { about: 'panel-about', journey: 'panel-journey', workbench: 'panel-workbench', mail: 'panel-mail' };
 const DEFAULT_PANEL = 'about';
 
 const panelFromHash = () => {

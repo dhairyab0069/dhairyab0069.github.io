@@ -5,11 +5,10 @@
 import { initTheme } from './theme.js';
 import { tickBoot } from './boot-sequence.js';
 import { initPanels } from './panels.js';
-import { initProjects } from './projects.js';
 import { initInterests } from './interests.js';
 import { initKonami } from './konami.js';
 import { initPublications } from './publications.js';
-import { initCoursework } from './coursework.js';
+import { initJourney } from './journey.js';
 import { initTerminalEmbed } from './terminal-embed.js';
 
 initTheme();
@@ -18,8 +17,7 @@ tickBoot();
 initPanels();
 initTerminalEmbed();
 
-initProjects();
 initInterests();
 initKonami();
 initPublications();
-initCoursework();
+initJourney();
