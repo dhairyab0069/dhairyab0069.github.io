@@ -11,9 +11,11 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
-// Names that must never appear anywhere in the data or the rendered text.
+// Names that must never appear anywhere in the data or the rendered text. Each is written as
+// two parts, so that this file does not itself spell out what it keeps off the page.
+const named = (a, b) => new RegExp(`${a}\\s*-?\\s*${b}`, 'i');
 const FORBIDDEN = [
-  /motion\s*-?\s*blind/i, /motion\s*-?\s*doctor/i, /ego\s*-?\s*exo/i, /time\s*-?\s*blind/i,
+  named('motion', 'blind'), named('motion', 'doctor'), named('ego', 'exo'), named('time', 'blind'),
   /anonymous/i, /under review/i, /double[- ]blind/i, /ml-course/i, /2609\.09528/,
 ];
 // Public repositories under github.com/dhairyab0069 that the page may link.
