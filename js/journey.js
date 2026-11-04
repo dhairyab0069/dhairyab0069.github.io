@@ -4,14 +4,15 @@
 // edit. Dates are optional and shown only when known.
 
 import { reveal, trackProgress, spotlight, countUp, scrollToEl } from './motion.js';
+import { progress } from './progress.js';
 
 const DATA_URL = './data/journey.json';
 const KINDS = { course: 'Course', research: 'Research', project: 'Project', role: 'Role', goal: 'Goal' };
 
 const timeline = document.getElementById('journey-timeline');
-const rail = document.getElementById('journey-rail');
 const filters = document.getElementById('journey-filters');
 const stats = document.getElementById('journey-stats');
+const tracker = document.getElementById('journey-tracker');
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const clean = (t) => t.replace(/ \/\/ /g, ' · ');
@@ -46,7 +47,7 @@ function renderChapter(c) {
   // Chapters still ahead are drawn dashed with a "planned" feel; a branch is an
   // optional detour off the main line (the postdoc, which may not happen).
   const cls = ['jr-chapter', c.future && 'jr-chapter--future', c.branch && 'jr-chapter--branch'].filter(Boolean).join(' ');
-  return `<section class="${cls}" id="ch-${esc(c.id)}" aria-labelledby="ch-${esc(c.id)}-title">
+  return `<section class="${cls}" id="ch-${esc(c.id)}" data-status="${esc(c.status || (c.future ? 'planned' : 'done'))}" aria-labelledby="ch-${esc(c.id)}-title">
     <div class="jr-node reveal" aria-hidden="true"></div>
     <header class="jr-chapter-head reveal">
       <small>${esc(c.note || '')}</small>
@@ -55,6 +56,26 @@ function renderChapter(c) {
     </header>
     <div class="jr-entries">${list}</div>
   </section>`;
+}
+
+const STATUS_LABEL = { done: 'Completed', current: 'In progress', planned: 'Planned' };
+
+function renderTracker(chapters) {
+  const p = progress(chapters);
+  const steps = chapters.map(c => {
+    const st = c.status || (c.future ? 'planned' : 'done');
+    return `<li class="jr-step ${st}${c.branch ? ' optional' : ''}"><a href="#ch-${esc(c.id)}" data-chapter="${esc(c.id)}"><span class="jr-dot" aria-hidden="true"></span><span class="jr-step-name">${esc(c.name)}</span><small>${c.branch ? 'Optional' : STATUS_LABEL[st]}</small></a></li>`;
+  }).join('');
+  tracker.innerHTML = `
+    <div class="jr-tracker-head">
+      <strong>Journey progress</strong>
+      <span><b data-to="${p.reached}">0</b> of ${p.total} stages reached · <b data-to="${p.completed}">0</b> completed${p.optional ? ` · ${p.optional} optional` : ''}</span>
+    </div>
+    <div class="jr-bar" role="progressbar" aria-label="Stages reached" aria-valuemin="0" aria-valuemax="${p.total}" aria-valuenow="${p.reached}">
+      <span class="jr-bar-reached" style="--w:${p.reachedPct}%"></span>
+      <span class="jr-bar-done" style="--w:${p.completedPct}%"></span>
+    </div>
+    <ol class="jr-steps">${steps}</ol>`;
 }
 
 function setExpanded(entry, open) {
@@ -92,7 +113,7 @@ function initScrollSpy() {
     items.forEach(i => {
       if (!i.isIntersecting) return;
       const id = i.target.id.replace('ch-', '');
-      rail.querySelectorAll('a').forEach(a => a.classList.toggle('active', a.dataset.chapter === id));
+      tracker?.querySelectorAll('a[data-chapter]').forEach(a => a.classList.toggle('active', a.dataset.chapter === id));
     });
   }, { rootMargin: '-35% 0px -55% 0px' });
   timeline.querySelectorAll('.jr-chapter').forEach(c => io.observe(c));
@@ -116,11 +137,12 @@ export async function initJourney() {
   const counts = { chapters: chapters.filter(c => !c.future).length, course: 0, research: 0, project: 0, role: 0, goal: 0 };
   all.forEach(e => { if (e.kind in counts) counts[e.kind]++; });
 
+  if (tracker) renderTracker(chapters);
+
   stats.innerHTML = [
     ['chapters', 'schools'], ['course', 'courses'], ['research', 'research'], ['project', 'projects'], ['role', 'roles'], ['goal', 'goals ahead'],
   ].filter(([k]) => counts[k]).map(([k, label]) => `<div class="jr-stat"><strong data-to="${counts[k]}">0</strong><span>${label}</span></div>`).join('');
 
-  rail.innerHTML = chapters.map(c => `<a href="#ch-${esc(c.id)}" data-chapter="${esc(c.id)}"${c.future ? ' class="future"' : ''}><small>${esc(c.note || '')}</small>${esc(c.name)}</a>`).join('');
   filters.innerHTML = [['all', 'All'], ...Object.entries(KINDS)]
     .filter(([k]) => k === 'all' || counts[k])
     .map(([k, label]) => `<button type="button" data-kind="${k}" aria-pressed="${k === 'all'}">${label}</button>`).join('');
@@ -134,12 +156,13 @@ export async function initJourney() {
     if (head) setExpanded(head.closest('.jr-entry'), head.getAttribute('aria-expanded') !== 'true');
   });
   filters.addEventListener('click', e => { const b = e.target.closest('button'); if (b) applyFilter(b.dataset.kind); });
-  rail.addEventListener('click', e => {
-    const a = e.target.closest('a');
+  const scrollToChapter = e => {
+    const a = e.target.closest('a[data-chapter]');
     if (!a) return;
     e.preventDefault(); // the hash belongs to the dock; scroll instead of navigating
     scrollToEl(document.getElementById(`ch-${a.dataset.chapter}`), 'start');
-  });
+  };
+  tracker?.addEventListener('click', scrollToChapter);
 
   spotlight(timeline, '.jr-entry');
   initScrollSpy();
@@ -154,6 +177,8 @@ export async function initJourney() {
     if (counted || panel.hidden) return;
     counted = true;
     stats.querySelectorAll('strong').forEach(el => countUp(el, Number(el.dataset.to)));
+    tracker?.querySelectorAll('b[data-to]').forEach(el => countUp(el, Number(el.dataset.to)));
+    tracker?.classList.add('go'); // the bar fills once the panel is on screen
   };
   new MutationObserver(countWhenVisible).observe(panel, { attributes: true, attributeFilter: ['hidden'] });
   countWhenVisible();

@@ -5,7 +5,8 @@
       "name": "Delhi Public School, R.K. Puram",
       "place": "R.K. Puram, New Delhi",
       "note": "School",
-      "entries": []
+      "entries": [],
+      "status": "done"
     },
     {
       "id": "ubc",
@@ -107,7 +108,8 @@
             "Repo": "https://github.com/dhairyab0069/Coursify-AI"
           }
         }
-      ]
+      ],
+      "status": "done"
     },
     {
       "id": "neu",
@@ -265,7 +267,8 @@
             "Report": "https://dhairyab0069.github.io/biot6900-io/"
           }
         }
-      ]
+      ],
+      "status": "current"
     },
     {
       "id": "phd",
@@ -290,7 +293,8 @@
           ],
           "links": {}
         }
-      ]
+      ],
+      "status": "planned"
     },
     {
       "id": "postdoc",
@@ -313,7 +317,8 @@
           ],
           "links": {}
         }
-      ]
+      ],
+      "status": "planned"
     },
     {
       "id": "industry",
@@ -338,7 +343,8 @@
           ],
           "links": {}
         }
-      ]
+      ],
+      "status": "planned"
     }
   ]
 }

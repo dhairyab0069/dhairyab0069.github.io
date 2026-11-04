@@ -51,7 +51,7 @@ export function initWorkbench() {
   const panel = document.getElementById('panel-workbench');
   if (!stage || !frame || !panel) return;
 
-  const reduced = prefersReducedMotion();
+  let reduced = prefersReducedMotion();
   const cur = { x: 0, y: 0, glow: 1, scale: 1 };
   const tgt = { x: 0, y: 0, glow: 1, scale: 1 };
   let zone = 'focus';
@@ -124,6 +124,11 @@ export function initWorkbench() {
   const rest = () => { setZone('focus'); tgt.x = 0; tgt.y = 0; wake(); };
   frame.addEventListener('focusin', rest);
   new MutationObserver(() => { if (!panel.hidden) { rest(); } }).observe(panel, { attributes: true, attributeFilter: ['hidden'] });
+
+  window.addEventListener('site:motion', () => {
+    reduced = prefersReducedMotion();
+    if (reduced) { tgt.x = 0; tgt.y = 0; Object.assign(cur, tgt); apply(); }
+  });
 
   reveal(panel.querySelectorAll('.wb-reveal'));
   apply();

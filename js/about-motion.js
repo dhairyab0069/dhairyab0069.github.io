@@ -20,7 +20,6 @@ const EASE = 'cubic-bezier(.22,1,.36,1)';
 const ROLES = ['ml-researcher', 'benchmark-builder', 'rust-tinkerer', 'teaching-assistant'];
 
 function initTilt(panel) {
-  if (prefersReducedMotion()) return;
   const state = new Map(); // el -> { x, y, tx, ty }
   let raf = 0, last = 0;
   const tick = (now) => {
@@ -44,7 +43,7 @@ function initTilt(panel) {
 
   panel.addEventListener('pointermove', (e) => {
     const el = e.target.closest(TILT_SELECTOR);
-    if (!el || e.pointerType === 'touch') return;
+    if (!el || e.pointerType === 'touch' || prefersReducedMotion()) return;
     const r = el.getBoundingClientRect();
     const s = get(el);
     s.tx = ((e.clientX - r.left) / r.width) * 2 - 1;
@@ -60,7 +59,6 @@ function initTilt(panel) {
 }
 
 function initWindows(panel) {
-  const reduced = prefersReducedMotion();
   panel.querySelectorAll('.deck, .info-tower, .about-extra').forEach((win) => {
     const chrome = win.querySelector(':scope > .chrome');
     const dots = chrome?.querySelector('.dots');
@@ -83,7 +81,7 @@ function initWindows(panel) {
       win.classList.toggle('minimized', minimize);
       yellow.setAttribute('aria-expanded', String(!minimize));
       yellow.setAttribute('aria-label', minimize ? 'Restore panel' : 'Minimize panel');
-      if (reduced) return;
+      if (prefersReducedMotion()) return;
       win.style.setProperty('--chrome-h', `${chrome.offsetHeight + 2}px`);
       const to = win.getBoundingClientRect().height;
       win.style.overflow = 'hidden';
@@ -93,7 +91,7 @@ function initWindows(panel) {
     yellow.addEventListener('click', toggle);
     yellow.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
     red.addEventListener('click', () => {
-      if (!reduced) win.animate({ transform: ['translateX(0)', 'translateX(-7px)', 'translateX(6px)', 'translateX(-3px)', 'translateX(0)'] }, { duration: 320 });
+      if (!prefersReducedMotion()) win.animate({ transform: ['translateX(0)', 'translateX(-7px)', 'translateX(6px)', 'translateX(-3px)', 'translateX(0)'] }, { duration: 320 });
     });
     green.addEventListener('click', () => {
       if (win.classList.contains('minimized')) toggle();
@@ -107,11 +105,10 @@ function initRoleCycle() {
   const strip = document.querySelector('#panel-about .status-strip span');
   if (!strip || !/^Mode/.test(strip.textContent)) return;
   strip.innerHTML = 'Mode // <span class="role-swap">ml-researcher</span>';
-  if (prefersReducedMotion()) return;
   const swap = strip.querySelector('.role-swap');
   let i = 0;
   setInterval(() => {
-    if (document.hidden || document.getElementById('panel-about').hidden) return;
+    if (document.hidden || prefersReducedMotion() || document.getElementById('panel-about').hidden) return;
     i = (i + 1) % ROLES.length;
     swap.animate({ opacity: [1, 0], transform: ['translateY(0)', 'translateY(-6px)'] }, { duration: 220, easing: 'ease-in' }).onfinish = () => {
       swap.textContent = ROLES[i];
@@ -129,13 +126,28 @@ function initUptime() {
   setInterval(() => { if (!document.hidden) render(); }, 1000);
 }
 
+const GLOW_SELECTOR = '.about-live, .philo-card, .slot, .module, .row, .pub-card';
+
+/** A soft light behind the cursor on every tile. It is a real element placed behind the
+ *  tile's content (z-index -1 inside an isolated stacking context), so it never dims text. */
+function initGlow(panel) {
+  panel.querySelectorAll(GLOW_SELECTOR).forEach((el) => {
+    el.classList.add('has-glow');
+    const glow = document.createElement('span');
+    glow.className = 'glow';
+    glow.setAttribute('aria-hidden', 'true');
+    el.prepend(glow);
+  });
+  spotlight(panel, '.has-glow');
+}
+
 export function initAboutMotion() {
   const panel = document.getElementById('panel-about');
   if (!panel) return;
   const targets = panel.querySelectorAll('.info-tower, .deck, .deck-card, .about-extra, .explore-btn');
   targets.forEach((el, i) => { el.classList.add('reveal', 'about-live'); el.style.setProperty('--i', String(i % 4)); });
   reveal(targets);
-  spotlight(panel, '.about-live');
+  initGlow(panel);
   panel.addEventListener('transitionend', (e) => {
     if (e.target.classList?.contains('about-live') && e.propertyName === 'opacity') e.target.style.transitionDelay = '0ms';
   });

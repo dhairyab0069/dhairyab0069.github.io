@@ -205,7 +205,7 @@ export function initMlBackground() {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
 
-  const reduced = prefersReducedMotion();
+  let reduced = prefersReducedMotion();
   let W = 0, H = 0, dpr = 1, pal = PALETTE.dark;
   const land = document.createElement('canvas');
 
@@ -364,12 +364,17 @@ export function initMlBackground() {
   let raf = 0, lastFrame = 0;
   const loop = (t) => {
     raf = 0;
-    if (document.hidden) return;
+    if (document.hidden || reduced) return;
     if (t - lastFrame >= 33) { lastFrame = t; draw(t); }
     raf = requestAnimationFrame(loop);
   };
   const start = () => { if (!reduced && !raf) raf = requestAnimationFrame(loop); };
   document.addEventListener('visibilitychange', start);
+  // The Motion button: freeze on a still frame when turned off, resume when turned on.
+  window.addEventListener('site:motion', () => {
+    reduced = prefersReducedMotion();
+    if (reduced) { cancelAnimationFrame(raf); raf = 0; draw(0); } else start();
+  });
 
   let resizeTimer = 0;
   window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(resize, 150); });
