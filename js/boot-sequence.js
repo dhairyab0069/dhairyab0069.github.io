@@ -1,11 +1,11 @@
 // Fake POST/boot log that types itself out in the about panel.
 
 const bootLines = [
-  'INIT :: aclab research .......... READY',
-  'MOUNT :: motionblind dataset .... READY',
-  'LOAD :: escalion engine ......... READY',
-  'SPAWN :: gsg senate ............. READY',
-  'SYNC :: rust toolchain .......... READY'
+  'INIT :: research environment ..... READY',
+  'MOUNT :: video-language benchmarks READY',
+  'LOAD :: HPC and SLURM tooling ..... READY',
+  'SPAWN :: teaching and service .... READY',
+  'SYNC :: Rust and PyTorch stacks .. READY'
 ];
 const boot = document.getElementById('boot-lines');
 let bootIndex = 0;

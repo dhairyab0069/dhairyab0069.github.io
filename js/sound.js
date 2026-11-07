@@ -194,6 +194,8 @@ export function initSound() {
     // The speaker icon swaps with aria-pressed (see style.css); the title says what it is.
     btn.dataset.tip = enabled ? 'Sound effects: on' : 'Sound effects: off';
     btn.setAttribute('aria-pressed', String(enabled));
+    const label = btn.querySelector('[data-sound-label]');
+    if (label) label.textContent = enabled ? 'Sound on' : 'Sound off';
   };
   render();
 

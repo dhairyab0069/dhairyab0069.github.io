@@ -499,6 +499,13 @@
     .icon-btn .ico{width:1.05rem;height:1.05rem;transition:transform .35s var(--ease-out)}
     .icon-btn:hover .ico{transform:scale(1.12)}
     .icon-btn:active .ico{transform:scale(.9)}
+    /* The Sound control is larger than the other toggles and says its state in words */
+    .toolbar .sound-btn{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:0 1rem 0 .8rem;font-weight:600;font-size:.95rem}
+    .sound-btn .ico{width:1.5rem;height:1.5rem;transition:transform .35s var(--ease-out)}
+    .sound-btn:hover .ico{transform:scale(1.1)}
+    .sound-btn:active .ico{transform:scale(.92)}
+    :root[data-motion="reduced"] .sound-btn .ico{transition:none}
+    [data-sound-toggle][aria-pressed="false"]{border-color:var(--color-border)}
     [data-sound-toggle][aria-pressed="true"] .ico-off,[data-sound-toggle][aria-pressed="false"] .ico-on{display:none}
     [data-sound-toggle][aria-pressed="true"]{color:var(--color-primary);border-color:color-mix(in srgb,var(--color-primary) 55%,var(--color-border))}
     [data-motion-toggle][aria-pressed="false"] .ico-sit,[data-motion-toggle][aria-pressed="true"] .ico-run{display:none}
