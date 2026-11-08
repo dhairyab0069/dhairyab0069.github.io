@@ -138,6 +138,11 @@
     @media(max-width:580px){.about-extra-grid{grid-template-columns:1fr}}
     .about-card{padding:1rem;border-radius:1rem;border:1px solid var(--color-border);background:rgba(255,255,255,.03)}
     .about-card h3{font-family:var(--font-display);font-size:var(--text-base);letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary);margin-bottom:.75rem}
+    .interest-focus{display:grid;gap:.75rem;margin-bottom:1rem}
+    .interest-primary{padding:.75rem .9rem;border-left:3px solid var(--color-primary);border-radius:.25rem .75rem .75rem .25rem;background:rgba(255,255,255,.03)}
+    [data-theme="light"] .interest-primary{background:rgba(255,255,255,.35)}
+    .interest-primary h4{font-family:var(--font-display);font-size:var(--text-sm);letter-spacing:.08em;text-transform:uppercase;color:var(--color-primary);margin:0 0 .25rem}
+    .interest-primary p{font-size:var(--text-sm);color:var(--color-text-muted);margin:0}
     .about-tags{display:flex;flex-wrap:wrap;gap:.45rem}
     .about-tag{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .75rem;border-radius:999px;border:1px solid var(--color-border);background:rgba(255,255,255,.07);font-size:var(--text-xs);letter-spacing:.08em;color:var(--color-text)}
     .about-tag.accent{border-color:rgba(85,193,255,.5);background:rgba(85,193,255,.14);color:var(--color-primary);font-weight:500}

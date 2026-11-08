@@ -22,7 +22,7 @@ export function initInterests() {
       return;
     }
     const key = tag.dataset.related;
-    note.innerHTML = `<strong>${tag.textContent}</strong> → ${entryTitle(key)}: ${SUMMARY[key]}<br>`
+    note.innerHTML = `<strong>${tag.textContent}</strong> → ${entryTitle(key)}: ${tag.dataset.detail || SUMMARY[key]}<br>`
       + `<button type="button" class="run-btn" data-open-project="${key}">Open in Journey →</button>`;
   }));
 

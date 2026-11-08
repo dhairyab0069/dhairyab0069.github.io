@@ -251,14 +251,24 @@
 
           <div class="about-card">
             <h3>Interests</h3>
+            <div class="interest-focus">
+              <div class="interest-primary">
+                <h4>Computer vision</h4>
+                <p>Video-language models and motion understanding. At ACLab I co-led MotionBlind, a contrastive benchmark where open Video-LLMs reach at most 11.7% on full pairs against 91.3% for humans, and I am collecting an egocentric and exocentric video dataset for multi-view understanding.</p>
+              </div>
+              <div class="interest-primary">
+                <h4>Machine learning</h4>
+                <p>Evaluation, benchmarking and robustness. SLURM pipelines that benchmark 8 Video-LLMs across 3 benchmarks; a 1D ResNet for ECG diagnosis in PyTorch (0.922 macro AUROC, tested on an external dataset); and NYC taxi duration and tip prediction with LightGBM and a PyTorch MLP (duration error cut from 4.24 to 2.77 minutes).</p>
+              </div>
+            </div>
             <div class="about-tags">
+              <button type="button" class="about-tag magenta" data-related="aclab" data-detail="video-language benchmarking (MotionBlind) and a multi-view egocentric and exocentric video dataset." aria-pressed="false">Computer Vision</button>
+              <button type="button" class="about-tag magenta" data-related="aclab" data-detail="benchmarking and evaluating Video-LLMs on HPC, plus ECG and taxi prediction projects." aria-pressed="false">Machine Learning</button>
+              <button type="button" class="about-tag magenta" data-related="cactilab" aria-pressed="false">NLP</button>
               <button type="button" class="about-tag accent" data-related="escalion" aria-pressed="false">Game Development</button>
               <button type="button" class="about-tag accent" data-related="escalion" aria-pressed="false">Systems Design</button>
               <button type="button" class="about-tag accent" data-related="escalion" aria-pressed="false">Computer Architecture</button>
               <button type="button" class="about-tag accent" data-related="escalion" aria-pressed="false">Low-level Programming</button>
-              <button type="button" class="about-tag magenta" data-related="aclab" aria-pressed="false">Computer Vision</button>
-              <button type="button" class="about-tag magenta" data-related="aclab" aria-pressed="false">Machine Learning</button>
-              <button type="button" class="about-tag magenta" data-related="cactilab" aria-pressed="false">NLP</button>
             </div>
             <div class="tag-note" id="interest-note" aria-live="polite">Select an interest to see where it appears in my work.</div>
           </div>
