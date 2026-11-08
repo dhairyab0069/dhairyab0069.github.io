@@ -83,7 +83,7 @@
     @keyframes pulse{0%,100%{transform:scaleX(.92);transform-origin:left}50%{transform:scaleX(1);transform-origin:left}}
 
     /* About: one centred column; Experience and Education sit inside the console where the module slots were */
-    #panel-about > *{max-width:62rem;margin-inline:auto}
+    #panel-about > *{width:100%;max-width:none}
     #panel-about .hero-rack{grid-template-columns:minmax(0,1fr)}
     #panel-about .cube-main{grid-template-columns:minmax(0,1fr)}
     #panel-about .display{text-align:center}
