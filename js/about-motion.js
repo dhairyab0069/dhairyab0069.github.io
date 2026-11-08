@@ -15,7 +15,7 @@
 
 import { reveal, spotlight, prefersReducedMotion, scrollToEl } from './motion.js';
 
-const TILT_SELECTOR = '.philo-card, .slot, .module, .pub-card';
+const TILT_SELECTOR = '.philo-card, .module, .pub-card';
 const EASE = 'cubic-bezier(.22,1,.36,1)';
 const ROLES = ['ml-researcher', 'benchmark-builder', 'rust-tinkerer', 'teaching-assistant'];
 
@@ -127,7 +127,7 @@ function initUptime() {
   setInterval(() => { if (!document.hidden) render(); }, 1000);
 }
 
-const GLOW_SELECTOR = '.about-live, .philo-card, .slot, .module, .row, .pub-card';
+const GLOW_SELECTOR = '.about-live, .philo-card, .career-item, .module, .row, .pub-card';
 
 /** A soft light behind the cursor on every tile. It is a real element placed behind the
  *  tile's content (z-index -1 inside an isolated stacking context), so it never dims text. */
