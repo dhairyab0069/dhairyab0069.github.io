@@ -714,3 +714,8 @@
     [data-theme="light"] .win{background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.15))}
     .win-body{padding:1.25rem;display:grid;gap:1rem}
     .win .career-sec{padding:0;border:0;background:none;box-shadow:none}
+
+    .win-body{grid-template-columns:minmax(8rem,11rem) minmax(0,1fr);gap:1.25rem;align-items:start}
+    .win-h{font-family:var(--font-display);font-size:var(--text-sm);letter-spacing:.14em;text-transform:uppercase;color:var(--color-primary);margin:.35rem 0 0;position:sticky;top:1rem}
+    .win-content{display:grid;gap:1rem;min-width:0}
+    @media (max-width:760px){.win-body{grid-template-columns:minmax(0,1fr)}.win-h{position:static;margin:0}}
