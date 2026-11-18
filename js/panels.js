@@ -1,12 +1,12 @@
 // Dock navigation: shows one top-level panel at a time. The active panel is
-// kept in the URL hash (#about, #journey, #projects, #workbench, #mail) so reload, deep links and
+// kept in the URL hash (#about, #resume, #journey, #projects, #dataset, #workbench, #mail) so reload, deep links and
 // the Back button all work. A panel may add its own path after a slash (#projects/himawari);
 // only the part before the slash picks the panel.
 
 import { tickBoot } from './boot-sequence.js';
 import { prefersReducedMotion } from './motion.js';
 
-const PANELS = { about: 'panel-about', journey: 'panel-journey', projects: 'panel-projects', workbench: 'panel-workbench', mail: 'panel-mail' };
+const PANELS = { about: 'panel-about', resume: 'panel-resume', journey: 'panel-journey', projects: 'panel-projects', dataset: 'panel-dataset', workbench: 'panel-workbench', mail: 'panel-mail' };
 const ORDER = Object.keys(PANELS); // the dock's left-to-right order
 const DEFAULT_PANEL = 'about';
 const root = document.documentElement;
